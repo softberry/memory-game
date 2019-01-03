@@ -1,5 +1,5 @@
-import {Errors} from '../_lib/errors';
-import {Game} from './game';
+import {Errors} from './_lib/errors';
+import {Game} from './_lib/game';
 import {default as style} from './style.css';
 import {default as template} from './template.html';
 

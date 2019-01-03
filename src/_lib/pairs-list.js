@@ -1,7 +1,12 @@
 /**
- * @class
+ *
+ * @class MemoryPairsList
  */
 export class MemoryPairsList extends Array {
+  /**
+   * Draw checkmark on paired images
+   * @param {HTMLCanvasElement} canvas
+   */
   checkMark(canvas) {
     const ctx = canvas.getContext('2d');
     const w = canvas.offsetWidth;

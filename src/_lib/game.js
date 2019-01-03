@@ -1,6 +1,6 @@
-import {MemoryImageList} from '../_lib/image-list';
-import {MemoryCanvaslist} from '../_lib/canvas-list';
-import {MemoryPairsList} from '../_lib/pairs-list';
+import {MemoryImageList} from './image-list';
+import {MemoryCanvaslist} from './canvas-list';
+import {MemoryPairsList} from './pairs-list';
 
 /**
  * @class
