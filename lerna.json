@@ -1,6 +1,6 @@
 {
   "packages": [
-    "public/bundle/*"
+    "public/*"
   ],
   "version": "0.0.0"
 }
