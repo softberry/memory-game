@@ -1,6 +1,7 @@
-import {MemoryImageList} from './image-list';
-import {MemoryCanvaslist} from './canvas-list';
-import {MemoryPairsList} from './pairs-list';
+import { MemoryImageList } from './image-list';
+import { MemoryCanvaslist } from './canvas-list';
+import { MemoryPairsList } from './pairs-list';
+
 
 /**
  * @class
@@ -21,7 +22,9 @@ export class Game {
     this.canvas.addCanvas(canvas);
     this.state = [];
     this.prepared = false;
+    this.readyFunctions = [];
   }
+
   /**
    * Includes given image to the game
    * @param {HTMLImageElement} img image to be added
@@ -71,7 +74,6 @@ export class Game {
             self.state.push(e.target);
             self.openCard(e.target);
             if (self.pairs.arePairs(self.state)) {
-              console.log('PAIRS');
               self.state = [];
             }
 
@@ -82,12 +84,26 @@ export class Game {
         }
       });
     });
-    this.onReady();
+
     this.prepared = true;
 
     this.canvas.forEach((c) => {
+      c.classList.remove('wait');
       self.closeCard(c);
     });
+    this.readyFunctions.forEach((cb) => {
+      cb.fn.call(cb.context);
+    });
+  }
+  /**
+   * adds  function to self.game to enable hiding
+   * 'LOADING...' layer after successful load.
+   * @param {function} fn
+   * @param {{}} context ` this ` context to be used
+   * at the time of calling function
+   */
+  onReady(fn, context) {
+    this.readyFunctions.push({ fn, context });
   }
   /**
    * Opens  card by drawing cardback image on given canvas
@@ -110,7 +126,6 @@ export class Game {
    */
   closeCard(canvas) {
     const self = this;
-
     self.drawImageOnCanvas(canvas, self.cardBack);
     canvas.classList.remove('open');
   }
@@ -120,6 +135,9 @@ export class Game {
    * @param {HTMLImageElement} image
    */
   drawImageOnCanvas(canvas, image) {
+    const ctx = canvas.getContext('2d');
+    ctx.restore();
+
     const props = {
       cw: canvas.width,
       ch: canvas.height,
@@ -127,12 +145,7 @@ export class Game {
       ih: image.height,
     };
 
-    const ctx = canvas.getContext('2d');
-
     ctx.clearRect(0, 0, props.cw, props.ch);
-    ctx.rotate(0);
     ctx.drawImage(image, 0, 0, props.iw, props.ih, 0, 0, props.cw, props.ch);
-
-    ctx.save();
   }
 }

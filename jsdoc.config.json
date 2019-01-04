@@ -1,0 +1,27 @@
+{
+  "plugins": ["plugins/markdown", "plugins/summarize"],
+  "recurseDepth": 10,
+  "linenums": true,
+  "source": {
+    "include": ["./src/", "./readme.MD"],
+    "includePattern": ".+\\.js(doc|x)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "sourceType": "module",
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "templates": {
+    "applicationName": "Memory Game",
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "sort": false
+  },
+  "opts": {
+    "destination": "./public/docs/",
+    "lenient": true,
+    "recurse": true,
+    "template": "node_modules/docdash"
+  }
+}

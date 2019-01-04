@@ -17,6 +17,22 @@
   overflow: hidden;
 }
 
+:host .loading {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  animation: loading 1s infinite;
+  z-index: 0;
+}
+:host .loading.done {
+  display: none;
+}
 :host .code {
   background-color: #333333;
   color: yellowgreen;
@@ -29,15 +45,37 @@
 }
 :host .tile {
   float: left;
+  z-index: 1;
+  position: relative;
 }
+
 :host .tile canvas {
   width: calc(100% - 2px);
   height: calc(100% - 2px);
   position: relative;
   border-radius: 2px;
   cursor: pointer;
+  visibility: visible;
+}
+
+:host .tile canvas.wait {
+  visibility: hidden;
 }
 
 :host .tile canvas.open {
   cursor: none;
+}
+
+@keyframes loading {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }

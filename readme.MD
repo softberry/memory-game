@@ -1,9 +1,24 @@
 # Memory Game
 
-## classic Memory Game as Custom Component
+This is a classic Memory Game that can be simply included in any html page like this:
 
-### TODO
+    <html>
+      <head>
+        <script src="unpkg">link to unpkg</script>
+      </head>
+      <body>
+        <div class="container">
+              <mini-memory></mini-memory>
+        </div>
+      </body>
+    </html>
 
-- dynamic attribute change: should re-render game
-- unit test
-- JSDOC
+** Please note Internet Explorer 11 is not supported **
+
+#### TODOs & Notes:
+
+
+- Customizable image server.
+- Public Preview of the game
+
+

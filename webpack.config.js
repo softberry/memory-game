@@ -1,38 +1,46 @@
-const {resolve} = require('path');
+const { resolve } = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	mode: process.env.NODE_ENV || 'development',
-	entry: ['./src/index.js'],
-	output: {
-		filename: 'bundle.js',
-		path: resolve(__dirname, './public'),
-		publicPath: '/'
-	},
-	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				use: 'babel-loader',
-				exclude: /node_modules/
-			},
-			{
-				test: /\.css$/,
-				use: ['to-string-loader', 'css-loader'],
-				exclude: /node_modules/
-			},
-			{
-				test: /\.html$/,
-				use: ['to-string-loader', 'html-loader'],
-				exclude: /node_modules/
-			}
-		]
-	},
-	plugins: [
-		new HtmlPlugin({
-			filename: 'index.html',
-			template: './index.html',
-			hash: true
-		})
-	]
+  devServer: {
+    host: '0.0.0.0',
+    contentBase: resolve('./src'),
+    port: 8080,
+  },
+  entry: ['./src/index.js'],
+  output: {
+    filename: 'mini-memory.js',
+    path: resolve(__dirname, './public/bundle'),
+    publicPath: '/',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: ['to-string-loader', 'css-loader'],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.html$/,
+        use: ['to-string-loader', 'html-loader'],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3)$/,
+        use: ['file-loader?name=[name].[ext]'],
+      },
+    ],
+  },
+  plugins: [
+    new HtmlPlugin({
+      filename: 'index.html',
+      template: './index.html',
+      hash: true,
+    }),
+  ],
 };

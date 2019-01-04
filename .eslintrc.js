@@ -26,6 +26,8 @@ module.exports = {
       },
     ],
     'linebreak-style': ['error', 'unix'],
+    'object-curly-spacing': ['error', 'always'],
+    'array-bracket-spacing': ['error','never'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
   },
