@@ -1,6 +1,6 @@
 {
   "name": "mini-memory",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "bundle/mini-memory.js",
   "author": "Emre Sakarya",
   "license": "MIT",
