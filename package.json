@@ -1,5 +1,5 @@
 {
-  "name": "mini-memory-dev",
+  "name": "mini-memory",
   "version": "1.0.2",
   "description": "Classic memory game as custom element.",
   "main": "src/index.js",
