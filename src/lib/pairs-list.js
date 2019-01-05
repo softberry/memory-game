@@ -4,7 +4,7 @@
  */
 export class MemoryPairsList extends Array {
   /**
-   * Draw checkmark on paired images
+   * Apply visual changes on paired elements
    * @param {HTMLCanvasElement} canvas
    */
   checkMark(canvas) {
@@ -17,6 +17,8 @@ export class MemoryPairsList extends Array {
     ctx.globalAlpha = 1;
     ctx.save();
 
+    /*
+
     ctx.beginPath();
     ctx.arc(w - 18, h - 18, 15, 0, 2 * Math.PI);
     ctx.fillStyle = '#33cc33';
@@ -26,6 +28,7 @@ export class MemoryPairsList extends Array {
     ctx.fillText('\u2713', w - 28, h - 8);
 
     ctx.save();
+*/
   }
   /**
    *

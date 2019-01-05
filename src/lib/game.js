@@ -2,7 +2,6 @@ import { MemoryImageList } from './image-list';
 import { MemoryCanvaslist } from './canvas-list';
 import { MemoryPairsList } from './pairs-list';
 
-
 /**
  * @class
  */
@@ -23,6 +22,10 @@ export class Game {
     this.state = [];
     this.prepared = false;
     this.readyFunctions = [];
+    this.cards = {
+      open: 0,
+      length: 0,
+    };
   }
 
   /**
@@ -41,17 +44,14 @@ export class Game {
    */
   prepare() {
     const self = this;
-    if (this.images.length !== this.canvas.length / 2) {
-      alert('Number of images are not half of number of canvas.');
-      return;
-    }
-    if (this.prepared) {
-      alert('game is already prepared!');
-      return;
-    }
 
+    self.cards.open = 0;
+    self.cards.length = self.images.length;
     this.canvas.forEach((c) => {
       c.addEventListener('click', (e) => {
+        if (this.counter.timer.diff === 0) {
+          this.counter.start();
+        }
         if (e.target.classList.contains('open')) {
           return;
         }
@@ -75,8 +75,14 @@ export class Game {
             self.openCard(e.target);
             if (self.pairs.arePairs(self.state)) {
               self.state = [];
+              self.cards.open++;
+              if (self.cards.open === self.cards.length) {
+                self.counter.stop();
+              }
             }
-
+            if (self.images.length === 0) {
+              self.counter.stop();
+            }
             break;
           }
 

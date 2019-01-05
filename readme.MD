@@ -20,5 +20,7 @@ This is a classic Memory Game that can be simply included in any html page like 
 
 - Customizable image server.
 - Public Preview of the game
+- multiple players
+- settings
 
 

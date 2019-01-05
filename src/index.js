@@ -1,10 +1,11 @@
 import { Localization } from './lib/i18n';
 import { Game } from './lib/game';
 import { default as style } from './style.css';
-
+import { Counter } from './lib/counter';
 const cardback = require('./cardback.jpg');
 
 /**
+ * Main container of the game.
  * @class
  */
 class MiniMemory extends HTMLElement {
@@ -18,6 +19,7 @@ class MiniMemory extends HTMLElement {
     this.rendered = false;
     this.images = [];
     this.tiles = [];
+    this.toolbar = document.createElement('div');
     this.layers = {
       loading: null,
     };
@@ -159,11 +161,15 @@ class MiniMemory extends HTMLElement {
     let outer = 0;
     let inner = 0;
     let index = 0;
+    const tilesContainer = document.createElement('div');
+
+    tilesContainer.id = 'tiles-container';
+    self.shadowRoot.appendChild(tilesContainer);
     for (outer = 0; outer < matrix[0]; outer++) {
       for (inner = 0; inner < matrix[1]; inner++) {
         index = inner + matrix[1] * outer;
         const tile = self.createTile(index);
-        self.shadowRoot.appendChild(tile.tile);
+        tilesContainer.appendChild(tile.tile);
         if (index !== oddMid) {
           tile.canvas.classList.add('wait');
           self.tiles.push(tile);
@@ -181,9 +187,14 @@ class MiniMemory extends HTMLElement {
           i
         );
       }
+
       self.game = new Game(this.tiles.map((t) => t.canvas), this.cardBack);
+
       self.game.onReady(() => {
-        this.shadowRoot.querySelector('.loading').classList.add('done');
+        this.shadowRoot.querySelector('#loading').classList.add('done');
+        self.game.counter = new Counter(
+          self.shadowRoot.querySelector('#counter')
+        );
       }, self);
     });
     this.cardBack.setAttribute('src', cardback);
@@ -203,8 +214,19 @@ class MiniMemory extends HTMLElement {
     }
 
     this.shadowRoot.innerHTML = `<style>${style}</style>
-    <div class="loading">${this.i18n.message('LOADING')}</div>`;
-    this.layers.loading = this.shadowRoot.querySelector('.loading');
+    <div id="toolbar">
+    <div id="counter"></div>
+    <div id="player"></div>
+    <div id="menu"></div>
+    </div>
+    <div id="loading">${this.i18n.message('LOADING')}</div>`;
+    this.shadowRoot.appendChild(this.toolbar);
+    this.layers.loading = this.shadowRoot.querySelector('#loading');
+    this.layers.toolbar = {
+      counter: this.shadowRoot.querySelector('#counter'),
+      player: this.shadowRoot.querySelector('#player'),
+      menu: this.shadowRoot.querySelector('#menu'),
+    };
 
     this.prepareMatrix();
   }
