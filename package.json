@@ -1,6 +1,6 @@
 {
   "name": "memory-game",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Classic memory game as custom element.",
   "main": "src/index.js",
   "author": "Emre Sakarya",
