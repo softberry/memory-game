@@ -1,9 +1,0 @@
-{
-  "name": "mini-memory-bundle",
-  "version": "1.0.0",
-  "main": "index.js",
-  "publishConfig": {
-    "access": "public"
-  },
-  "license": "MIT"
-}
