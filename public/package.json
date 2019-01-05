@@ -1,10 +1,6 @@
 {
   "name": "mini-memory",
-  "version": "1.0.1",
-  "main": "bundle/mini-memory.js",
-  "author": "Emre Sakarya",
-  "license": "MIT",
-  "devDependencies": {
-    "lerna": "^3.8.4"
-  }
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
 }
