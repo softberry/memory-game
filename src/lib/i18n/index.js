@@ -59,4 +59,12 @@ export class Localization {
 
     return clone.innerHTML;
   }
+
+  update(shadowRoot) {
+    const items = shadowRoot.querySelectorAll('[data-i18n]');
+
+    [].forEach.call(items, (item) => {
+      item.innerText = this.message(item.dataset.i18n);
+    });
+  }
 }

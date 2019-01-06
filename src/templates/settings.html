@@ -1,0 +1,124 @@
+<style>
+  :host input,
+  :host button,
+  :host select,
+  :host option {
+    outline: 0;
+    line-height: 1.5;
+  }
+  :host input,
+  :host button,
+  :host select,
+  :host option {
+    display: block;
+    padding: 2px 4px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 0 #f1f1f1;
+    background-color: #313131;
+    color: white;
+    font-size: 18px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  :host button:active {
+    box-shadow: 0 0 4px 0 white;
+  }
+
+  :host #settings {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(51, 51, 51, 0.95);
+    transform: translateX(100%);
+    z-index: var(--mini-memory-z-menu);
+    transition: transform 300ms;
+    color: white;
+    font-size: 20px;
+  }
+
+  :host #settings.show {
+    transform: translateX(0);
+  }
+
+  :host #settings .close-x {
+    float: right;
+    color: white;
+    top: 0;
+    padding-right: 4px;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 300ms;
+  }
+
+  :host #settings .close-x:active {
+    transform: rotate(45deg);
+  }
+
+  :host #form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+  }
+  :host #form > div {
+    width: 100%;
+    margin: 10px 0;
+  }
+  :host label[for='playerName'] {
+    display: block;
+  }
+  :host #playerName,
+  :host #matrixmin,
+  :host #matrixmax {
+    display: inline-block;
+    background: none;
+    border: 0;
+    color: white;
+  }
+</style>
+<div id="settings" class="show">
+  <div><span class="close-x">&times;</span></div>
+  <div id="form">
+    <div>
+      <label for="playerName" data-i18n="PLAYERS_NAME"></label>
+      <input type="text" id="playerName" />
+    </div>
+    <div>
+      <label for="matrixmin" data-i18n="COLUMNS"></label>
+      <input
+        type="number"
+        placeholder="2"
+        id="matrixmin"
+        size="2"
+        min="2"
+        max="16"
+      />
+      <label for="matrixmax" data-i18n="ROWS"></label>
+      <input
+        type="number"
+        placeholder="2"
+        id="matrixmax"
+        size="2"
+        min="2"
+        max="16"
+      />
+    </div>
+    <div>
+      <select name="languageSelection" id="languageSelection">
+        <option value="default" data-i18n="SELECT_LANGUAGE"></option>
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
+        <option value="tr">Türkce</option>
+      </select>
+    </div>
+  </div>
+</div>

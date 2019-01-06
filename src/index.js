@@ -2,6 +2,9 @@ import { Localization } from './lib/i18n';
 import { Game } from './lib/game';
 import { default as style } from './style.css';
 import { Counter } from './lib/counter';
+
+import { default as toolbar } from './templates/toolbar.html';
+import { default as settings } from './templates/settings.html';
 const cardback = require('./cardback.jpg');
 
 /**
@@ -208,36 +211,80 @@ class MiniMemory extends HTMLElement {
 
     this.cardBack.setAttribute('src', cardback);
   }
+
   /**
    * @description Renders custom element with initial attributes
    */
   render() {
-    if (this.rendered) {
+    const self = this;
+    if (self.rendered) {
       return;
     }
-    this.i18n = new Localization(this.getAttribute('lang'));
-    this.rendered = true;
+    self.i18n = new Localization(self.getAttribute('lang'));
+    self.rendered = true;
 
-    if (!this.shadowRoot) {
-      this.attachShadow({ mode: 'open' });
+    if (!self.shadowRoot) {
+      self.attachShadow({ mode: 'open' });
     }
 
-    this.shadowRoot.innerHTML = `<style>${style}</style>
-    <div id="toolbar">
-    <div id="counter"></div>
-    <div id="player"></div>
-    <div id="menu"></div>
-    </div>
-    <div id="loading">${this.i18n.message('LOADING')}</div>`;
-    this.shadowRoot.appendChild(this.toolbar);
-    this.layers.loading = this.shadowRoot.querySelector('#loading');
-    this.layers.toolbar = {
+    self.shadowRoot.innerHTML = `<style>${style}</style>
+    ${toolbar}
+    ${settings}
+    <div id="loading">${self.i18n.message('LOADING')}</div>`;
+    self.prepareMatrix();
+    self.i18n.update(self.shadowRoot);
+
+    self.layers.toolbar = {
       counter: this.shadowRoot.querySelector('#counter'),
       player: this.shadowRoot.querySelector('#player'),
       menu: this.shadowRoot.querySelector('#menu'),
     };
 
-    this.prepareMatrix();
+    self.layers.settings = {
+      panel: this.shadowRoot.querySelector('#settings'),
+      closeX: this.shadowRoot.querySelector('#settings .close-x'),
+      labels: {
+        playername: self.shadowRoot.querySelector('label[for="playerName"]'),
+        matrixMin: self.shadowRoot.querySelector('label[for="matrixmin"]'),
+        matrixMax: self.shadowRoot.querySelector('label[for="matrixmax"]'),
+      },
+
+      languageSelection: self.shadowRoot.querySelector('#languageSelection'),
+      playerName: self.shadowRoot.querySelector('#playerName'),
+      matrixMin: self.shadowRoot.querySelector('#matrixmin'),
+      matrixMax: self.shadowRoot.querySelector('#matrixmax'),
+    };
+
+    self.layers.settings.matrixMin.value = self
+      .getAttribute('matrix')
+      .split('x')[0];
+    self.layers.settings.matrixMax.value = self
+      .getAttribute('matrix')
+      .split('x')[1];
+
+    self.layers.toolbar.menu.addEventListener('click', function(e) {
+      self.layers.settings.panel.classList.add('show');
+    });
+
+    self.layers.settings.closeX.addEventListener('click', function(e) {
+      self.layers.settings.panel.classList.remove('show');
+    });
+
+    self.layers.settings.languageSelection.addEventListener('change', (e) => {
+      self.i18n = new Localization(e.target.value);
+      self.i18n.update(self.shadowRoot);
+    });
+    self.layers.settings.matrixMin.addEventListener('change', (e) => {
+      const col = e.target.value;
+      const row = self.getAttribute('matrix').split('x')[1];
+      self.setAttribute('matrix', `${col}x${row}`);
+    });
+
+    self.layers.settings.matrixMax.addEventListener('change', (e) => {
+      const row = e.target.value;
+      const col = self.getAttribute('matrix').split('x')[0];
+      self.setAttribute('matrix', `${col}x${row}`);
+    });
   }
 }
 

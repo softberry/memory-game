@@ -1,0 +1,38 @@
+<style>
+  :host #toolbar {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    left: 0;
+    top: 0;
+    height: 18px;
+    width: 100%;
+    padding: 0 2px;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+  :host #counter {
+    width: 100px;
+  }
+  :host #player {
+    text-align: center;
+    max-width: 100px;
+    font-weight: bold;
+  }
+  :host #menu {
+    width: 20px;
+    height: 20px;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAt0lEQVQ4je2UwQqCQBCGf1fXgtjCWhC0LhJ28tT7P0gdOoh2Wg8lQam7dugauysJHeqDuX38zMDMAN9hT19lxjEJnO9YS5sTANDWT4Q41DrfMwWqiVw4sl8BQD+9zQFoA60IwiQLwiT7OOiHYVHKWZRyG9e4NixKOVFNCQCK+HF9PgqdT+x6HJkhI/95z5DTM67NMt6ulexyAHC9blMVRanzjd+GPNyLpLICAOc+u9p0aYH9gx2dJ6RgKz0wt+R/AAAAAElFTkSuQmCC');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 20px 16px;
+    cursor: pointer;
+    position: relative;
+  }
+</style>
+<div id="toolbar">
+  <div id="counter"></div>
+  <div id="player"></div>
+  <div id="menu"></div>
+</div>

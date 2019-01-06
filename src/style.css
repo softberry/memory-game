@@ -5,6 +5,9 @@
 :host {
   --mini-memory-bg: #f9f9f9;
   --mini-memory-border: #313131;
+  --mini-memory-z-loading: 10;
+  --mini-memory-z-tile: 20;
+  --mini-memory-z-menu: 30;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 12px;
   position: relative;
@@ -18,6 +21,17 @@
   overflow: hidden;
   box-shadow: 0 0 4px 0 #333333;
 }
+:host([fullscreen]) {
+  position: fixed;
+  left: 0;
+  top: 0;
+  border: 0;
+}
+@media only screen and (orientation: landscape) {
+  :host([fullscreen]) {
+    border: 0;
+  }
+}
 
 :host #loading {
   position: absolute;
@@ -30,7 +44,7 @@
   align-items: center;
   text-transform: uppercase;
   animation: loading 1s infinite;
-  z-index: 0;
+  z-index: var(--mini-memory-z-loading);
 }
 
 :host #loading.done {
@@ -49,45 +63,16 @@
   margin: 5px;
 }
 
-:host #toolbar {
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  left: 0;
-  top: 0;
-  height: 18px;
-  width: 100%;
-  padding: 0 2px;
-  font-size: 14px;
-  line-height: 1.2;
-}
-#counter {
-  width: 100px;
-}
-#player {
-  text-align: center;
-  max-width: 100px;
-  font-weight: bold;
-}
-#menu {
-  width: 20px;
-  height: 20px;
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAt0lEQVQ4je2UwQqCQBCGf1fXgtjCWhC0LhJ28tT7P0gdOoh2Wg8lQam7dugauysJHeqDuX38zMDMAN9hT19lxjEJnO9YS5sTANDWT4Q41DrfMwWqiVw4sl8BQD+9zQFoA60IwiQLwiT7OOiHYVHKWZRyG9e4NixKOVFNCQCK+HF9PgqdT+x6HJkhI/95z5DTM67NMt6ulexyAHC9blMVRanzjd+GPNyLpLICAOc+u9p0aYH9gx2dJ6RgKz0wt+R/AAAAAElFTkSuQmCC');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 20px 16px;
-}
 
 #tiles-container {
   position: absolute;
-  top: 20px;
-  height: calc(100% - 20px);
+  top: 24px;
+  height: calc(100% - 24px);
 }
 
 :host .tile {
   float: left;
-  z-index: 1;
+  z-index: var(--mini-memory-z-tile);
   position: relative;
 }
 

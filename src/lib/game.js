@@ -77,12 +77,11 @@ export class Game {
               self.state = [];
               self.cards.open++;
               if (self.cards.open === self.cards.length) {
+                debugger;
                 self.counter.stop();
               }
             }
-            if (self.images.length === 0) {
-              self.counter.stop();
-            }
+            
             break;
           }
 

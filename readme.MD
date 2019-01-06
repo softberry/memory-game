@@ -4,7 +4,7 @@ This is a classic Memory Game that can be simply included in any html page like 
 
     <html>
       <head>
-        <script src="unpkg">link to unpkg</script>
+        	  <script src="//unpkg.com/mini-memory@latest/public/bundle/mini-memory.js"></script>
       </head>
       <body>
         <div class="container">
@@ -17,10 +17,9 @@ This is a classic Memory Game that can be simply included in any html page like 
 
 #### TODOs & Notes:
 
-
 - Customizable image server.
 - Public Preview of the game
 - multiple players
 - settings
 - complete logs starting with 'Translate:'
-
+- add fullscreen attribute for a fullscreen mobile game with fixed layout(always landscape)
