@@ -19,11 +19,11 @@ This is a classic Memory Game that can be simply included in any html page like 
 
   ```matrix``` columns and rows count in format of 2x2. Accepted values minimum 2x2 and maximum 16x16
 
-´´´<mini-memory matrix="2x2"></mini-memory>```
+```&lt;mini-memory matrix="2x2">&lt;/mini-memory>```
 
 ```lang``` Language selection. Current available languages are English, German and Turkish
 
-´´´<mini-memory lang="de"></mini-memory>```
+```&lt;mini-memory lang="de">&lt;/mini-memory>```
 
 
 
