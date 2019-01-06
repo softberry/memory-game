@@ -17,15 +17,13 @@ This is a classic Memory Game that can be simply included in any html page like 
 
 ## Attributes
 
-  ```matrix``` columns and rows count in format of 2x2. Accepted values minimum 2x2 and maximum 16x16
+`matrix` columns and rows count in format of 2x2. Accepted values minimum 2x2 and maximum 16x16
 
-```&lt;mini-memory matrix="2x2">&lt;/mini-memory>```
+      <mini-memory matrix="2x2">&lt;/mini-memory>
 
-```lang``` Language selection. Current available languages are English, German and Turkish
+`lang` Language selection. Current available languages are English, German and Turkish
 
-```&lt;mini-memory lang="de">&lt;/mini-memory>```
-
-
+      <mini-memory lang="de">&lt;/mini-memory>```
 
 #### TODOs & Notes:
 
