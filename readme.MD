@@ -16,6 +16,8 @@ This is a classic Memory Game that can be simply included in any html page like 
 ## Sample Preview
 
 An online [preview is availabel on][sample-preview]
+
+
 ** Please note Internet Explorer 11 is not supported **
 
 ## Attributes
@@ -27,6 +29,7 @@ An online [preview is availabel on][sample-preview]
 `lang` Language selection. Current available languages are English, German and Turkish
 
       <mini-memory lang="de"></mini-memory>```
+
 
 #### TODOs & Notes:
 
