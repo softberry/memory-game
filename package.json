@@ -1,6 +1,6 @@
 {
   "name": "mini-memory",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Classic memory game as custom element.",
   "main": "src/index.js",
   "author": "Emre Sakarya",
