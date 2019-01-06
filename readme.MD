@@ -22,5 +22,5 @@ This is a classic Memory Game that can be simply included in any html page like 
 - Public Preview of the game
 - multiple players
 - settings
-
+- complete logs starting with 'Translate:'
 
