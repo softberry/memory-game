@@ -13,6 +13,9 @@ This is a classic Memory Game that can be simply included in any html page like 
       </body>
     </html>
 
+## Sample Preview
+
+An online [preview is availabel on][sample-preview]
 ** Please note Internet Explorer 11 is not supported **
 
 ## Attributes
@@ -28,8 +31,9 @@ This is a classic Memory Game that can be simply included in any html page like 
 #### TODOs & Notes:
 
 - Customizable image server.
-- Public Preview of the game
 - multiple players
 - settings
 - complete logs starting with 'Translate:'
 - add fullscreen attribute for a fullscreen mobile game with fixed layout(always landscape)
+
+[sample-preview]: http://www.emresakarya.com/mini-memory
