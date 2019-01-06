@@ -59,7 +59,10 @@ export class Localization {
 
     return clone.innerHTML;
   }
-
+  /**
+   * Update all language related fileds using attribute data-i18n
+   * @param {{}} shadowRoot
+   */
   update(shadowRoot) {
     const items = shadowRoot.querySelectorAll('[data-i18n]');
 

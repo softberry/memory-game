@@ -13,7 +13,7 @@ const dict = {
     message: 'Isminizi girin',
   },
   PLAYERS_NAME: {
-    message: "Oyuncu adi",
+    message: 'Oyuncu adi',
   },
   COLUMNS: {
     message: 'Kolon',

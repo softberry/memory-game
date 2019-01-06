@@ -81,7 +81,6 @@ export class Game {
                 self.counter.stop();
               }
             }
-            
             break;
           }
 

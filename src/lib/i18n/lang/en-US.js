@@ -13,7 +13,7 @@ const dict = {
     message: 'Enter your name',
   },
   PLAYERS_NAME: {
-    message: "Player's name",
+    message: 'Players name',
   },
   COLUMNS: {
     message: 'Columns',
