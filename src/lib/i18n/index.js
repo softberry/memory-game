@@ -16,12 +16,18 @@ export class Localization {
     if (typeof lang !== 'string') {
       lang = navigator.language;
     }
-    lang = lang.slice(0, 2).toLowerCase();
+
+    this.all = {
+      en,
+      de,
+      tr,
+    };
+    this.lang = lang.slice(0, 2).toLowerCase();
 
     this.tmpl = window.document.createElement('div');
     this.tmpl.innerHTML = template;
 
-    switch (lang) {
+    switch (this.lang) {
       case 'en': {
         this.dict = en;
         break;
@@ -39,6 +45,7 @@ export class Localization {
       }
     }
   }
+
   /**
    *
    * @param {string} key key name of identifier
@@ -59,15 +66,27 @@ export class Localization {
 
     return clone.innerHTML;
   }
+
   /**
    * Update all language related fileds using attribute data-i18n
    * @param {{}} shadowRoot
    */
   update(shadowRoot) {
     const items = shadowRoot.querySelectorAll('[data-i18n]');
-
+    const self = this;
     [].forEach.call(items, (item) => {
-      item.innerText = this.message(item.dataset.i18n);
+      switch (item.dataset.i18n) {
+        case 'LANGUAGE_LABEL': {
+          item.innerText = this.all[item.value].LANGUAGE_LABEL.message;
+          if (item.value === self.lang) {
+            item.setAttribute('selected', true);
+          }
+          break;
+        }
+        default: {
+          item.innerText = this.message(item.dataset.i18n);
+        }
+      }
     });
   }
 }

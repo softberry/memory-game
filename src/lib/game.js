@@ -77,7 +77,8 @@ export class Game {
               self.state = [];
               self.cards.open++;
               if (self.cards.open === self.cards.length) {
-                debugger;
+                console.clear();
+                console.log('*** WIN!!! ****');
                 self.counter.stop();
               }
             }

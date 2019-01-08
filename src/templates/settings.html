@@ -1,15 +1,22 @@
 <style>
+  :host label {
+    margin-bottom: 10px;
+    display: block;
+  }
   :host input,
   :host button,
   :host select,
   :host option {
     outline: 0;
     line-height: 1.5;
+    width: 100%;
+    -webkit-appearance: none;
   }
   :host input,
   :host button,
   :host select,
   :host option {
+    border: 0;
     display: block;
     padding: 2px 4px;
     border-radius: 5px;
@@ -22,6 +29,15 @@
   }
   :host button:active {
     box-shadow: 0 0 4px 0 white;
+  }
+  :host button:hover:not(:disabled) {
+    box-shadow: 0 0 8px 0 white;
+    cursor: pointer;
+  }
+  :host button:disabled {
+    box-shadow: 0;
+    cursor: default;
+    background-color: var(--mini-memory-disabled-button);
   }
 
   :host #settings {
@@ -59,7 +75,10 @@
   :host #settings .close-x:active {
     transform: rotate(45deg);
   }
-
+  :host .flex {
+    display: flex;
+    justify-content: space-evenly;
+  }
   :host #form {
     display: flex;
     flex-direction: column;
@@ -68,6 +87,8 @@
     justify-content: center;
     align-items: center;
     padding: 0 10px;
+    max-width: 320px;
+    margin: 0 auto;
   }
   :host #form > div {
     width: 100%;
@@ -77,12 +98,48 @@
     display: block;
   }
   :host #playerName,
-  :host #matrixmin,
-  :host #matrixmax {
+  :host #matrixcol,
+  :host #matrixrow {
     display: inline-block;
     background: none;
     border: 0;
     color: white;
+  }
+  :host #isFullScreen {
+    display: none;
+  }
+
+  :host #isFullScreen + .vCheck {
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: rgba(200, 0, 0, 0.5);
+    box-shadow: 0 0 4px 2px red;
+    border: #313131 1px solid;
+    position: relative;
+    transition: background-color 300ms;
+    cursor: pointer;
+  }
+  :host #isFullScreen:checked + .vCheck {
+    background-color: rgba(0, 250, 0, 0.5);
+    box-shadow: 0 0 4px 2px green;
+  }
+  :host #isFullScreen + .vCheck:after {
+    content: '';
+    display: inline-block;
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    transform: translateX(120%);
+    transition: transform 300ms;
+  }
+  :host #isFullScreen:checked + .vCheck:after {
+    transform: translateX(0%);
   }
 </style>
 <div id="settings">
@@ -92,33 +149,47 @@
       <label for="playerName" data-i18n="PLAYERS_NAME"></label>
       <input type="text" id="playerName" />
     </div>
-    <div>
-      <label for="matrixmin" data-i18n="COLUMNS"></label>
-      <input
-        type="number"
-        placeholder="2"
-        id="matrixmin"
-        size="2"
-        min="2"
-        max="16"
-      />
-      <label for="matrixmax" data-i18n="ROWS"></label>
-      <input
-        type="number"
-        placeholder="2"
-        id="matrixmax"
-        size="2"
-        min="2"
-        max="16"
-      />
+    <div class="flex">
+      <div>
+        <label for="matrixcol" data-i18n="COLUMNS"></label>
+        <input
+          type="number"
+          placeholder="2"
+          id="matrixcol"
+          size="2"
+          min="2"
+          max="16"
+        />
+      </div>
+      <div>
+        <label for="matrixrow" data-i18n="ROWS"></label>
+        <input
+          type="number"
+          placeholder="2"
+          id="matrixrow"
+          size="2"
+          min="2"
+          max="16"
+        />
+      </div>
+    </div>
+
+    <div class="flex">
+      <label for="isFullScreen" data-i18n="FULL_SCREEN"></label>
+      <input type="checkbox" id="isFullScreen" />
+      <div class="vCheck"></div>
     </div>
     <div>
       <select name="languageSelection" id="languageSelection">
         <option value="default" data-i18n="SELECT_LANGUAGE"></option>
-        <option value="en">English</option>
-        <option value="de">Deutsch</option>
-        <option value="tr">Türkce</option>
+        <option value="en" data-i18n="LANGUAGE_LABEL"></option>
+        <option value="de" data-i18n="LANGUAGE_LABEL"></option>
+        <option value="tr" data-i18n="LANGUAGE_LABEL"></option>
       </select>
     </div>
+    <div>
+      <button id="applySettings" data-i18n="APPLY" disabled="disabled"></button>
+    </div>
+    <div><button id="restartGame" data-i18n="RESTART"></button></div>
   </div>
 </div>

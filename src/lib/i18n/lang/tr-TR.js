@@ -1,6 +1,6 @@
 const dict = {
-  LABEL: {
-    message: ' English',
+  LANGUAGE_LABEL: {
+    message: ' Türkce',
   },
   MATRIX_DIMENSIONS_ERROR: {
     message: `Memory puzzle matrix en az 2x2,
@@ -24,8 +24,14 @@ const dict = {
   SELECT_LANGUAGE: {
     message: 'Dil secimi',
   },
+  FULL_SCREEN: {
+    message: 'Tam ekran',
+  },
   APPLY: {
     message: 'Uygula',
+  },
+  RESTART: {
+    message: 'Yeni Oyun',
   },
 };
 

@@ -1,6 +1,6 @@
 const dict = {
-  LABEL: {
-    message: ' English',
+  LANGUAGE_LABEL: {
+    message: ' Deutsch',
   },
   MATRIX_DIMENSIONS_ERROR: {
     message: `Memory puzzle matrix mindestens 2x2,
@@ -24,8 +24,14 @@ const dict = {
   SELECT_LANGUAGE: {
     message: 'Wähle deine Sprache',
   },
+  FULL_SCREEN: {
+    message: 'Vollbildmodus',
+  },
   APPLY: {
     message: 'Anwenden',
+  },
+  RESTART: {
+    message: 'Neustart',
   },
 };
 

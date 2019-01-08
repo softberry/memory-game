@@ -1,5 +1,5 @@
 const dict = {
-  LABEL: {
+  LANGUAGE_LABEL: {
     message: ' English',
   },
   MATRIX_DIMENSIONS_ERROR: {
@@ -24,8 +24,14 @@ const dict = {
   SELECT_LANGUAGE: {
     message: 'Select your langauge',
   },
+  FULL_SCREEN: {
+    message: 'Full screen',
+  },
   APPLY: {
     message: 'Apply',
+  },
+  RESTART: {
+    message: 'Restart',
   },
 };
 

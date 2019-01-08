@@ -5,6 +5,7 @@
 :host {
   --mini-memory-bg: #f9f9f9;
   --mini-memory-border: #313131;
+  --mini-memory-disabled-button: rgba(240,240,240,.2);
   --mini-memory-z-loading: 10;
   --mini-memory-z-tile: 20;
   --mini-memory-z-menu: 30;
@@ -26,6 +27,8 @@
   left: 0;
   top: 0;
   border: 0;
+  width: 100%;
+  width:100;
 }
 @media only screen and (orientation: landscape) {
   :host([fullscreen]) {

@@ -5,6 +5,8 @@ import { Counter } from './lib/counter';
 
 import { default as toolbar } from './templates/toolbar.html';
 import { default as settings } from './templates/settings.html';
+import { Scores } from './lib/scores';
+
 const cardback = require('./cardback.jpg');
 
 /**
@@ -19,10 +21,12 @@ class MiniMemory extends HTMLElement {
   constructor() {
     super();
     this.i18n = new Localization();
+    this.scores = new Scores();
     this.rendered = false;
     this.images = [];
     this.tiles = [];
     this.toolbar = document.createElement('div');
+
     this.layers = {
       loading: null,
     };
@@ -265,24 +269,46 @@ class MiniMemory extends HTMLElement {
       closeX: this.shadowRoot.querySelector('#settings .close-x'),
       labels: {
         playername: self.shadowRoot.querySelector('label[for="playerName"]'),
-        matrixMin: self.shadowRoot.querySelector('label[for="matrixmin"]'),
-        matrixMax: self.shadowRoot.querySelector('label[for="matrixmax"]'),
+        matrixcol: self.shadowRoot.querySelector('label[for="matrixcol"]'),
+        matrixrow: self.shadowRoot.querySelector('label[for="matrixrow"]'),
       },
-
-      languageSelection: self.shadowRoot.querySelector('#languageSelection'),
-      playerName: self.shadowRoot.querySelector('#playerName'),
-      matrixMin: self.shadowRoot.querySelector('#matrixmin'),
-      matrixMax: self.shadowRoot.querySelector('#matrixmax'),
+      params: {
+        languageSelection: self.shadowRoot.querySelector('#languageSelection'),
+        playerName: self.shadowRoot.querySelector('#playerName'),
+        matrixcol: self.shadowRoot.querySelector('#matrixcol'),
+        matrixrow: self.shadowRoot.querySelector('#matrixrow'),
+        isFullScreen: self.shadowRoot.querySelector('#isFullScreen'),
+      },
+      vCheckFullScreen: self.shadowRoot.querySelector(
+        '#isFullScreen + .vCheck'
+      ),
+      applySettings: self.shadowRoot.querySelector('#applySettings'),
+      restartGame: self.shadowRoot.querySelector('#restartGame'),
     };
+    /**
+     * Reset Settings form
+     */
+    function formReset() {
+      self.layers.settings.params.matrixcol.value = self
+        .getAttribute('matrix')
+        .split('x')[0];
+      self.layers.settings.params.matrixrow.value = self
+        .getAttribute('matrix')
+        .split('x')[1];
 
-    self.layers.settings.matrixMin.value = self
-      .getAttribute('matrix')
-      .split('x')[0];
-    self.layers.settings.matrixMax.value = self
-      .getAttribute('matrix')
-      .split('x')[1];
+      self.layers.toolbar.player.innerText = self.scores.currentPlayer.name;
+      self.layers.settings.params.playerName.value =
+        self.scores.currentPlayer.name;
 
+      self.layers.settings.params.isFullScreen.checked = self.hasAttribute(
+        'fullscreen'
+      );
+      self.layers.settings.applySettings.setAttribute('disabled', 'disabled');
+    }
+    formReset();
     self.layers.toolbar.menu.addEventListener('click', function(e) {
+      formReset();
+
       self.layers.settings.panel.classList.add('show');
     });
 
@@ -290,20 +316,56 @@ class MiniMemory extends HTMLElement {
       self.layers.settings.panel.classList.remove('show');
     });
 
-    self.layers.settings.languageSelection.addEventListener('change', (e) => {
-      self.i18n = new Localization(e.target.value);
-      self.i18n.update(self.shadowRoot);
+    self.layers.settings.params.languageSelection.addEventListener(
+      'change',
+      (e) => {
+        self.i18n = new Localization(e.target.value);
+        self.i18n.update(self.shadowRoot);
+      }
+    );
+
+    self.layers.settings.vCheckFullScreen.addEventListener('click', (e) => {
+      const chk = self.layers.settings.params.isFullScreen;
+      chk.checked = !chk.checked;
+      enableApplyButton();
     });
-    self.layers.settings.matrixMin.addEventListener('change', (e) => {
-      const col = e.target.value;
-      const row = self.getAttribute('matrix').split('x')[1];
+    self.layers.settings.applySettings.addEventListener('click', (e) => {
+      const col = self.layers.settings.params.matrixcol.value;
+      const row = self.layers.settings.params.matrixrow.value;
+      const vCheckFullScreen = self.layers.settings.params.isFullScreen.checked;
+      self.scores.currentPlayer.name =
+        self.layers.settings.params.playerName.value;
+      self.layers.toolbar.player.innerText = self.scores.currentPlayer.name;
       self.setAttribute('matrix', `${col}x${row}`);
+
+      if (vCheckFullScreen) {
+        self.setAttribute('fullscreen', '');
+      } else {
+        self.removeAttribute('fullscreen');
+      }
+
+      self.layers.settings.panel.classList.remove('show');
     });
 
-    self.layers.settings.matrixMax.addEventListener('change', (e) => {
-      const row = e.target.value;
-      const col = self.getAttribute('matrix').split('x')[0];
-      self.setAttribute('matrix', `${col}x${row}`);
+    self.layers.settings.restartGame.addEventListener('click', (e) => {
+      self.layers.settings.panel.classList.remove('show');
+
+      self.reset();
+      self.render();
+      formReset();
+    });
+    const enableApplyButton = (e) => {
+      self.layers.settings.applySettings.removeAttribute('disabled');
+    };
+    Object.entries(self.layers.settings.params).forEach((param) => {
+      const events = [];
+      param[1].type === ('text' || 'number')
+        ? events.push('blur', 'keyup')
+        : events.push('change');
+
+      events.forEach((ev) => {
+        param[1].addEventListener(ev, enableApplyButton);
+      });
     });
   }
 }
