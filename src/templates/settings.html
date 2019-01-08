@@ -23,13 +23,19 @@
     box-shadow: 0 0 2px 0 #f1f1f1;
     background-color: #313131;
     color: white;
-    font-size: 18px;
-    margin: 0 auto;
+    font-size: 1em;
+
     text-align: center;
+    position: relative;
   }
   :host button:active {
     box-shadow: 0 0 4px 0 white;
   }
+
+  :host input:active {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+
   :host button:hover:not(:disabled) {
     box-shadow: 0 0 8px 0 white;
     cursor: pointer;
@@ -43,10 +49,9 @@
   :host #settings {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: relative;
     left: 0;
     top: 0;
-
     width: 100%;
     height: 100%;
     background-color: rgba(51, 51, 51, 0.95);
@@ -54,10 +59,11 @@
     z-index: var(--mini-memory-z-menu);
     transition: transform 300ms;
     color: white;
-    font-size: 20px;
+    font-size: 1.66em;
   }
 
   :host #settings.show {
+    position: relative;
     transform: translateX(0);
   }
 
@@ -66,7 +72,7 @@
     color: white;
     top: 0;
     padding-right: 4px;
-    font-size: 24px;
+    font-size: 1.8em;
     line-height: 1;
     cursor: pointer;
     transition: transform 300ms;
@@ -147,7 +153,7 @@
   <div id="form">
     <div>
       <label for="playerName" data-i18n="PLAYERS_NAME"></label>
-      <input type="text" id="playerName" />
+      <input type="text" id="playerName" size="12" />
     </div>
     <div class="flex">
       <div>

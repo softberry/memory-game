@@ -22,10 +22,18 @@ export class Game {
     this.state = [];
     this.prepared = false;
     this.readyFunctions = [];
+    this.winFunctions = [];
     this.cards = {
       open: 0,
       length: 0,
     };
+  }
+  /**
+   * onWin Event dispatcher
+   * @param {function} fn function to be called on win.
+   */
+  onWin(fn) {
+    this.winFunctions.push(fn.bind(this));
   }
 
   /**
@@ -77,9 +85,10 @@ export class Game {
               self.state = [];
               self.cards.open++;
               if (self.cards.open === self.cards.length) {
-                console.clear();
-                console.log('*** WIN!!! ****');
                 self.counter.stop();
+                self.winFunctions.forEach((fn) => {
+                  fn();
+                });
               }
             }
             break;

@@ -5,7 +5,7 @@
 :host {
   --mini-memory-bg: #f9f9f9;
   --mini-memory-border: #313131;
-  --mini-memory-disabled-button: rgba(240,240,240,.2);
+  --mini-memory-disabled-button: rgba(240, 240, 240, 0.2);
   --mini-memory-z-loading: 10;
   --mini-memory-z-tile: 20;
   --mini-memory-z-menu: 30;
@@ -15,7 +15,6 @@
   width: 100%;
   height: 100%;
   background-color: var(--mini-memory-bg);
-  position: relative;
   display: block;
   left: 0;
   top: 0;
@@ -28,7 +27,7 @@
   top: 0;
   border: 0;
   width: 100%;
-  width:100;
+  height: 100%;
 }
 @media only screen and (orientation: landscape) {
   :host([fullscreen]) {
@@ -66,7 +65,6 @@
   margin: 5px;
 }
 
-
 #tiles-container {
   position: absolute;
   top: 24px;
@@ -77,6 +75,7 @@
   float: left;
   z-index: var(--mini-memory-z-tile);
   position: relative;
+  perspective: 1000px;
 }
 
 :host .tile canvas {
@@ -87,14 +86,20 @@
   cursor: pointer;
   visibility: visible;
   margin: 1px;
+  border: #a9a9a9 2px solid;
+  transform-style: preserve-3d;
 }
-
+:host .tile canvas:hover {
+  border-style: ridge;
+}
 :host .tile canvas.wait {
   visibility: hidden;
 }
 
 :host .tile canvas.open {
-  cursor: none;
+  border: 0;
+  animation: cardOpen 300ms;
+  animation-iteration-count: 1;
 }
 
 @keyframes loading {
@@ -108,5 +113,21 @@
 
   100% {
     opacity: 0;
+  }
+}
+@keyframes cardOpen {
+  0% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+
+  20% {
+    opacity: 0;
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg);
   }
 }

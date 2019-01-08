@@ -7,7 +7,7 @@ import { default as toolbar } from './templates/toolbar.html';
 import { default as settings } from './templates/settings.html';
 import { Scores } from './lib/scores';
 
-const cardback = require('./cardback.jpg');
+const cardback = (w, h, i) => `https://picsum.photos/${w}/${h}?image=${i}`;
 
 /**
  * Main container of the game.
@@ -143,8 +143,8 @@ class MiniMemory extends HTMLElement {
     const oddMid = this.getOddMidIndex(matrix);
     const cssRow = `width:${100 / matrix[0]}%;`;
     const cssCol = `height:${100 / matrix[1]}%;`;
-    let imageCount = matrix[0] * matrix[1];
-    imageCount = imageCount % 2 === 0 ? imageCount / 2 : (imageCount - 1) / 2;
+    const squares = matrix[0] * matrix[1];
+    const imageCount = squares % 2 === 0 ? squares / 2 : (squares - 1) / 2;
 
     const self = this;
     /**
@@ -161,6 +161,9 @@ class MiniMemory extends HTMLElement {
       img.addEventListener('load', (e) => {
         self.game.addImage(e.target);
       });
+      img.addEventListener('error', (e) => {
+        self.game.addImage(e.target);
+      });
     }
 
     this.shadowRoot.innerHTML += `<style>:host .tile {${cssRow +
@@ -169,6 +172,8 @@ class MiniMemory extends HTMLElement {
     let inner = 0;
     let index = 0;
     const tilesContainer = document.createElement('div');
+    const width = parseInt(this.parentNode.offsetWidth / matrix[0]);
+    const height = parseInt(this.parentNode.offsetHeight / matrix[1]);
 
     tilesContainer.id = 'tiles-container';
     self.shadowRoot.appendChild(tilesContainer);
@@ -183,13 +188,14 @@ class MiniMemory extends HTMLElement {
         }
       }
     }
+    const rnd = Math.floor(Math.random() * squares) + 50;
 
     this.cardBack.addEventListener('load', () => {
-      for (let i = 0; i < imageCount; i++) {
+      for (let i = rnd; i <= rnd + imageCount; i++) {
         prepareImages(
           {
-            width: parseInt(this.parentNode.offsetWidth / matrix[0]),
-            height: parseInt(this.parentNode.offsetHeight / matrix[1]),
+            width,
+            height,
           },
           i
         );
@@ -203,6 +209,9 @@ class MiniMemory extends HTMLElement {
           self.shadowRoot.querySelector('#counter')
         );
       }, self);
+      self.game.onWin(() => {
+        self.layers.settings.panel.classList.add('show');
+      });
     });
 
     this.cardBack.addEventListener('error', (e) => {
@@ -233,7 +242,7 @@ class MiniMemory extends HTMLElement {
       );
     });
 
-    this.cardBack.setAttribute('src', cardback);
+    this.cardBack.setAttribute('src', cardback(width, height, 796));
   }
 
   /**
@@ -285,6 +294,7 @@ class MiniMemory extends HTMLElement {
       applySettings: self.shadowRoot.querySelector('#applySettings'),
       restartGame: self.shadowRoot.querySelector('#restartGame'),
     };
+
     /**
      * Reset Settings form
      */
@@ -304,12 +314,18 @@ class MiniMemory extends HTMLElement {
         'fullscreen'
       );
       self.layers.settings.applySettings.setAttribute('disabled', 'disabled');
+
+      if (self.offsetWidth < 400) {
+        document.querySelector('mini-memory').shadowRoot.host.style.fontSize =
+          '6px';
+      }
     }
     formReset();
     self.layers.toolbar.menu.addEventListener('click', function(e) {
       formReset();
 
       self.layers.settings.panel.classList.add('show');
+      self.layers.settings.params.playerName.focus();
     });
 
     self.layers.settings.closeX.addEventListener('click', function(e) {
