@@ -23,7 +23,7 @@
     box-shadow: 0 0 2px 0 #f1f1f1;
     background-color: #313131;
     color: white;
-    font-size: 1em;
+    font-size: 0.75em;
 
     text-align: center;
     position: relative;
@@ -59,7 +59,7 @@
     z-index: var(--mini-memory-z-menu);
     transition: transform 300ms;
     color: white;
-    font-size: 1.66em;
+    font-size: 1em;
   }
 
   :host #settings.show {
@@ -72,7 +72,7 @@
     color: white;
     top: 0;
     padding-right: 4px;
-    font-size: 1.8em;
+    font-size: 1.75em;
     line-height: 1;
     cursor: pointer;
     transition: transform 300ms;
@@ -111,13 +111,23 @@
     border: 0;
     color: white;
   }
+
+  :host label[for='matrixcol']:after {
+    content: '⇆';
+    float: right;
+    left: 50%;
+    position: relative;
+    top: 100%;
+    display: block;
+    transform: translateY(100%);
+  }
   :host #isFullScreen {
     display: none;
   }
 
   :host #isFullScreen + .vCheck {
     display: inline-block;
-    width: 40px;
+    width: 60px;
     height: 20px;
     border-radius: 20px;
     background-color: rgba(200, 0, 0, 0.5);
@@ -131,20 +141,35 @@
     background-color: rgba(0, 250, 0, 0.5);
     box-shadow: 0 0 4px 2px green;
   }
+  :host #isFullScreen + .vCheck::before {
+    content: 'OFF';
+    position: absolute;
+    opacity: 0.5;
+    left: 6px;
+    top: 2px;
+  }
+
+  :host #isFullScreen:checked + .vCheck::before {
+    content: 'ON';
+    left: unset;
+    right: 6px;
+    opacity: 1;
+  }
   :host #isFullScreen + .vCheck:after {
     content: '';
     display: inline-block;
     position: relative;
-    left: 0;
+    left: 100%;
     top: 0;
     width: 18px;
     height: 18px;
     background-color: #f1f1f1;
     border-radius: 50%;
-    transform: translateX(120%);
-    transition: transform 300ms;
+    transform: translateX(-100%);
+    transition: all 300ms;
   }
   :host #isFullScreen:checked + .vCheck:after {
+    left: 0;
     transform: translateX(0%);
   }
 </style>

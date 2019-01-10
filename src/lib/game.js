@@ -42,7 +42,6 @@ export class Game {
    */
   addImage(img) {
     this.images.push(img);
-
     if (this.images.length === this.canvas.length / 2) {
       this.prepare();
     }
