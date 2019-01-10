@@ -6,8 +6,21 @@ import { Counter } from './lib/counter';
 import { default as toolbar } from './templates/toolbar.html';
 import { default as settings } from './templates/settings.html';
 import { Scores } from './lib/scores';
-
-const cardback = (w, h, i) => `https://picsum.photos/${w}/${h}?image=${i}`;
+const excludedImages = [];
+/**
+ * Returned number should not be in the excludedImages array
+ * Save namber in to excludedImages to avoid it to be choosen again
+ * @return {integer} random Integer between 0 - 1000
+ */
+function getFreeId() {
+  let rnd = Math.floor(Math.random() * 1000);
+  while (excludedImages.filter((ex) => ex === rnd).length > 0) {
+    rnd = Math.floor(Math.random() * 1000);
+  }
+  excludedImages.push(rnd);
+  return rnd;
+}
+const picsum = (w, h) => `https://picsum.photos/${w}/${h}?image=${getFreeId()}`;
 
 /**
  * Main container of the game.
@@ -87,7 +100,7 @@ class MiniMemory extends HTMLElement {
    * @description necessary attributes to be watched
    */
   static get observedAttributes() {
-    return ['matrix', 'lang'];
+    return ['matrix', 'lang', 'fullscreen'];
   }
 
   /**
@@ -150,30 +163,32 @@ class MiniMemory extends HTMLElement {
     /**
      *
      * @param {{width,height}} value width of image, height of image
-     * @param {integer} index index of the current item
      */
-    function prepareImages(value, index) {
+    function prepareImages(value) {
       const img = document.createElement('img');
       self.images.push(img);
-      img.src = `//picsum.photos/${value.width}/${
-        value.height
-      }/?image=${index}`;
+
       img.addEventListener('load', (e) => {
         self.game.addImage(e.target);
       });
       img.addEventListener('error', (e) => {
-        self.game.addImage(e.target);
+        img.src = picsum(value.width, value.height);
       });
+      img.src = picsum(value.width, value.height);
     }
 
-    this.shadowRoot.innerHTML += `<style>:host .tile {${cssRow +
+    self.shadowRoot.innerHTML += `<style>:host .tile {${cssRow +
       cssCol}}</style>`;
     let outer = 0;
     let inner = 0;
     let index = 0;
     const tilesContainer = document.createElement('div');
-    const width = parseInt(this.parentNode.offsetWidth / matrix[0]);
-    const height = parseInt(this.parentNode.offsetHeight / matrix[1]);
+    const parentContainer =
+      self.getAttribute('fullscreen') === 'fullscreen'
+        ? { w: window.innerWidth, h: window.innerHeight }
+        : { w: self.parentNode.offsetWidth, h: self.parentNode.offsetHeight };
+    const width = parseInt(parentContainer.w / matrix[0]);
+    const height = parseInt(parentContainer.h / matrix[1]);
 
     tilesContainer.id = 'tiles-container';
     self.shadowRoot.appendChild(tilesContainer);
@@ -192,13 +207,7 @@ class MiniMemory extends HTMLElement {
 
     this.cardBack.addEventListener('load', () => {
       for (let i = rnd; i <= rnd + imageCount; i++) {
-        prepareImages(
-          {
-            width,
-            height,
-          },
-          i
-        );
+        prepareImages({ width, height });
       }
 
       self.game = new Game(this.tiles.map((t) => t.canvas), this.cardBack);
@@ -215,13 +224,10 @@ class MiniMemory extends HTMLElement {
     });
 
     this.cardBack.addEventListener('error', (e) => {
-      this.cardBack.setAttribute(
-        'src',
-        'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs='
-      );
+      this.cardBack.src = picsum(width, height);
     });
 
-    this.cardBack.setAttribute('src', cardback(width, height, 796));
+    this.cardBack.src = picsum(width, height);
   }
 
   /**
@@ -334,7 +340,7 @@ class MiniMemory extends HTMLElement {
       self.setAttribute('matrix', `${col}x${row}`);
 
       if (vCheckFullScreen) {
-        self.setAttribute('fullscreen', '');
+        self.setAttribute('fullscreen', 'fullscreen');
       } else {
         self.removeAttribute('fullscreen');
       }
