@@ -1,5 +1,5 @@
 # Memory Game
-** WebComponent **
+* WebComponent *
 This is a classic Memory Game that can be simply included in any html page like this:
 
     <html>
