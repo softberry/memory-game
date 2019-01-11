@@ -1,5 +1,5 @@
 # Memory Game
-* WebComponent *
+**WebComponent**
 This is a classic Memory Game that can be simply included in any html page like this:
 
     <html>
@@ -17,7 +17,7 @@ This is a classic Memory Game that can be simply included in any html page like 
 
 An online [preview is availabel on][sample-preview]
 
-** Please note Internet Explorer 11 is not supported **
+**Please note Internet Explorer 11 is not supported**
 
 ## Attributes
 
