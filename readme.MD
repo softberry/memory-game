@@ -32,7 +32,9 @@ An online [preview is availabel on][sample-preview]
 `fullscreen` makes game full screen if exists.
 
       <mini-memory fullscreen></mini-memory>
+## Contribution
 
+Contributors are welcome. [Documentation][docs]
 #### TODOs & Notes:
 
 - Customizable image server.
@@ -42,3 +44,4 @@ An online [preview is availabel on][sample-preview]
 - add fullscreen attribute for a fullscreen mobile game with fixed layout(always landscape)
 
 [sample-preview]: http://www.emresakarya.com/mini-memory
+[docs]:https://softberry.github.io/memory-game/
