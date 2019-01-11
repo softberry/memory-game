@@ -8,9 +8,9 @@
   "private": false,
   "scripts": {
     "dev": "webpack-dev-server --mode development",
-    "build": "rimraf ./bundle && webpack -c \"webpack.config.js\" --mode production",
+    "build": "rimraf ./public && webpack -c \"webpack.config.js\" --mode production",
     "lint": "eslint ./src",
-    "serve-bundle": "browser-sync start --server \"./bundle\"",
+    "serve": "browser-sync start --server \"./public\"",
     "serve-docs": "browser-sync start --server \"./docs\"",
     "doc": "rimraf ./docs && jsdoc -c \"./jsdoc.config.json\""
   },

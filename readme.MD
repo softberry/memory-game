@@ -1,10 +1,10 @@
 # Memory Game
-
+** WebComponent **
 This is a classic Memory Game that can be simply included in any html page like this:
 
     <html>
       <head>
-        	  <script src="//unpkg.com/mini-memory@latest/public/bundle/mini-memory.js"></script>
+        	  <script src="//unpkg.com/mini-memory@latest/public/mini-memory.js"></script>
       </head>
       <body>
         <div class="container">
