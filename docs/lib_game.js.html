@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>index.private.js - Documentation</title>
+    <title>lib/game.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -31,7 +31,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">index.private.js</h1>
+    <h1 class="page-title">lib/game.js</h1>
     
 
     
@@ -41,108 +41,168 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Holds list of Images those returs 404
- * to avoid try to load again
- */
-const excludedImages = [];
+            <pre class="prettyprint source linenums"><code>import { MemoryImageList } from './image-list';
+import { MemoryCanvaslist } from './canvas-list';
+import { MemoryPairsList } from './pairs-list';
+
 /**
  * @class
  */
-export class PrivateIndex {
+export class Game {
   /**
    *
-   * @param {{}} owner @namespace MiniMemory
+   * @param {HTMLCanvasElement} canvas
+   * @param {HTMLImageElement} cardBack
    */
-  constructor(owner) {
-    this.owner = owner;
+  constructor(canvas, cardBack) {
+    this.cardBack = cardBack;
+    this.canvas = new MemoryCanvaslist();
+    this.images = new MemoryImageList();
+
+    this.pairs = new MemoryPairsList();
+
+    this.canvas.addCanvas(canvas);
+    this.state = [];
+    this.prepared = false;
+    this.readyFunctions = [];
+    this.winFunctions = [];
+    this.cards = {
+      open: 0,
+      length: 0,
+    };
   }
   /**
-   * Creates picsum image patterm
-   * @param { integer} w
-   * @param {integer} h
-   * @return {string} URL
+   * onWin Event dispatcher
+   * @param {function} fn function to be called on win.
    */
-  picsum(w, h) {
-    return `https://picsum.photos/${w}/${h}?image=${this.getFreeId()}`;
+  onWin(fn) {
+    this.winFunctions.push(fn.bind(this));
   }
 
   /**
-   * if total number of images are not even, then one canvas is
-   * not required. In this case place this in the middle of the layout
-   * @param {array} matrix
-   * @return {integer} index of the mid-element otherwise -1
+   * Includes given image to the game
+   * @param {HTMLImageElement} img image to be added
    */
-  getOddMidIndex(matrix) {
-    const [col, row] = matrix;
-    return (col * row) % 2 === 1 ? (col * row - 1) / 2 : -1;
-  }
-  /**
-   * Returned number should not be in the excludedImages array
-   * Save namber in to excludedImages to avoid it to be choosen again
-   * @return {integer} random Integer between 0 - 1000
-   */
-  getFreeId() {
-    let rnd = Math.floor(Math.random() * 1000);
-    while (excludedImages.filter((ex) => ex === rnd).length > 0) {
-      rnd = Math.floor(Math.random() * 1000);
+  addImage(img) {
+    this.images.push(img);
+    if (this.images.length === this.canvas.length / 2) {
+      this.prepare();
     }
-    excludedImages.push(rnd);
-    return rnd;
   }
+  /**
+   * Prepares the Game
+   */
+  prepare() {
+    const self = this;
 
-  /**
-   * Resets all parameters to enable a clean restart/render
-   */
-  reset() {
-    this.rendered = false;
-    this.images = [];
-    this.tiles = [];
-    this.layers = {
-      loading: {},
-    };
-  }
-  /**
-   * Creates a Tile object
-   * @param {integer} index
-   * @return {{}} Tile object
-   */
-  createTile(index) {
-    const tile = document.createElement('div');
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    ctx.save();
-    tile.classList.add('tile');
-    canvas.setAttribute('index', index);
-    tile.appendChild(canvas);
-    return {
-      tile,
-      canvas,
-    };
-  }
-  /**
-   * checks if columns and rows are in defined range
-   * @param {array} dim
-   * @return {boolean} true on exceed
-   */
-  limitsExceeded(dim) {
-    let hasError = false;
-    dim.forEach((e) => {
-      e &lt; 2 || e > 16 ? (hasError = true) : false;
+    self.cards.open = 0;
+    self.cards.length = self.images.length;
+    this.canvas.forEach((c) => {
+      c.addEventListener('click', (e) => {
+        if (this.counter.timer.diff === 0) {
+          this.counter.start();
+        }
+        if (e.target.classList.contains('open')) {
+          return;
+        }
+        if (!self.pairs.hasPair(e.target)) {
+          const randomPair = self.canvas.randomPair(e.target);
+          self.pairs.push(randomPair.concat(self.images.random()));
+        }
+        switch (self.state.length) {
+          case 2: {
+            self.closeCard(self.state.pop());
+            self.closeCard(self.state.pop());
+          }
+          case 0: {
+            self.state.push(e.target);
+
+            self.openCard(e.target);
+            break;
+          }
+          case 1: {
+            self.state.push(e.target);
+            self.openCard(e.target);
+            if (self.pairs.arePairs(self.state)) {
+              self.state = [];
+              self.cards.open++;
+              if (self.cards.open === self.cards.length) {
+                self.counter.stop();
+                self.winFunctions.forEach((fn) => {
+                  fn();
+                });
+              }
+            }
+            break;
+          }
+
+          default:
+        }
+      });
     });
-    return hasError;
+
+    this.prepared = true;
+
+    this.canvas.forEach((c) => {
+      c.classList.remove('wait');
+      self.closeCard(c);
+    });
+    this.readyFunctions.forEach((cb) => {
+      cb.fn.call(cb.context);
+    });
   }
   /**
-   * Creates and img element and assigns events
-   * @param {function} load
-   * @param {function} error
-   * @return {HTMLImageElement}
+   * adds  function to self.game to enable hiding
+   * 'LOADING...' layer after successful load.
+   * @param {function} fn
+   * @param {{}} context ` this ` context to be used
+   * at the time of calling function
    */
-  getNewImage(load, error) {
-    const img = document.createElement('img');
-    img.addEventListener('load', load);
-    img.addEventListener('error', error, false);
-    return img;
+  onReady(fn, context) {
+    this.readyFunctions.push({ fn, context });
+  }
+  /**
+   * Opens  card by drawing cardback image on given canvas
+   * @param {HTMLCanvasElement} canvas
+   */
+  openCard(canvas) {
+    const self = this;
+    const img = self.pairs.getImage(canvas);
+
+    if (img.constructor !== HTMLImageElement) {
+      console.warn('Translate-error: no image for the canvas found ');
+      return;
+    }
+    canvas.classList.add('open');
+    self.drawImageOnCanvas(canvas, img);
+  }
+  /**
+   * Closes card by drawing cardback image on given canvas
+   * @param {HTMLCanvasElement} canvas
+   */
+  closeCard(canvas) {
+    const self = this;
+    self.drawImageOnCanvas(canvas, self.cardBack);
+    canvas.classList.remove('open');
+  }
+  /**
+   * Draws any image on given canvas.
+   * @param {HTMLCanvasElement} canvas
+   * @param {HTMLImageElement} image
+   */
+  drawImageOnCanvas(canvas, image) {
+    const ctx = canvas.getContext('2d');
+    ctx.restore();
+
+    const props = {
+      cw: canvas.width,
+      ch: canvas.height,
+      iw: image.width,
+      ih: image.height,
+    };
+
+    ctx.clearRect(0, 0, props.cw, props.ch);
+    ctx.drawImage(image, 0, 0, props.iw, props.ih, 0, 0, props.cw, props.ch);
   }
 }
 </code></pre>
@@ -159,7 +219,7 @@ export class PrivateIndex {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jan 11 2019 00:09:23 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jan 11 2019 19:19:42 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

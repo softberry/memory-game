@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>lib/game.js - Documentation</title>
+    <title>Home - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -31,183 +31,50 @@
 
 <div id="main">
     
-    <h1 class="page-title">lib/game.js</h1>
-    
 
     
 
 
 
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import { MemoryImageList } from './image-list';
-import { MemoryCanvaslist } from './canvas-list';
-import { MemoryPairsList } from './pairs-list';
 
-/**
- * @class
- */
-export class Game {
-  /**
-   *
-   * @param {HTMLCanvasElement} canvas
-   * @param {HTMLImageElement} cardBack
-   */
-  constructor(canvas, cardBack) {
-    this.cardBack = cardBack;
-    this.canvas = new MemoryCanvaslist();
-    this.images = new MemoryImageList();
 
-    this.pairs = new MemoryPairsList();
 
-    this.canvas.addCanvas(canvas);
-    this.state = [];
-    this.prepared = false;
-    this.readyFunctions = [];
-    this.winFunctions = [];
-    this.cards = {
-      open: 0,
-      length: 0,
-    };
-  }
-  /**
-   * onWin Event dispatcher
-   * @param {function} fn function to be called on win.
-   */
-  onWin(fn) {
-    this.winFunctions.push(fn.bind(this));
-  }
 
-  /**
-   * Includes given image to the game
-   * @param {HTMLImageElement} img image to be added
-   */
-  addImage(img) {
-    this.images.push(img);
-    if (this.images.length === this.canvas.length / 2) {
-      this.prepare();
-    }
-  }
-  /**
-   * Prepares the Game
-   */
-  prepare() {
-    const self = this;
 
-    self.cards.open = 0;
-    self.cards.length = self.images.length;
-    this.canvas.forEach((c) => {
-      c.addEventListener('click', (e) => {
-        if (this.counter.timer.diff === 0) {
-          this.counter.start();
-        }
-        if (e.target.classList.contains('open')) {
-          return;
-        }
-        if (!self.pairs.hasPair(e.target)) {
-          const randomPair = self.canvas.randomPair(e.target);
-          self.pairs.push(randomPair.concat(self.images.random()));
-        }
-        switch (self.state.length) {
-          case 2: {
-            self.closeCard(self.state.pop());
-            self.closeCard(self.state.pop());
-          }
-          case 0: {
-            self.state.push(e.target);
 
-            self.openCard(e.target);
-            break;
-          }
-          case 1: {
-            self.state.push(e.target);
-            self.openCard(e.target);
-            if (self.pairs.arePairs(self.state)) {
-              self.state = [];
-              self.cards.open++;
-              if (self.cards.open === self.cards.length) {
-                self.counter.stop();
-                self.winFunctions.forEach((fn) => {
-                  fn();
-                });
-              }
-            }
-            break;
-          }
 
-          default:
-        }
-      });
-    });
 
-    this.prepared = true;
 
-    this.canvas.forEach((c) => {
-      c.classList.remove('wait');
-      self.closeCard(c);
-    });
-    this.readyFunctions.forEach((cb) => {
-      cb.fn.call(cb.context);
-    });
-  }
-  /**
-   * adds  function to self.game to enable hiding
-   * 'LOADING...' layer after successful load.
-   * @param {function} fn
-   * @param {{}} context ` this ` context to be used
-   * at the time of calling function
-   */
-  onReady(fn, context) {
-    this.readyFunctions.push({ fn, context });
-  }
-  /**
-   * Opens  card by drawing cardback image on given canvas
-   * @param {HTMLCanvasElement} canvas
-   */
-  openCard(canvas) {
-    const self = this;
-    const img = self.pairs.getImage(canvas);
+    
 
-    if (img.constructor !== HTMLImageElement) {
-      console.warn('Translate-error: no image for the canvas found ');
-      return;
-    }
-    canvas.classList.add('open');
-    self.drawImageOnCanvas(canvas, img);
-  }
-  /**
-   * Closes card by drawing cardback image on given canvas
-   * @param {HTMLCanvasElement} canvas
-   */
-  closeCard(canvas) {
-    const self = this;
-    self.drawImageOnCanvas(canvas, self.cardBack);
-    canvas.classList.remove('open');
-  }
-  /**
-   * Draws any image on given canvas.
-   * @param {HTMLCanvasElement} canvas
-   * @param {HTMLImageElement} image
-   */
-  drawImageOnCanvas(canvas, image) {
-    const ctx = canvas.getContext('2d');
-    ctx.restore();
 
-    const props = {
-      cw: canvas.width,
-      ch: canvas.height,
-      iw: image.width,
-      ih: image.height,
-    };
-
-    ctx.clearRect(0, 0, props.cw, props.ch);
-    ctx.drawImage(image, 0, 0, props.iw, props.ih, 0, 0, props.cw, props.ch);
-  }
-}
-</code></pre>
-        </article>
+    <section class="readme">
+        <article><h1>Memory Game</h1><p>This is a classic Memory Game that can be simply included in any html page like this:</p>
+<pre class="prettyprint source"><code>&lt;html>
+  &lt;head>
+          &lt;script src=&quot;//unpkg.com/mini-memory@latest/public/bundle/mini-memory.js&quot;>&lt;/script>
+  &lt;/head>
+  &lt;body>
+    &lt;div class=&quot;container&quot;>
+          &lt;mini-memory matrix=&quot;2x2&quot;>&lt;/mini-memory>
+    &lt;/div>
+  &lt;/body>
+&lt;/html></code></pre><h2>Sample Preview</h2><p>An online <a href="http://www.emresakarya.com/mini-memory">preview is availabel on</a></p>
+<p><strong> Please note Internet Explorer 11 is not supported </strong></p>
+<h2>Attributes</h2><p><code>matrix</code> columns and rows count in format of 2x2. Accepted values minimum 2x2 and maximum 16x16</p>
+<pre class="prettyprint source"><code>  &lt;mini-memory matrix=&quot;2x2&quot;>&lt;/mini-memory></code></pre><p><code>lang</code> Language selection. Current available languages are English, German and Turkish</p>
+<pre class="prettyprint source"><code>  &lt;mini-memory lang=&quot;de&quot;>&lt;/mini-memory></code></pre><p><code>fullscreen</code> makes game full screen if exists.</p>
+<pre class="prettyprint source"><code>  &lt;mini-memory fullscreen>&lt;/mini-memory></code></pre><h4>TODOs &amp; Notes:</h4><ul>
+<li>Customizable image server.</li>
+<li>multiple players</li>
+<li>settings</li>
+<li>complete logs starting with 'Translate:'</li>
+<li>add fullscreen attribute for a fullscreen mobile game with fixed layout(always landscape)</li>
+</ul></article>
     </section>
+
+
 
 
 
@@ -219,7 +86,7 @@ export class Game {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jan 11 2019 00:09:23 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jan 11 2019 19:19:42 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

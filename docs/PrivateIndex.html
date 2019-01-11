@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>MiniMemory - Documentation</title>
+    <title>PrivateIndex - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -31,7 +31,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">MiniMemory</h1>
+    <h1 class="page-title">PrivateIndex</h1>
     
 
     
@@ -44,10 +44,8 @@
 <header>
     
         <h2>
-        MiniMemory
+        PrivateIndex
         </h2>
-        
-            <div class="class-description"><p>Main container of the game.</p></div>
         
     
 </header>
@@ -59,10 +57,8 @@
             
 
     
-    <h2>Constructor</h2>
-    
 
-    <h4 class="name" id="MiniMemory"><span class="type-signature"></span>new MiniMemory<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="PrivateIndex"><span class="type-signature"></span>new PrivateIndex<span class="signature">(owner)</span><span class="type-signature"></span></h4>
 
     
 
@@ -74,7 +70,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line16">line 16</a>
+        <a href="index.private.js.html">index.private.js</a>, <a href="index.private.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -113,9 +109,6 @@
 
 
 
-<div class="description">
-    <p>extendes HTMLElement to prepare Custom element MiniMemory</p>
-</div>
 
 
 
@@ -125,6 +118,54 @@
 
 
 
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>owner</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>@namespace MiniMemory</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -156,75 +197,6 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id=".observedAttributes"><span class="type-signature">(static) </span>observedAttributes<span class="type-signature"></span></h4>
-
-
-<p class="summary"><p>necessary attributes to be watched</p>.</p>
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line61">line 61</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>necessary attributes to be watched</p>
-</div>
-
-
-
-
-
-
-
-
-        
-    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -234,10 +206,10 @@
 
     
 
-    <h4 class="name" id="adoptedCallback"><span class="type-signature"></span>adoptedCallback<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="createTile"><span class="type-signature"></span>createTile<span class="signature">(index)</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
-    <p class="summary"><p>callback function on adding of custom element to another dom</p>.</p>
+    <p class="summary"><p>Creates a Tile object</p>.</p>
     
 
 
@@ -248,7 +220,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line72">line 72</a>
+        <a href="index.private.js.html">index.private.js</a>, <a href="index.private.js.html#line67">line 67</a>
     </li></ul></dd>
     
 
@@ -288,93 +260,7 @@
 
 
 <div class="description">
-    <p>callback function on adding of custom element to another dom</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="attributeChangedCallback"><span class="type-signature"></span>attributeChangedCallback<span class="signature">(name, oldVal, newVal)</span><span class="type-signature"></span></h4>
-
-    
-    <p class="summary"><p>callback funciotn on attribute change of custom element</p>.</p>
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line79">line 79</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>callback funciotn on attribute change of custom element</p>
+    <p>Creates a Tile object</p>
 </div>
 
 
@@ -412,59 +298,13 @@
 
         <tr>
             
-                <td class="name"><code>name</code></td>
+                <td class="name"><code>index</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>oldVal</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>newVal</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
+<span class="param-type">integer</span>
 
 
             
@@ -494,92 +334,28 @@
 
 
 
-
+<h5>Returns:</h5>
 
         
-            
-
-    
-
-    <h4 class="name" id="connectedCallback"><span class="type-signature"></span>connectedCallback<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-    <p class="summary"><p>callback on custom element included in DOM</p>.</p>
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line52">line 52</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>callback on custom element included in DOM</p>
+<div class="param-desc">
+    <p>Tile object</p>
 </div>
 
 
 
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
 
 
+    </dd>
+</dl>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
         
@@ -587,10 +363,11 @@
 
     
 
-    <h4 class="name" id="disconnectedCallback"><span class="type-signature"></span>disconnectedCallback<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="getFreeId"><span class="type-signature"></span>getFreeId<span class="signature">()</span><span class="type-signature"> &rarr; {integer}</span></h4>
 
     
-    <p class="summary"><p>callback function on removing of custom element</p>.</p>
+    <p class="summary"><p>Returned number should not be in the excludedImages array
+Save namber in to excludedImages to avoid it to be choosen again</p>.</p>
     
 
 
@@ -601,7 +378,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line68">line 68</a>
+        <a href="index.private.js.html">index.private.js</a>, <a href="index.private.js.html#line42">line 42</a>
     </li></ul></dd>
     
 
@@ -641,93 +418,8 @@
 
 
 <div class="description">
-    <p>callback function on removing of custom element</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="myAttributes"><span class="type-signature"></span>myAttributes<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
-
-    
-    <p class="summary"><p>Gets current attributes according to observedAttributes</p>.</p>
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line189">line 189</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Gets current attributes according to observedAttributes</p>
+    <p>Returned number should not be in the excludedImages array
+Save namber in to excludedImages to avoid it to be choosen again</p>
 </div>
 
 
@@ -756,7 +448,7 @@
 
         
 <div class="param-desc">
-    <p>attr;</p>
+    <p>random Integer between 0 - 1000</p>
 </div>
 
 
@@ -767,7 +459,7 @@
     </dt>
     <dd>
         
-<span class="param-type">object</span>
+<span class="param-type">integer</span>
 
 
     </dd>
@@ -781,10 +473,10 @@
 
     
 
-    <h4 class="name" id="prepareMatrix"><span class="type-signature"></span>prepareMatrix<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="getNewImage"><span class="type-signature"></span>getNewImage<span class="signature">(load, error)</span><span class="type-signature"> &rarr; {HTMLImageElement}</span></h4>
 
     
-    <p class="summary"><p>prepare cards layout using given matrix attribute</p>.</p>
+    <p class="summary"><p>Creates and img element and assigns events</p>.</p>
     
 
 
@@ -795,7 +487,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line91">line 91</a>
+        <a href="index.private.js.html">index.private.js</a>, <a href="index.private.js.html#line98">line 98</a>
     </li></ul></dd>
     
 
@@ -835,7 +527,7 @@
 
 
 <div class="description">
-    <p>prepare cards layout using given matrix attribute</p>
+    <p>Creates and img element and assigns events</p>
 </div>
 
 
@@ -848,6 +540,76 @@
 
 
 
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>load</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>error</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -860,6 +622,26 @@
 
 
 
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">HTMLImageElement</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
         
@@ -867,10 +649,11 @@
 
     
 
-    <h4 class="name" id="render"><span class="type-signature"></span>render<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="getOddMidIndex"><span class="type-signature"></span>getOddMidIndex<span class="signature">(matrix)</span><span class="type-signature"> &rarr; {integer}</span></h4>
 
     
-    <p class="summary"><p>Renders custom element with initial attributes</p>.</p>
+    <p class="summary"><p>if total number of images are not even, then one canvas is
+not required.</p></p>
     
 
 
@@ -881,7 +664,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line200">line 200</a>
+        <a href="index.private.js.html">index.private.js</a>, <a href="index.private.js.html#line33">line 33</a>
     </li></ul></dd>
     
 
@@ -921,7 +704,8 @@
 
 
 <div class="description">
-    <p>Renders custom element with initial attributes</p>
+    <p>if total number of images are not even, then one canvas is
+not required. In this case place this in the middle of the layout</p>
 </div>
 
 
@@ -934,6 +718,53 @@
 
 
 
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>matrix</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -946,6 +777,367 @@
 
 
 
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>index of the mid-element otherwise -1</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">integer</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="limitsExceeded"><span class="type-signature"></span>limitsExceeded<span class="signature">(dim)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+    <p class="summary"><p>checks if columns and rows are in defined range</p>.</p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.private.js.html">index.private.js</a>, <a href="index.private.js.html#line85">line 85</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>checks if columns and rows are in defined range</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dim</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>true on exceed</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="picsum"><span class="type-signature"></span>picsum<span class="signature">(w, h)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+    <p class="summary"><p>Creates picsum image patterm</p>.</p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.private.js.html">index.private.js</a>, <a href="index.private.js.html#line23">line 23</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Creates picsum image patterm</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>w</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>URL</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
         
@@ -967,7 +1159,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line40">line 40</a>
+        <a href="index.private.js.html">index.private.js</a>, <a href="index.private.js.html#line54">line 54</a>
     </li></ul></dd>
     
 
@@ -1054,7 +1246,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jan 11 2019 00:09:23 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jan 11 2019 19:19:42 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

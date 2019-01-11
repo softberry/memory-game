@@ -19,7 +19,7 @@
     "sort": false
   },
   "opts": {
-    "destination": "./public/docs/",
+    "destination": "./docs/",
     "lenient": true,
     "recurse": true,
     "template": "node_modules/docdash"
