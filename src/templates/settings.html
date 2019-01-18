@@ -31,6 +31,13 @@
   :host button:active {
     box-shadow: 0 0 4px 0 white;
   }
+  :host #playerName {
+    transition: background-color 300mx;
+  }
+  :host #playerName.error {
+    background-color: rgba(200, 0, 0, 0.5);
+
+  }
 
   :host input:active {
     background-color: rgba(255, 255, 255, 0.9);
@@ -112,15 +119,6 @@
     color: white;
   }
 
-  :host label[for='matrixcol']:after {
-    content: '⇆';
-    float: right;
-    left: 50%;
-    position: relative;
-    top: 100%;
-    display: block;
-    transform: translateY(100%);
-  }
   :host #isFullScreen {
     display: none;
   }
@@ -189,7 +187,7 @@
           id="matrixcol"
           size="2"
           min="2"
-          max="16"
+          max="10"
         />
       </div>
       <div>
@@ -200,7 +198,7 @@
           id="matrixrow"
           size="2"
           min="2"
-          max="16"
+          max="10"
         />
       </div>
     </div>

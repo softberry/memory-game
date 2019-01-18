@@ -8,7 +8,7 @@ import { default as toolbar } from './templates/toolbar.html';
 import { PrivateIndex } from './index.private';
 import { Settings } from './lib/settings';
 
-const observedAttributes = ['matrix', 'lang', 'fullscreen'];
+const observedAttributes = ['matrix', 'lang', 'view'];
 /**
  * Main container of the game.
  * @class
@@ -27,6 +27,10 @@ class MiniMemory extends HTMLElement {
     this.toolbar = document.createElement('div');
     this.private = new PrivateIndex(this);
     this.settings = new Settings(this);
+    this.capabilities = {
+      canFullScreen:
+        typeof document.documentElement.requestFullscreen !== 'undefined',
+    };
 
     this.layers = {
       loading: null,
@@ -77,12 +81,33 @@ class MiniMemory extends HTMLElement {
    * @param {string} newVal
    */
   attributeChangedCallback(name, oldVal, newVal) {
-    if (name === 'lang') {
-      this.i18n = new Localization(newVal);
+    const self = this;
+    function __fullReset() {
+      self.reset();
+      self.rendered = false;
+      self.render();
     }
-    this.reset();
-    this.rendered = false;
-    this.render();
+
+    switch (name) {
+      case 'lang': {
+        this.i18n = new Localization(newVal);
+        this.i18n.update(this.shadowRoot);
+        break;
+      }
+      case 'view': {
+        if (newVal === 'fullscreen' && self.capabilities.canFullScreen) {
+          document.documentElement.requestFullscreen();
+          //TODO: On fullscreen & window.resize refresh images with their new dimensions.
+
+        } else {
+          if (document.fullscreenElement) { document.exitFullscreen();}
+        }
+        break;
+      }
+      default: {
+        __fullReset();
+      }
+    }
   }
 
   /**
@@ -116,8 +141,12 @@ class MiniMemory extends HTMLElement {
     let index = 0;
     const tilesContainer = document.createElement('div');
     const parentContainer =
-      self.getAttribute('fullscreen') === 'fullscreen'
-        ? { w: window.innerWidth, h: window.innerHeight }
+      self.getAttribute('view') === 'fullscreen' &&
+      document.fullscreenElement !== null
+        ? {
+            w: document.documentElement.offsetWidth,
+            h: document.documentElement.offsetHeight,
+          }
         : { w: self.parentNode.offsetWidth, h: self.parentNode.offsetHeight };
 
     const width = parseInt(parentContainer.w / matrix[0]);
@@ -192,6 +221,7 @@ class MiniMemory extends HTMLElement {
     observedAttributes.forEach((oa) => {
       attr[oa] = this.getAttribute(oa);
     });
+
     return attr;
   }
   /**
