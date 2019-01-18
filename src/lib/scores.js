@@ -1,3 +1,5 @@
+import { CurrentPlayer } from './player';
+
 /**
  * Scores management
  *@class
@@ -8,18 +10,8 @@ export class Scores {
    */
   constructor() {
     this.players = {};
-    this.scores = [];
-    this.playerTemplate = {
-      name: '',
-      best: [
-        {
-          size: '2x2',
-          best: '99:99:99.999',
-        },
-      ],
-      all: [],
-    };
-    this.currentPlayer = this.playerTemplate;
+
+    this.currentPlayer = new CurrentPlayer('Player 1');
   }
   /**
    * Adds new user into list (if not yet exists)
@@ -32,15 +24,7 @@ export class Scores {
         return;
       }
     });
-    const player = {
-      name: playerName,
-      best: [
-        {
-          size: '2x2',
-          best: '99:99:99.999',
-        },
-      ],
-    };
+    const player = new CurrentPlayer(playerName);
     self.players.push(player);
     self.currentPlayer = player;
   }

@@ -21,7 +21,7 @@
   overflow: hidden;
   box-shadow: 0 0 4px 0 #333333;
 }
-:host([fullscreen]) {
+:host([view="fullscreen"]) {
   position: fixed;
   left: 0;
   top: 0;
@@ -30,7 +30,7 @@
   height: 100%;
 }
 @media only screen and (orientation: landscape) {
-  :host([fullscreen]) {
+  :host([view="fullscreen"]) {
     border: 0;
   }
 }

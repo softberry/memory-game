@@ -85,7 +85,7 @@ export class PrivateIndex {
   limitsExceeded(dim) {
     let hasError = false;
     dim.forEach((e) => {
-      e < 2 || e > 16 ? (hasError = true) : false;
+      e < 2 || e > 10 ? (hasError = true) : false;
     });
     return hasError;
   }

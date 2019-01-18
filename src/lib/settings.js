@@ -1,13 +1,14 @@
 import { default as template } from '../templates/settings.html';
 import { Scores } from './scores';
+
 /**
  * @class
  */
 export class Settings {
-/**
- *
- * @param {{}} owner @namespace MiniMemory
- */
+  /**
+   *
+   * @param {{}} owner @namespace MiniMemory
+   */
   constructor(owner) {
     this.owner = owner;
     this.html = template;
@@ -23,7 +24,7 @@ export class Settings {
     self.closeX = shadow.querySelector('#settings .close-x');
 
     self.labels = {
-      playername: shadow.querySelector('label[for="playerName"]'),
+      playerName: shadow.querySelector('label[for="playerName"]'),
       matrixcol: shadow.querySelector('label[for="matrixcol"]'),
       matrixrow: shadow.querySelector('label[for="matrixrow"]'),
     };
@@ -44,8 +45,9 @@ export class Settings {
     self.closeX.addEventListener('click', () => self.hide());
 
     self.params.languageSelection.addEventListener('change', (e) => {
-      self.owner.i18n = new Localization(e.target.value);
-      self.owner.i18n.update(self.shadowRoot);
+      //  self.owner.i18n = new Localization(e.target.value);
+      //self.owner.i18n.update(self.shadowRoot);
+      self.owner.setAttribute('lang', e.target.value);
     });
 
     self.vCheckFullScreen.addEventListener('click', (e) => {
@@ -55,10 +57,14 @@ export class Settings {
     });
 
     self.applySettings.addEventListener('click', (e) => {
+      if (self.params.playerName.value.replace(/\s/g, '').length === 0) {
+        self.params.playerName.classList.add('error');
+        return;
+      }
       const c = self.params.matrixcol.value;
       const r = self.params.matrixrow.value;
-      const col = Math.max(Math.min(c, 16), 2);
-      const row = Math.max(Math.min(r, 16), 2);
+      const col = Math.max(Math.min(c, 10), 2);
+      const row = Math.max(Math.min(r, 10), 2);
 
       const vCheckFullScreen = self.params.isFullScreen.checked;
       self.scores.currentPlayer.name = self.params.playerName.value;
@@ -69,9 +75,9 @@ export class Settings {
       self.owner.setAttribute('matrix', `${col}x${row}`);
 
       if (vCheckFullScreen) {
-        self.owner.setAttribute('fullscreen', 'fullscreen');
+        self.owner.setAttribute('view', 'fullscreen');
       } else {
-        self.owner.removeAttribute('fullscreen');
+        self.owner.removeAttribute('view');
       }
 
       self.hide();
@@ -84,6 +90,11 @@ export class Settings {
       self.owner.render();
     });
 
+    document.addEventListener('fullscreenchange', (e) => {
+      if (document.fullscreenElement === null) {
+        self.owner.setAttribute('view', '');
+      }
+    });
     Object.entries(self.params).forEach((param) => {
       param[1].addEventListener('focus', () => {
         self.show();
@@ -107,14 +118,23 @@ export class Settings {
       this.params.matrixrow.value,
     ] = options.matrix.split('x').filter((m) => m !== 'x');
     const curPlayerName = this.scores.currentPlayer.name;
-    this.params.isFullScreen.checked = Boolean(options.fullscreen);
+    if (document.fullscreenElement === null) {
+      this.owner.setAttribute('view', '');
+    }
+
+    this.params.isFullScreen.checked = Boolean(
+      options.view === 'fullscreen' && document.fullscreenElement !== null
+    );
+
     this.applySettings.setAttribute('disabled', 'disabled');
+    this.params.playerName.value = curPlayerName;
     if (curPlayerName && curPlayerName.length > 0) {
       this.owner.layers.toolbar.player.innerText = curPlayerName;
     } else {
       this.show();
     }
   }
+
   /**
    * Makes Apply button usable
    */

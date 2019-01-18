@@ -21,7 +21,7 @@ An online [preview is availabel on][sample-preview]
 
 ## Attributes
 
-`matrix` columns and rows count in format of 2x2. Accepted values minimum 2x2 and maximum 16x16
+`matrix` columns and rows count in format of 2x2. Accepted values minimum 2x2 and maximum 10x10
 
       <mini-memory matrix="2x2"></mini-memory>
 
