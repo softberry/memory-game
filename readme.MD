@@ -32,11 +32,12 @@ An online [preview is availabel on][sample-preview]
 `fullscreen` makes game full screen if exists.
 
       <mini-memory fullscreen></mini-memory>
-
+{::nomarkdown}
 <iframe height="265" style="width: 100%;" scrolling="no" title="Mini Memory Web Component" src="//codepen.io/softberry/embed/dwBrNB/?height=265&theme-id=dark&default-tab=css,resultundefined" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/softberry/pen/dwBrNB/'>Mini Memory Web Component</a> by Emre Sakarya
   (<a href='https://codepen.io/softberry'>@softberry</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
+{:/}
 ## Contribution
 
 Contributors are welcome. [Documentation][docs]
