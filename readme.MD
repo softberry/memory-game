@@ -16,7 +16,7 @@ This is a classic Memory Game that can be simply included in any html page like 
 
 ## Sample Preview
 
-- **[A live preview of the game available at][sample-preview]**
+- **[A live preview of the game available at http://www.emresakarya.com/mini-memory][sample-preview]**
 
 - [Or tryout at codepen.io][codepen]
 
