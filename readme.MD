@@ -33,13 +33,9 @@ An online [preview is availabel on][sample-preview]
 
       <mini-memory fullscreen></mini-memory>
 
-      <p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="css,result" data-user="softberry" data-slug-hash="dwBrNB" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="Mini Memory Web Component">
-  <span>See the Pen <a href="https://codepen.io/softberry/pen/dwBrNB/">
-  Mini Memory Web Component</a> by Emre Sakarya (<a href="https://codepen.io/softberry">@softberry</a>)
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="css,result" data-user="softberry" data-slug-hash="dwBrNB" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="Mini Memory Web Component"><span>See the Pen <a href="https://codepen.io/softberry/pen/dwBrNB/">Mini Memory Web Component</a> by Emre Sakarya (<a href="https://codepen.io/softberry">@softberry</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
-
+</p><script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 ## Contribution
 
 Contributors are welcome. [Documentation][docs]
