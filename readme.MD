@@ -24,17 +24,17 @@ This is a classic Memory Game that can be simply included in any html page like 
 
 ## Attributes
 
-`matrix` columns and rows count in format of 2x2. Accepted values minimum 2x2 and maximum 10x10
+**`matrix`** columns and rows count in format of 2x2. Accepted values minimum 2x2 and maximum 10x10
 
-      <mini-memory matrix="2x2"></mini-memory>
+      <mini-memory **matrix="2x2"**></mini-memory>
 
-`lang` Language selection. Current available languages are English, German and Turkish
+**`lang`** Language selection. Current available languages are English, German and Turkish
 
-      <mini-memory lang="de"></mini-memory>
+      <mini-memory **lang="de"**></mini-memory>
 
-`view` set options for views. Currently have only one option which is `fullscreen`
+**`view`** set options for views. Currently have only one option which is `fullscreen`
 
-      <mini-memory view="fullscreen"></mini-memory>
+      <mini-memory **view="fullscreen"**></mini-memory>
 
 
 ## Contribution
