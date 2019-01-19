@@ -8,12 +8,24 @@ export class MemoryPairsList extends Array {
    * @param {HTMLCanvasElement} canvas
    */
   checkMark(canvas) {
+
     const ctx = canvas.getContext('2d');
     const w = canvas.offsetWidth;
     const h = canvas.offsetHeight;
+    const img = this.getImage(canvas);
     ctx.clearRect(0, 0, w, h);
     ctx.globalAlpha = 0.25;
-    ctx.drawImage(this.getImage(canvas), 0, 0, w, h);
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      parseInt(img.width),
+      parseInt(img.height),
+      0,
+      0,
+      w,
+      h
+    );
     ctx.globalAlpha = 1;
     ctx.save();
 

@@ -36,7 +36,7 @@ export class Counter {
     const now = Date.now();
     this.timer.end = now;
     this.timer.diff = this.timer.end - this.timer.start;
-    const diffToStr = new Date(this.timer.diff).toISOString().slice(11, -1);
+    const diffToStr = new Date(this.timer.diff).toISOString().slice(11, -5);
     this.board.innerHTML = diffToStr;
   }
   /**

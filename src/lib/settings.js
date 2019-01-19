@@ -75,8 +75,14 @@ export class Settings {
       self.owner.setAttribute('matrix', `${col}x${row}`);
 
       if (vCheckFullScreen) {
+        if (self.owner.capabilities.canFullScreen) {
+          document.documentElement.requestFullscreen();
+        }
         self.owner.setAttribute('view', 'fullscreen');
       } else {
+        if (document.requestFullscreen !== null) {
+          document.exitFullscreen();
+        }
         self.owner.removeAttribute('view');
       }
 
@@ -118,9 +124,6 @@ export class Settings {
       this.params.matrixrow.value,
     ] = options.matrix.split('x').filter((m) => m !== 'x');
     const curPlayerName = this.scores.currentPlayer.name;
-    if (document.fullscreenElement === null) {
-      this.owner.setAttribute('view', '');
-    }
 
     this.params.isFullScreen.checked = Boolean(
       options.view === 'fullscreen' && document.fullscreenElement !== null

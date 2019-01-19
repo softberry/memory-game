@@ -95,12 +95,12 @@ class MiniMemory extends HTMLElement {
         break;
       }
       case 'view': {
-        if (newVal === 'fullscreen' && self.capabilities.canFullScreen) {
-          document.documentElement.requestFullscreen();
-          //TODO: On fullscreen & window.resize refresh images with their new dimensions.
+        if (newVal === 'fullscreen') {
 
         } else {
-          if (document.fullscreenElement) { document.exitFullscreen();}
+          if (document.fullscreenElement) {
+            document.exitFullscreen();
+          }
         }
         break;
       }
@@ -141,8 +141,7 @@ class MiniMemory extends HTMLElement {
     let index = 0;
     const tilesContainer = document.createElement('div');
     const parentContainer =
-      self.getAttribute('view') === 'fullscreen' &&
-      document.fullscreenElement !== null
+      self.getAttribute('view') === 'fullscreen'
         ? {
             w: document.documentElement.offsetWidth,
             h: document.documentElement.offsetHeight,
