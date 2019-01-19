@@ -16,9 +16,9 @@ This is a classic Memory Game that can be simply included in any html page like 
 
 ## Sample Preview
 
-**[A live preview of the game available at][sample-preview]**
+- **[A live preview of the game available at][sample-preview]**
 
-[Or tryout at codepen.io][codepen]
+- [Or tryout at codepen.io][codepen]
 
 **Please note Internet Explorer 11 is not supported**
 
@@ -36,10 +36,7 @@ This is a classic Memory Game that can be simply included in any html page like 
 
       <mini-memory view="fullscreen"></mini-memory>
 
-<iframe height="265" style="width: 100%;" scrolling="no" title="Mini Memory Web Component" src="//codepen.io/softberry/embed/dwBrNB/?height=265&theme-id=dark&default-tab=css,resultundefined" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href='https://codepen.io/softberry/pen/dwBrNB/'>Mini Memory Web Component</a> by Emre Sakarya
-  (<a href='https://codepen.io/softberry'>@softberry</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
+
 ## Contribution
 
 Contributors are welcome. [Documentation][docs]
