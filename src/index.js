@@ -7,6 +7,7 @@ import { default as toolbar } from './templates/toolbar.html';
 
 import { PrivateIndex } from './index.private';
 import { Settings } from './lib/settings';
+import { fullScreen } from './lib/fullscreen';
 
 const observedAttributes = ['matrix', 'lang', 'view'];
 /**
@@ -82,6 +83,9 @@ class MiniMemory extends HTMLElement {
    */
   attributeChangedCallback(name, oldVal, newVal) {
     const self = this;
+    /**
+     * resets all parameters and renders game again
+     */
     function __fullReset() {
       self.reset();
       self.rendered = false;
@@ -96,11 +100,8 @@ class MiniMemory extends HTMLElement {
       }
       case 'view': {
         if (newVal === 'fullscreen') {
-
         } else {
-          if (document.fullscreenElement) {
-            document.exitFullscreen();
-          }
+          fullScreen.exit();
         }
         break;
       }
@@ -143,9 +144,9 @@ class MiniMemory extends HTMLElement {
     const parentContainer =
       self.getAttribute('view') === 'fullscreen'
         ? {
-            w: document.documentElement.offsetWidth,
-            h: document.documentElement.offsetHeight,
-          }
+          w: document.documentElement.offsetWidth,
+          h: document.documentElement.offsetHeight,
+        }
         : { w: self.parentNode.offsetWidth, h: self.parentNode.offsetHeight };
 
     const width = parseInt(parentContainer.w / matrix[0]);

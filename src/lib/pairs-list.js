@@ -8,7 +8,6 @@ export class MemoryPairsList extends Array {
    * @param {HTMLCanvasElement} canvas
    */
   checkMark(canvas) {
-
     const ctx = canvas.getContext('2d');
     const w = canvas.offsetWidth;
     const h = canvas.offsetHeight;

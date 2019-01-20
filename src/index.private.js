@@ -4,7 +4,7 @@
  */
 const excludedImages = [];
 /**
- * 
+ *
  * @class
  */
 export class PrivateIndex {

@@ -1,5 +1,6 @@
 import { default as template } from '../templates/settings.html';
 import { Scores } from './scores';
+import { fullScreen } from './fullscreen';
 
 /**
  * @class
@@ -46,7 +47,7 @@ export class Settings {
 
     self.params.languageSelection.addEventListener('change', (e) => {
       //  self.owner.i18n = new Localization(e.target.value);
-      //self.owner.i18n.update(self.shadowRoot);
+      // self.owner.i18n.update(self.shadowRoot);
       self.owner.setAttribute('lang', e.target.value);
     });
 
@@ -75,17 +76,10 @@ export class Settings {
       self.owner.setAttribute('matrix', `${col}x${row}`);
 
       if (vCheckFullScreen) {
-        if (self.owner.capabilities.canFullScreen) {
-          document.documentElement.requestFullscreen();
-        }
-        self.owner.setAttribute('view', 'fullscreen');
+        fullScreen.enter();
       } else {
-        if (document.requestFullscreen !== null) {
-          document.exitFullscreen();
-        }
-        self.owner.removeAttribute('view');
+        fullScreen.exit();
       }
-
       self.hide();
     });
 
@@ -125,9 +119,13 @@ export class Settings {
     ] = options.matrix.split('x').filter((m) => m !== 'x');
     const curPlayerName = this.scores.currentPlayer.name;
 
-    this.params.isFullScreen.checked = Boolean(
-      options.view === 'fullscreen' && document.fullscreenElement !== null
-    );
+    if (options.view === 'fullscreen') {
+      this.params.isFullScreen.checked = true;
+      this.params.isFullScreen.setAttribute('checked', 'checked');
+    } else {
+      this.params.isFullScreen.checked = false;
+      this.params.isFullScreen.removeAttribute('checked');
+    }
 
     this.applySettings.setAttribute('disabled', 'disabled');
     this.params.playerName.value = curPlayerName;
