@@ -77,6 +77,7 @@ export class Settings {
 
       if (vCheckFullScreen) {
         fullScreen.enter();
+        self.owner.setAttribute('view', 'fullscreen');
       } else {
         fullScreen.exit();
       }

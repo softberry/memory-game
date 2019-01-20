@@ -27,6 +27,7 @@ class MiniMemory extends HTMLElement {
     this.tiles = [];
     this.toolbar = document.createElement('div');
     this.private = new PrivateIndex(this);
+
     this.settings = new Settings(this);
     this.capabilities = {
       canFullScreen:
@@ -193,15 +194,18 @@ class MiniMemory extends HTMLElement {
 
       self.game = new Game(this.tiles.map((t) => t.canvas), this.cardBack);
 
-      self.game.onReady(() => {
+      self.game.events.addEventListener('ready', (e) => {
         self.shadowRoot.querySelector('#loading').classList.add('done');
         self.game.counter = new Counter(
           self.shadowRoot.querySelector('#counter')
         );
-      }, self);
+      });
+      self.game.events.addEventListener('win', (e) => {
+        const nextLevelMatrix = self.game.nextLevel(self.myAttributes());
 
-      self.game.onWin(() => {
-        self.settings.panel.classList.add('show');
+        self.setAttribute('matrix', nextLevelMatrix);
+
+        // TODO: Save score for the CurrentPlayer
       });
     });
 

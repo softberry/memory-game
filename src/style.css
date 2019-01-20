@@ -21,7 +21,7 @@
   overflow: hidden;
   box-shadow: 0 0 4px 0 #333333;
 }
-:host([view="fullscreen"]) {
+:host([view='fullscreen']) {
   position: fixed;
   left: 0;
   top: 0;
@@ -30,7 +30,7 @@
   height: 100%;
 }
 @media only screen and (orientation: landscape) {
-  :host([view="fullscreen"]) {
+  :host([view='fullscreen']) {
     border: 0;
   }
 }
@@ -82,15 +82,15 @@
   width: calc(100% - 2px);
   height: calc(100% - 2px);
   position: relative;
-  border-radius: 2px;
+  border-radius: 2.5%;
   cursor: pointer;
   visibility: visible;
   margin: 1px;
-  border: #a9a9a9 2px solid;
   transform-style: preserve-3d;
+  transition: transform 100ms;
 }
-:host .tile canvas:hover {
-  border-style: ridge;
+:host .tile canvas:hover:not(.open) {
+  transform: scale(0.99);
 }
 :host .tile canvas.wait {
   visibility: hidden;

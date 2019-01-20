@@ -12,6 +12,9 @@ export class Game {
    * @param {HTMLImageElement} cardBack
    */
   constructor(canvas, cardBack) {
+    // Event Listener Object. This is not actually used as DOM object
+    this.events = document.createElement('div');
+
     this.cardBack = cardBack;
     this.canvas = new MemoryCanvaslist();
     this.images = new MemoryImageList();
@@ -21,19 +24,11 @@ export class Game {
     this.canvas.addCanvas(canvas);
     this.state = [];
     this.prepared = false;
-    this.readyFunctions = [];
-    this.winFunctions = [];
+
     this.cards = {
       open: 0,
       length: 0,
     };
-  }
-  /**
-   * onWin Event dispatcher
-   * @param {function} fn function to be called on win.
-   */
-  onWin(fn) {
-    this.winFunctions.push(fn.bind(this));
   }
 
   /**
@@ -85,9 +80,8 @@ export class Game {
               self.cards.open++;
               if (self.cards.open === self.cards.length) {
                 self.counter.stop();
-                self.winFunctions.forEach((fn) => {
-                  fn();
-                });
+                const eventWin = new CustomEvent('win', {});
+                self.events.dispatchEvent(eventWin);
               }
             }
             break;
@@ -98,26 +92,16 @@ export class Game {
       });
     });
 
-    this.prepared = true;
+    self.prepared = true;
 
-    this.canvas.forEach((c) => {
+    self.canvas.forEach((c) => {
       c.classList.remove('wait');
       self.closeCard(c);
     });
-    this.readyFunctions.forEach((cb) => {
-      cb.fn.call(cb.context);
-    });
+    const eventWin = new CustomEvent('ready', {});
+    self.events.dispatchEvent(eventWin);
   }
-  /**
-   * adds  function to self.game to enable hiding
-   * 'LOADING...' layer after successful load.
-   * @param {function} fn
-   * @param {{}} context ` this ` context to be used
-   * at the time of calling function
-   */
-  onReady(fn, context) {
-    this.readyFunctions.push({ fn, context });
-  }
+
   /**
    * Opens  card by drawing cardback image on given canvas
    * @param {HTMLCanvasElement} canvas
@@ -160,5 +144,23 @@ export class Game {
 
     ctx.clearRect(0, 0, props.cw, props.ch);
     ctx.drawImage(image, 0, 0, props.iw, props.ih, 0, 0, props.cw, props.ch);
+  }
+  /**
+   * Calculates dimensions of next level
+   * @param {{}} options all attriburtes
+   * @return {string} matrix of the next level
+   */
+  nextLevel(options) {
+    self = this;
+    let col;
+    let row;
+    [col, row] = options.matrix.split('x').map((n) => parseInt(n));
+    col === row ? col++ : row++;
+
+    if (col > 10 || row > 10) {
+      return '2x2';
+    } else {
+      return `${col}x${row}`;
+    }
   }
 }

@@ -11,4 +11,12 @@ export class CurrentPlayer {
     this.name = playerName;
     this.scores = {};
   }
+  /**
+   *
+   * @param {string} level passed lavel matrix
+   * @param {string} seconds time lepased for it
+   */
+  addScore(level, seconds) {
+    this.scores[level] = seconds;
+  }
 }
