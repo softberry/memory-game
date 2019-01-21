@@ -93,13 +93,15 @@ export class Game {
     });
 
     self.prepared = true;
-
-    self.canvas.forEach((c) => {
-      c.classList.remove('wait');
-      self.closeCard(c);
+    const delay = 1000 / self.canvas.length;
+    self.canvas.forEach((c, i) => {
+      setTimeout(() => {
+        c.classList.remove('wait');
+        self.closeCard(c);
+      }, i * delay);
     });
-    const eventWin = new CustomEvent('ready', {});
-    self.events.dispatchEvent(eventWin);
+    const eventReady = new CustomEvent('ready', {});
+    self.events.dispatchEvent(eventReady);
   }
 
   /**

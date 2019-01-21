@@ -40,6 +40,7 @@
   left: 0;
   top: 0;
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   justify-content: center;
@@ -47,6 +48,11 @@
   text-transform: uppercase;
   animation: loading 1s infinite;
   z-index: var(--mini-memory-z-loading);
+}
+
+:host #loading .lastScore {
+  font-weight: bold;
+  font-size: 10vw;
 }
 
 :host #loading.done {
@@ -94,6 +100,7 @@
 }
 :host .tile canvas.wait {
   visibility: hidden;
+  transform: rotateY(180deg);
 }
 
 :host .tile canvas.open {

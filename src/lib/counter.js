@@ -10,6 +10,7 @@ export class Counter {
     const now = Date.now();
     this.board = el;
     this.intervalHandle = 0;
+    this.strDiff = '';
     this.timer = {
       start: now,
       end: now,
@@ -36,8 +37,8 @@ export class Counter {
     const now = Date.now();
     this.timer.end = now;
     this.timer.diff = this.timer.end - this.timer.start;
-    const diffToStr = new Date(this.timer.diff).toISOString().slice(11, -5);
-    this.board.innerHTML = diffToStr;
+    this.strDiff = new Date(this.timer.diff).toISOString().slice(11, -5);
+    this.board.innerHTML = this.strDiff;
   }
   /**
    * stops the counter

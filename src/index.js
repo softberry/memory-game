@@ -29,10 +29,6 @@ class MiniMemory extends HTMLElement {
     this.private = new PrivateIndex(this);
 
     this.settings = new Settings(this);
-    this.capabilities = {
-      canFullScreen:
-        typeof document.documentElement.requestFullscreen !== 'undefined',
-    };
 
     this.layers = {
       loading: null,
@@ -201,11 +197,14 @@ class MiniMemory extends HTMLElement {
         );
       });
       self.game.events.addEventListener('win', (e) => {
-        const nextLevelMatrix = self.game.nextLevel(self.myAttributes());
+        const attr = self.myAttributes();
+        const nextLevelMatrix = self.game.nextLevel(attr);
+        self.settings.scores.currentPlayer.addScore(
+          attr.matrix,
+          self.game.counter
+        );
 
         self.setAttribute('matrix', nextLevelMatrix);
-
-        // TODO: Save score for the CurrentPlayer
       });
     });
 
@@ -246,7 +245,12 @@ class MiniMemory extends HTMLElement {
     self.shadowRoot.innerHTML = `<style>${style}</style>
     ${toolbar}
     ${self.settings.html}
-    <div id="loading">${self.i18n.message('LOADING')}</div>`;
+
+    <div id="loading">
+    <div class="lastScore">${self.settings.scores.currentPlayer.lastGame}</div>
+    <div>${self.i18n.message('LOADING')}</div>
+    </div>`;
+
     self.prepareMatrix();
     self.i18n.update(self.shadowRoot);
 

@@ -10,13 +10,34 @@ export class CurrentPlayer {
   constructor(playerName) {
     this.name = playerName;
     this.scores = {};
+    this.lastGame = '';
   }
   /**
    *
    * @param {string} level passed lavel matrix
-   * @param {string} seconds time lepased for it
+   * @param {string} lastScore time lepased for it
    */
-  addScore(level, seconds) {
-    this.scores[level] = seconds;
+  addScore(level, lastScore) {
+    this.lastGame = `${lastScore.strDiff}`;
+    level = `_${level}`;
+    this.scores[level] = this.scores[level] || [];
+    this.scores[level].push(lastScore);
+    this.scores[level].sort((first, second) => {
+      return first.timer.diff - second.timer.diff;
+    });
+  }
+  /**
+   *
+   * @return {string} Formatted table for the scores of currentPlayer
+   */
+  table() {
+    let tbl = '<table>';
+    Object.entries(this.scores).forEach((key) => {
+      tbl += `<tr><td>${key[0].slice(1)}</td><td>&nbsp;</td></tr>`;
+      key[1].forEach((v) => {
+        tbl += `<tr><td>&nbsp;</td><td>${v.strDiff}</td></tr>`;
+      });
+    });
+    return tbl + '</table>';
   }
 }
