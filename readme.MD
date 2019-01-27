@@ -20,7 +20,8 @@ This is a classic Memory Game that can be simply included in any html page like 
 
 - [Tryout at codepen.io][codepen]
 
-**Please note Internet Explorer 11 is not supported**
+**Please note only Native Support of Custome Elements covered.**
+**It has not been tested for IE 11 / Edge  are not supported**
 
 ## Attributes
 
@@ -37,12 +38,13 @@ This is a classic Memory Game that can be simply included in any html page like 
       <mini-memory view="fullscreen"></mini-memory>
 
 
-## Contribution
+## Documentation
 
 Contributors are welcome. [Documentation][docs]
 
 #### TODOs & Notes:
 
+- WebApp settings : manifest.json, icons, favicons, splash screen etc.
 - Customizable image server.
 - multiple players
 - settings
