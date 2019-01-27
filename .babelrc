@@ -1,1 +1,12 @@
-{ "presets": ["@babel/preset-env"] }
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": ["ie 11", "> 0.25%"]
+        }
+      }
+    ]
+  ]
+}

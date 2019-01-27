@@ -19,11 +19,13 @@ export class Scores {
    */
   addPlayer(playerName) {
     const self = this;
-    Object.entries(self.players).forEach((player) => {
-      if (player[1].name === playerName) {
+    Object.keys(self.players).forEach((key) => {
+      const player = self.player[key];
+      if (player.name === playerName) {
         return;
       }
     });
+
     const player = new CurrentPlayer(playerName);
     self.players.push(player);
     self.currentPlayer = player;

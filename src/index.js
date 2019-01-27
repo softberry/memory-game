@@ -132,8 +132,8 @@ class MiniMemory extends HTMLElement {
 
     const self = this;
 
-    self.shadowRoot.innerHTML += `<style>:host .tile {${cssRow +
-      cssCol}}</style>`;
+    self.shadowRoot.innerHTML += `
+    <style>:host .tile {${cssRow + cssCol}}</style>`;
     let outer = 0;
     let inner = 0;
     let index = 0;
@@ -166,22 +166,22 @@ class MiniMemory extends HTMLElement {
      * Image succesfully  loaded  handler
      * @param {Event} e
      */
-    function imageFoud(e) {
+    function imageFound(e) {
       self.game.addImage(e.target);
     }
     /**
      * Image could not loaded error handler
      * @param {Event} e
      */
-    function imageNotFoud(e) {
+    function imageNotFound(e) {
       e.target.src = self.private.picsum(width, height);
     }
 
     this.cardBack.addEventListener('load', () => {
       for (let i = 0; i <= imageCount; i++) {
         const img = self.private.getNewImage(
-          (e) => imageFoud(e),
-          (e) => imageNotFoud(e)
+          (e) => imageFound(e),
+          (e) => imageNotFound(e)
         );
 
         img.src = self.private.picsum(width, height);

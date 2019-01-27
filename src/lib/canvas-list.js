@@ -8,6 +8,7 @@ export class MemoryCanvaslist extends Array {
    */
   addCanvas(canvas) {
     const self = this;
+
     canvas.forEach((c) => {
       c.width = parseInt(c.offsetWidth);
       c.height = parseInt(c.offsetHeight);

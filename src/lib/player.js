@@ -32,9 +32,10 @@ export class CurrentPlayer {
    */
   table() {
     let tbl = '<table>';
-    Object.entries(this.scores).forEach((key) => {
-      tbl += `<tr><td>${key[0].slice(1)}</td><td>&nbsp;</td></tr>`;
-      key[1].forEach((v) => {
+    Object.keys(this.scores).forEach((key) => {
+      const param = this.scores[key];
+      tbl += `<tr><td>${param.slice(1)}</td><td>&nbsp;</td></tr>`;
+      param.forEach((v) => {
         tbl += `<tr><td>&nbsp;</td><td>${v.strDiff}</td></tr>`;
       });
     });

@@ -96,16 +96,18 @@ export class Settings {
         self.owner.setAttribute('view', '');
       }
     });
-    Object.entries(self.params).forEach((param) => {
-      param[1].addEventListener('focus', () => {
+    Object.keys(self.params).forEach((key) => {
+      const param=self.params[key];
+
+      param.addEventListener('focus', () => {
         self.show();
       });
       const events = [];
-      param[1].type === ('text' || 'number')
+      param.type === ('text' || 'number')
         ? events.push('blur', 'keyup')
         : events.push('change');
       events.forEach((ev) => {
-        param[1].addEventListener(ev, self.enableApplyButton.bind(self));
+        param.addEventListener(ev, self.enableApplyButton.bind(self));
       });
     });
   }
