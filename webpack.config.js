@@ -10,7 +10,7 @@ module.exports = {
   },
   entry: ['./src/index.js'],
   output: {
-    filename: 'mini-memory.js',
+    filename: 'mini-memory.min.js',
     path: resolve(__dirname, './public'),
     publicPath: '/',
   },

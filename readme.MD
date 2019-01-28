@@ -21,7 +21,7 @@ This is a classic Memory Game that can be simply included in any html page like 
 - [Tryout at codepen.io][codepen]
 
 **Please note only Native Support of Custome Elements covered.**
-**It has not been tested for IE 11 / Edge  are not supported**
+**It has not been tested for IE 11 / Edge  and therefor are not supported**
 
 ## Attributes
 
