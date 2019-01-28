@@ -5,7 +5,7 @@ This is a classic Memory Game that can be simply included in any html page like 
 
     <html>
       <head>
-        	  <script src="//unpkg.com/mini-memory@latest/public/mini-memory.js"></script>
+        	  <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
       </head>
       <body>
         <div class="container">

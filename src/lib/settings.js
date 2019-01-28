@@ -97,7 +97,7 @@ export class Settings {
       }
     });
     Object.keys(self.params).forEach((key) => {
-      const param=self.params[key];
+      const param = self.params[key];
 
       param.addEventListener('focus', () => {
         self.show();
