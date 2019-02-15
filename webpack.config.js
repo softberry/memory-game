@@ -1,6 +1,5 @@
 const { resolve } = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devServer: {
@@ -43,11 +42,5 @@ module.exports = {
       template: './index.html',
       hash: true,
     }),
-    new CopyWebpackPlugin([
-      {
-        from: 'node_modules/@webcomponents/**',
-        to: '',
-      },
-    ]),
   ],
 };

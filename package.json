@@ -20,7 +20,6 @@
     "@pixi/jsdoc-template": "^2.4.2",
     "autoprefixer": "^9.4.4",
     "babel-loader": "^8.0.0-beta",
-    "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^2.1.0",
     "docdash": "^1.0.2",
     "eslint": "^5.11.0",
