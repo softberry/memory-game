@@ -14,13 +14,16 @@ This is a classic Memory Game that can be simply included in any html page like 
       </body>
     </html>
 
-## Sample Preview
+## Quick Intro
 
-- **A live preview of the game :** [http://www.emresakarya.com/mini-memory][sample-preview]
+- **Demo :** [http://www.emresakarya.com/mini-memory][sample-preview]
 
-- [Tryout at codepen.io][codepen]
+- **Play with it on :** [Tryout at codepen.io][codepen]
+
+- **Documentation :** [https://softberry.github.io/memory-game/][docs]
 
 **Please note only Native Support of Custome Elements covered.**
+
 **It has not been tested for IE 11 / Edge  and therefor are not supported**
 
 ## Attributes
@@ -40,17 +43,15 @@ This is a classic Memory Game that can be simply included in any html page like 
 
 ## Documentation
 
-Contributors are welcome. [Documentation][docs]
+Contributors are welcome. See the [Documentation][docs]. Fork this repo, pick yourself an [open Issue][issues], and go ahead...
 
-#### TODOs & Notes:
 
-- WebApp settings : manifest.json, icons, favicons, splash screen etc.
-- Customizable image server.
-- multiple players
-- settings
-- complete logs starting with 'Translate:'
-- add fullscreen attribute for a fullscreen mobile game with fixed layout(always landscape)
+### Open Issues:
+
+See open issues at GitHub [open Issue][issues]
+
 
 [sample-preview]: http://www.emresakarya.com/mini-memory
 [docs]: https://softberry.github.io/memory-game/
 [codepen]: https://codepen.io/softberry/pen/dwBrNB
+[issues]:https://github.com/softberry/memory-game/issues

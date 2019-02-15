@@ -11,7 +11,7 @@
     "build": "rimraf ./public && webpack -c \"webpack.config.js\" --mode production",
     "lint": "eslint ./src",
     "serve": "browser-sync start --server \"./public\"",
-    "serve-docs": "browser-sync start --server \"./docs\"",
+    "serve-docs": "yarn doc && browser-sync start --server \"./docs\"",
     "doc": "rimraf ./docs && jsdoc -c \"./jsdoc.config.json\""
   },
   "devDependencies": {
