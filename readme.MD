@@ -1,6 +1,7 @@
 # Memory Game
 
 **WebComponent**
+
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/mini-memory)
 
 
