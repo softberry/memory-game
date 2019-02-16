@@ -1,6 +1,24 @@
 # Memory Game
 
 **WebComponent**
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/mini-memory)
+
+
+<!--
+```
+<custom-element-demo>
+<template>
+  <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
+</template>
+</custom-element-demo>
+```
+-->
+```html
+<mini-memory></mini-memory>
+```
+
+
+
 This is a classic Memory Game that can be simply included in any html page like this:
 
     <html>
