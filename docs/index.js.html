@@ -201,9 +201,9 @@ class MiniMemory extends HTMLElement {
     const parentContainer =
       self.getAttribute('view') === 'fullscreen'
         ? {
-            w: document.documentElement.offsetWidth,
-            h: document.documentElement.offsetHeight,
-          }
+          w: document.documentElement.offsetWidth,
+          h: document.documentElement.offsetHeight,
+        }
         : { w: self.parentNode.offsetWidth, h: self.parentNode.offsetHeight };
 
     const width = parseInt(parentContainer.w / matrix[0]);
