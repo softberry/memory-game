@@ -56,11 +56,15 @@ This is a classic Memory Game that can be simply included in any html page like 
 
 **`lang`** Language selection. Current available languages are English, German and Turkish
 
-      <mini-memory lang="de"></mini-memory>
+      <mini-memory matrix="2x2" lang="de"></mini-memory>
 
 **`view`** set options for views. Currently have only one option which is `fullscreen`
 
-      <mini-memory view="fullscreen"></mini-memory>
+      <mini-memory matrix="2x2" view="fullscreen"></mini-memory>
+
+**`settings`** hides settings panel if this value set to "no". Default is visible.
+
+      <mini-memory matrix="2x2" settings="no"></mini-memory>
 
 
 ## Documentation
