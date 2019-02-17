@@ -10,6 +10,7 @@
 <custom-element-demo>
 <template>
   <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
+  <mini-memory matrix="2x2"></mini-memory>
 </template>
 </custom-element-demo>
 ```
