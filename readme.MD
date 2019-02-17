@@ -16,11 +16,6 @@
 ```
 -->
 ```html
-<mini-memory matrix="2x2"></mini-memory>
-```
-
-
-
 This is a classic Memory Game that can be simply included in any html page like this:
 
     <html>
@@ -33,6 +28,11 @@ This is a classic Memory Game that can be simply included in any html page like 
         </div>
       </body>
     </html>
+```
+
+
+
+
 
 ## Quick Intro
 
