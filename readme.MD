@@ -15,7 +15,7 @@
 ```
 -->
 ```html
-<mini-memory></mini-memory>
+<mini-memory matrix="2x2"></mini-memory>
 ```
 
 
