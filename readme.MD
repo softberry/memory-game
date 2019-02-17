@@ -10,6 +10,8 @@
 <custom-element-demo>
 <template>
   <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
+  **Please note images used in demo pages are supplied from https://picsum.photos/ which is a free
+    image placeholder service and therefore it takes long to load images.**
   <mini-memory matrix="2x2"></mini-memory>
 </template>
 </custom-element-demo>
