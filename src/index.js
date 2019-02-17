@@ -9,7 +9,7 @@ import { PrivateIndex } from './index.private';
 import { Settings } from './lib/settings';
 import { fullScreen } from './lib/fullscreen';
 
-const observedAttributes = ['matrix', 'lang', 'view'];
+const observedAttributes = ['matrix', 'lang', 'view', 'settings'];
 /**
  * Main container of the game.
  * @class
