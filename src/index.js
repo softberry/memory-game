@@ -9,7 +9,7 @@ import { PrivateIndex } from './index.private';
 import { Settings } from './lib/settings';
 import { fullScreen } from './lib/fullscreen';
 
-const observedAttributes = ['matrix', 'lang', 'view','settings'];
+const observedAttributes = ['matrix', 'lang', 'view', 'settings'];
 /**
  * Main container of the game.
  * @class
@@ -263,7 +263,7 @@ class MiniMemory extends HTMLElement {
 
     self.settings.reset(self.myAttributes());
 
-    self.layers.toolbar.menu.addEventListener('click', () => {
+    self.layers.toolbar.menu.addEventListener('click', a => {
       self.settings.reset(self.myAttributes());
       self.settings.show();
     });
