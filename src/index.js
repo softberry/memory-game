@@ -263,7 +263,7 @@ class MiniMemory extends HTMLElement {
 
     self.settings.reset(self.myAttributes());
 
-    self.layers.toolbar.menu.addEventListener('click', a => {
+    self.layers.toolbar.menu.addEventListener('click', () => {
       self.settings.reset(self.myAttributes());
       self.settings.show();
     });

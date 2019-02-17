@@ -10,6 +10,7 @@
     "dev": "webpack-dev-server --mode development",
     "build": "rimraf ./public && webpack -c \"webpack.config.js\" --mode production",
     "lint": "eslint ./src",
+    "prettier": "prettier ./src",
     "serve": "browser-sync start --server \"./public\"",
     "serve-docs": "yarn doc && browser-sync start --server \"./docs\"",
     "doc": "rimraf ./docs && jsdoc -c \"./jsdoc.config.json\""
@@ -29,6 +30,7 @@
     "html-webpack-plugin": "^3.2.0",
     "husky": "^1.3.1",
     "jsdoc": "^3.5.5",
+    "lint-staged": "^8.1.4",
     "nodemon": "^1.18.9",
     "postcss-loader": "^3.0.0",
     "prettier": "1.15.3",
@@ -41,8 +43,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && yarn build && yarn doc"
+      "pre-commit": "yarn lint --fix && yarn build && yarn doc"
     }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "repository": "https://github.com/softberry/memory-game.git",
   "dependencies": {}
