@@ -107,6 +107,31 @@ class MiniMemory extends HTMLElement {
       }
     }
   }
+  /**
+   * @description check if element has manadatory fields defined or not
+   * @return {boolean} returns true if minimum requirements
+   * are correctly defined
+   */
+  checkDefaultAttributes() {
+    const attr = this.getAttribute('matrix');
+    if (attr === null || attr.indexOf('x') < 0) {
+      this.shadowRoot.innerHTML += `
+      ${this.i18n.message('MATRIX_DIMENSIONS_ERROR')}
+      ${this.i18n.sample('MATRIX_DIMENSIONS_ERROR')}
+      `;
+      return false;
+    }
+
+    if (this.private.limitsExceeded(attr.split('x'))) {
+      this.shadowRoot.innerHTML += `
+      ${this.i18n.message('MATRIX_DIMENSIONS_ERROR')}
+      ${this.i18n.sample('MATRIX_DIMENSIONS_ERROR')}
+      `;
+      return false;
+    }
+
+    return true;
+  }
 
   /**
    * @description prepare cards layout using given matrix attribute
@@ -115,14 +140,6 @@ class MiniMemory extends HTMLElement {
     const matrix = this.getAttribute('matrix').split('x');
     matrix[0] = parseInt(matrix[0]);
     matrix[1] = parseInt(matrix[1]);
-
-    if (this.private.limitsExceeded(matrix)) {
-      this.shadowRoot.innerHTML += `
-      ${this.i18n.message('MATRIX_DIMENSIONS_ERROR')}
-      ${this.i18n.sample('MATRIX_DIMENSIONS_ERROR')}
-      `;
-      return;
-    }
 
     const oddMid = this.private.getOddMidIndex(matrix);
     const cssRow = `width:${100 / matrix[0]}%;`;
@@ -196,6 +213,7 @@ class MiniMemory extends HTMLElement {
           self.shadowRoot.querySelector('#counter')
         );
       });
+
       self.game.events.addEventListener('win', (e) => {
         const attr = self.myAttributes();
         const nextLevelMatrix = self.game.nextLevel(attr);
@@ -214,6 +232,7 @@ class MiniMemory extends HTMLElement {
 
     this.cardBack.src = self.private.picsum(width, height);
   }
+
   /**
    * Gets current attributes according to observedAttributes
    * @return {object} attr;
@@ -242,9 +261,16 @@ class MiniMemory extends HTMLElement {
       self.attachShadow({ mode: 'open' });
     }
 
+    self.shadowRoot.innerHTML = `<style>${style}</style>`;
+    if (!self.checkDefaultAttributes()) {
+      self.i18n.update(self.shadowRoot);
+      return;
+    }
+
     self.shadowRoot.innerHTML = `<style>${style}</style>
     ${toolbar}
     ${self.settings.html}
+
 
     <div id="loading">
     <div class="lastScore">${self.settings.scores.currentPlayer.lastGame}</div>
