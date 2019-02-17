@@ -13,6 +13,9 @@
     "dictionaries": ["jsdoc", "closure"]
   },
   "templates": {
+    "default": {
+      "includeDate": false
+    },
     "applicationName": "Memory Game",
     "cleverLinks": false,
     "monospaceLinks": false,
