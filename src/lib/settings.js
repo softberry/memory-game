@@ -122,6 +122,12 @@ export class Settings {
     ] = options.matrix.split('x').filter((m) => m !== 'x');
     const curPlayerName = this.scores.currentPlayer.name;
 
+    if (options.settings === 'no') {
+      this.owner.layers.toolbar.menu.className = 'hide';
+    } else {
+      this.owner.layers.toolbar.menu.className = '';
+    }
+
     if (options.view === 'fullscreen') {
       this.params.isFullScreen.checked = true;
       this.params.isFullScreen.setAttribute('checked', 'checked');
