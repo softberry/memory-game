@@ -1,6 +1,6 @@
 /**
  *
- * @class MemoryPairsList
+ * @module MemoryPairsList
  */
 export class MemoryPairsList extends Array {
   /**

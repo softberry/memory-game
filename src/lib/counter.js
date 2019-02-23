@@ -1,10 +1,13 @@
 /**
- * @class
+ * Calculates elapsed time for each level and updates given DOMElement.
+ * Time converted to 00:00:00 format.
+ * @module Counter
  */
 export class Counter {
   /**
-   *
-   * @param {HTMLDivEleemnt} el counter element in toolbar
+   * Mandatory parameter, which will be used to write result.
+   * @param {HTMLDivElemnt} el counter element in toolbar
+   * @constructor
    */
   constructor(el) {
     const now = Date.now();
@@ -18,7 +21,7 @@ export class Counter {
     };
   }
   /**
-   * start counter
+   * @description starts or resets counter
    */
   start() {
     const self = this;

@@ -1,16 +1,16 @@
 /**
- * Holds list of Images those returs 404
+ * @description Holds list of Images those returns 404
  * to avoid try to load again
  */
 const excludedImages = [];
 /**
- *
+ * @classdesc Helper functions served to owner {@link MiniMemory}
  * @class
  */
 export class PrivateIndex {
   /**
    *
-   * @param {{}} owner @namespace MiniMemory
+   * @param {{}} owner  An instance of {@link MiniMemory}
    */
   constructor(owner) {
     this.owner = owner;

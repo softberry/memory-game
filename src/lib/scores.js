@@ -2,7 +2,7 @@ import { CurrentPlayer } from './player';
 
 /**
  * Scores management
- *@class
+ *@module Scores
  */
 export class Scores {
   /**
