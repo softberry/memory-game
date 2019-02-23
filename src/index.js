@@ -11,7 +11,8 @@ import { fullScreen } from './lib/fullscreen';
 
 const observedAttributes = ['matrix', 'lang', 'view', 'settings'];
 /**
- * @classdesc Main container of the game. Will be used as {`CustomElements.define`} constructor.
+ * @classdesc Main container of the game. Will be used as
+ * {`CustomElements.define`} constructor.
  * @author Emre Sakarya <emre.sakarya@softberry.de>
  * @extends HTMLElement
  * @example customElements.define('mini-memory', MiniMemory);
@@ -38,7 +39,8 @@ class MiniMemory extends HTMLElement {
      */
     this.toolbar = document.createElement('div');
     /**
-     * @summary Helper functions, which has functions to be used privatly from main constructor {@link PrivateIndex}.
+     * @summary Helper functions, which has functions to be used privatly
+     * from main constructor {@link PrivateIndex}.
      */
     this.private = new PrivateIndex(this);
     /**
@@ -46,7 +48,8 @@ class MiniMemory extends HTMLElement {
      */
     this.settings = new Settings(this);
     /**
-     * @summary handle of all layers such as loading, toolbar, setting etc. which will be defined when they are created.
+     * @summary handle of all layers such as loading, toolbar, setting etc.
+     * which will be defined when they are created.
      */
     this.layers = {
       loading: null,
@@ -179,9 +182,9 @@ class MiniMemory extends HTMLElement {
     const parentContainer =
       self.getAttribute('view') === 'fullscreen'
         ? {
-            w: document.documentElement.offsetWidth,
-            h: document.documentElement.offsetHeight,
-          }
+          w: document.documentElement.offsetWidth,
+          h: document.documentElement.offsetHeight,
+        }
         : { w: self.parentNode.offsetWidth, h: self.parentNode.offsetHeight };
 
     const width = parseInt(parentContainer.w / matrix[0]);
