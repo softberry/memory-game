@@ -18,13 +18,38 @@
     },
     "applicationName": "Memory Game",
     "cleverLinks": false,
-    "monospaceLinks": false,
-    "sort": false
+    "monospaceLinks": false
   },
   "opts": {
     "destination": "./docs/",
     "lenient": true,
     "recurse": true,
     "template": "node_modules/docdash"
+  },
+  "docdash": {
+    "static": true,
+    "search": true,
+    "collapse": true,
+    "sort": false,
+    "menu": {
+      "Demo Website": {
+        "href": "http://www.emresakarya.com/mini-memory",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "demo_link"
+      },
+      "Playground": {
+        "href": "https://codepen.io/softberry/pen/dwBrNB",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "codepen_link"
+      },
+      "GitHub": {
+        "href": "http://github.com/softberry/memory-game",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "github_link"
+      }
+    }
   }
 }

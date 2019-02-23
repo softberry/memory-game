@@ -11,12 +11,19 @@ import { fullScreen } from './lib/fullscreen';
 
 const observedAttributes = ['matrix', 'lang', 'view', 'settings'];
 /**
- * Main container of the game.
- * @class
+ * @classdesc Main container of the game. Will be used as {`CustomElements.define`} constructor.
+ * @author Emre Sakarya <emre.sakarya@softberry.de>
+ * @extends HTMLElement
+ * @example customElements.define('mini-memory', MiniMemory);
+ * // Create MiniMemory DOMElement like this :
+ * document.createElement('mini-memory');
+ * // or like this:
+ * <mini-memory></mini-memory>
+ * @class MiniMemory
  */
 class MiniMemory extends HTMLElement {
   /**
-   * @description extendes HTMLElement to prepare Custom element MiniMemory
+   * @summary extendes HTMLElement to prepare Custom element MiniMemory.
    * @constructor
    */
   constructor() {
@@ -25,19 +32,33 @@ class MiniMemory extends HTMLElement {
     this.rendered = false;
     this.images = [];
     this.tiles = [];
+
+    /**
+     * @summary HTMLDivElement information bar on top of the screen.
+     */
     this.toolbar = document.createElement('div');
+    /**
+     * @summary Helper functions, which has functions to be used privatly from main constructor {@link PrivateIndex}.
+     */
     this.private = new PrivateIndex(this);
-
+    /**
+     * @summary Controls and keep track of game settings {@link Settings}.
+     */
     this.settings = new Settings(this);
-
+    /**
+     * @summary handle of all layers such as loading, toolbar, setting etc. which will be defined when they are created.
+     */
     this.layers = {
       loading: null,
     };
 
+    /**
+     * @summary Image of the closed card drawn to be conatiner canvas
+     */
     this.cardBack = document.createElement('img');
   }
   /**
-   * Resets all parameters to enable a clean restart/render
+   * @summary Resets all parameters to enable a clean restart/render
    */
   reset() {
     this.rendered = false;
@@ -49,7 +70,7 @@ class MiniMemory extends HTMLElement {
   }
 
   /**
-   * @description callback on custom element included in DOM
+   * @summary callback on custom element included in DOM
    */
   connectedCallback() {
     if (!this.rendered) {
@@ -58,22 +79,22 @@ class MiniMemory extends HTMLElement {
   }
 
   /**
-   * @description necessary attributes to be watched
+   * @summary necessary attributes to be watched.
    */
   static get observedAttributes() {
     return observedAttributes;
   }
 
   /**
-   * @description callback function on removing of custom element
+   * @summary callback function on removing of custom element
    */
   disconnectedCallback() {}
   /**
-   * @description callback function on adding of custom element to another dom
+   * @summary callback function on adding of custom element to another dom.
    */
   adoptedCallback() {}
   /**
-   * callback funciotn on attribute change of custom element
+   * callback function on attribute change of custom element.
    * @param {string} name
    * @param {string} oldVal
    * @param {string} newVal
@@ -108,9 +129,9 @@ class MiniMemory extends HTMLElement {
     }
   }
   /**
-   * @description check if element has manadatory fields defined or not
+   * @summary check if element has manadatory fields defined or not
    * @return {boolean} returns true if minimum requirements
-   * are correctly defined
+   * are correctly defined.
    */
   checkDefaultAttributes() {
     const attr = this.getAttribute('matrix');
@@ -134,7 +155,7 @@ class MiniMemory extends HTMLElement {
   }
 
   /**
-   * @description prepare cards layout using given matrix attribute
+   * @summary prepare cards layout using given matrix attribute
    */
   prepareMatrix() {
     const matrix = this.getAttribute('matrix').split('x');
@@ -158,9 +179,9 @@ class MiniMemory extends HTMLElement {
     const parentContainer =
       self.getAttribute('view') === 'fullscreen'
         ? {
-          w: document.documentElement.offsetWidth,
-          h: document.documentElement.offsetHeight,
-        }
+            w: document.documentElement.offsetWidth,
+            h: document.documentElement.offsetHeight,
+          }
         : { w: self.parentNode.offsetWidth, h: self.parentNode.offsetHeight };
 
     const width = parseInt(parentContainer.w / matrix[0]);
@@ -180,14 +201,14 @@ class MiniMemory extends HTMLElement {
       }
     }
     /**
-     * Image succesfully  loaded  handler
+     * @summary Image succesfully  loaded  handler
      * @param {Event} e
      */
     function imageFound(e) {
       self.game.addImage(e.target);
     }
     /**
-     * Image could not loaded error handler
+     * @summary Image could not loaded error handler
      * @param {Event} e
      */
     function imageNotFound(e) {
@@ -247,7 +268,7 @@ class MiniMemory extends HTMLElement {
     return attr;
   }
   /**
-   * @description Renders custom element with initial attributes
+   * @summary Renders custom element with initial attributes
    */
   render() {
     const self = this;

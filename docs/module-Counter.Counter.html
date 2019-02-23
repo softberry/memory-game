@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>lib/settings.js - Documentation</title>
+    <title>Counter - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -33,187 +33,451 @@
 
 <div id="main">
     
-    <h1 class="page-title">lib/settings.js</h1>
+    <h1 class="page-title">Counter</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import { default as template } from '../templates/settings.html';
-import { Scores } from './scores';
-import { fullScreen } from './fullscreen';
+        <h2>
+            <span class="ancestors"><a href="module-Counter.html">Counter</a>.</span>
+        
+        Counter
+        </h2>
+        
+    
+</header>
 
-/**
- * @module Settings
- */
-export class Settings {
-  /**
-   *
-   * @param {{}} owner  An instance of {@link MiniMemory}
-   */
-  constructor(owner) {
-    this.owner = owner;
-    this.html = template;
-    this.scores = new Scores();
-  }
-  /**
-   * retrieves Panel content from shadow DOM
-   * @param {shadowRoot} shadow
-   */
-  updateChildren(shadow) {
-    const self = this;
-    self.panel = shadow.querySelector('#settings');
-    self.closeX = shadow.querySelector('#settings .close-x');
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-    self.labels = {
-      playerName: shadow.querySelector('label[for="playerName"]'),
-      matrixcol: shadow.querySelector('label[for="matrixcol"]'),
-      matrixrow: shadow.querySelector('label[for="matrixrow"]'),
-    };
+    
 
-    self.params = {
-      languageSelection: shadow.querySelector('#languageSelection'),
-      playerName: shadow.querySelector('#playerName'),
-      matrixcol: shadow.querySelector('#matrixcol'),
-      matrixrow: shadow.querySelector('#matrixrow'),
-      isFullScreen: shadow.querySelector('#isFullScreen'),
-    };
+    <h4 class="name" id="Counter"><span class="type-signature"></span>new Counter<span class="signature">(el)</span><span class="type-signature"></span></h4>
 
-    self.vCheckFullScreen = shadow.querySelector('#isFullScreen + .vCheck');
+    
+    <p class="summary">Mandatory parameter, which will be used to write result.</p>
+    
 
-    self.applySettings = shadow.querySelector('#applySettings');
-    self.restartGame = shadow.querySelector('#restartGame');
 
-    self.closeX.addEventListener('click', () => self.hide());
 
-    self.params.languageSelection.addEventListener('change', (e) => {
-      //  self.owner.i18n = new Localization(e.target.value);
-      // self.owner.i18n.update(self.shadowRoot);
-      self.owner.setAttribute('lang', e.target.value);
-    });
 
-    self.vCheckFullScreen.addEventListener('click', (e) => {
-      const chk = self.params.isFullScreen;
-      chk.checked = !chk.checked;
-      self.enableApplyButton.call(self);
-    });
+<dl class="details">
 
-    self.applySettings.addEventListener('click', (e) => {
-      if (self.params.playerName.value.replace(/\s/g, '').length === 0) {
-        self.params.playerName.classList.add('error');
-        return;
-      }
-      const c = self.params.matrixcol.value;
-      const r = self.params.matrixrow.value;
-      const col = Math.max(Math.min(c, 10), 2);
-      const row = Math.max(Math.min(r, 10), 2);
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_counter.js.html">lib/counter.js</a>, <a href="lib_counter.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
 
-      const vCheckFullScreen = self.params.isFullScreen.checked;
-      self.scores.currentPlayer.name = self.params.playerName.value;
+    
 
-      self.owner.layers.toolbar.player.innerText =
-        self.scores.currentPlayer.name;
+    
 
-      self.owner.setAttribute('matrix', `${col}x${row}`);
+    
 
-      if (vCheckFullScreen) {
-        fullScreen.enter();
-        self.owner.setAttribute('view', 'fullscreen');
-      } else {
-        fullScreen.exit();
-      }
-      self.hide();
-    });
+    
 
-    self.restartGame.addEventListener('click', (e) => {
-      self.hide();
+    
 
-      self.owner.reset();
-      self.owner.render();
-    });
+    
 
-    document.addEventListener('fullscreenchange', (e) => {
-      if (document.fullscreenElement === null) {
-        self.owner.setAttribute('view', '');
-      }
-    });
-    Object.keys(self.params).forEach((key) => {
-      const param = self.params[key];
+    
 
-      param.addEventListener('focus', () => {
-        self.show();
-      });
-      const events = [];
-      param.type === ('text' || 'number')
-        ? events.push('blur', 'keyup')
-        : events.push('change');
-      events.forEach((ev) => {
-        param.addEventListener(ev, self.enableApplyButton.bind(self));
-      });
-    });
-  }
-  /**
-   * Resets Panel content
-   * @param {*} options
-   */
-  reset(options) {
-    [
-      this.params.matrixcol.value,
-      this.params.matrixrow.value,
-    ] = options.matrix.split('x').filter((m) => m !== 'x');
-    const curPlayerName = this.scores.currentPlayer.name;
+    
 
-    if (options.settings === 'no') {
-      this.owner.layers.toolbar.menu.className = 'hide';
-    } else {
-      this.owner.layers.toolbar.menu.className = '';
-    }
+    
 
-    if (options.view === 'fullscreen') {
-      this.params.isFullScreen.checked = true;
-      this.params.isFullScreen.setAttribute('checked', 'checked');
-    } else {
-      this.params.isFullScreen.checked = false;
-      this.params.isFullScreen.removeAttribute('checked');
-    }
+    
 
-    this.applySettings.setAttribute('disabled', 'disabled');
-    this.params.playerName.value = curPlayerName;
-    if (curPlayerName &amp;&amp; curPlayerName.length > 0) {
-      this.owner.layers.toolbar.player.innerText = curPlayerName;
-    } else {
-      this.show();
-    }
-  }
+    
 
-  /**
-   * Makes Apply button usable
-   */
-  enableApplyButton() {
-    this.applySettings.removeAttribute('disabled');
-  }
+    
 
-  /**
-   * Shows Settings pabel (Sidepanel)
-   */
-  show() {
-    this.panel.classList.add('show');
-  }
+    
 
-  /**
-   * Hides Settings pabel (Sidepanel)
-   */
-  hide() {
-    this.panel.classList.remove('show');
-  }
-}
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Mandatory parameter, which will be used to write result.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLDivElemnt</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>counter element in toolbar</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="start"><span class="type-signature"></span>start<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>starts or resets counter</p>.</p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_counter.js.html">lib/counter.js</a>, <a href="lib_counter.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>starts or resets counter</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="diff"><span class="type-signature"></span>diff<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>calculate difference between start/stop and convert it to ISO</p>.</p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_counter.js.html">lib/counter.js</a>, <a href="lib_counter.js.html#line39">line 39</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>calculate difference between start/stop and convert it to ISO</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="stop"><span class="type-signature"></span>stop<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>stops the counter</p>.</p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_counter.js.html">lib/counter.js</a>, <a href="lib_counter.js.html#line49">line 49</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>stops the counter</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

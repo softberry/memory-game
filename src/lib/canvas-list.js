@@ -1,5 +1,5 @@
 /**
- * @class MemoryCanvaslist
+ * @module MemoryCanvaslist
  */
 export class MemoryCanvaslist extends Array {
   /**

@@ -1,6 +1,6 @@
 /**
  * Cross-Browser available fullscreen support
- * @class
+ * @module FullScreen
  */
 class FullScreen {
   /**

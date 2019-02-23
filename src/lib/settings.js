@@ -3,12 +3,12 @@ import { Scores } from './scores';
 import { fullScreen } from './fullscreen';
 
 /**
- * @class
+ * @module Settings
  */
 export class Settings {
   /**
    *
-   * @param {{}} owner @namespace MiniMemory
+   * @param {{}} owner  An instance of {@link MiniMemory}
    */
   constructor(owner) {
     this.owner = owner;

@@ -1,5 +1,5 @@
 /**
- * @class
+ * @module MemoryImageList
  */
 export class MemoryImageList extends Array {
   /**

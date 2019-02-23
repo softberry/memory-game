@@ -1,6 +1,6 @@
 /**
  * Keep track of current player and scroes etc. of the player
- * @class
+ * @module CurrentPlayer
  */
 export class CurrentPlayer {
   /**

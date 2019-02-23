@@ -3,7 +3,7 @@ import { MemoryCanvaslist } from './canvas-list';
 import { MemoryPairsList } from './pairs-list';
 
 /**
- * @class
+ * @module Game
  */
 export class Game {
   /**
