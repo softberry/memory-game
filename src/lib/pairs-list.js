@@ -1,11 +1,11 @@
 /**
- *
- * @module MemoryPairsList
+ *@classdesc Controler of paired items.
+ * @class
  */
 export class MemoryPairsList extends Array {
   /**
-   * Apply visual changes on paired elements
-   * @param {HTMLCanvasElement} canvas
+   * Apply visual changes on paired elements.
+   * @param {HTMLCanvasElement} canvas Set a pair as found.
    */
   checkMark(canvas) {
     const ctx = canvas.getContext('2d');
@@ -43,8 +43,8 @@ export class MemoryPairsList extends Array {
   }
   /**
    *
-   * @param {HTMLCanvasElement} canvas Canvas element to be checked
-   * @return {boolean} if given canvas has already a known pair
+   * @param {HTMLCanvasElement} canvas Canvas element to be checked.
+   * @return {boolean} If given canvas has already a known pair.
    */
   hasPair(canvas) {
     const self = this;
@@ -63,8 +63,8 @@ export class MemoryPairsList extends Array {
 
   /**
    *
-   * @param {Array} state holds info object for both open cards
-   * @return {boolean} are both canvas in given state pair or not.
+   * @param {Array} state Holds info object for both open cards.
+   * @return {boolean} Are both canvas in given state pair or not.
    */
   arePairs(state) {
     const one = state[0];
@@ -84,9 +84,9 @@ export class MemoryPairsList extends Array {
   }
 
   /**
-   *
-   * @param {HTMLCanvasElement} canvas image of the given canvas
-   * @return {HTMLImageElement} Image for the given canvas
+   * find image of given canvas.
+   * @param {HTMLCanvasElement} canvas image of the given canvas.
+   * @return {HTMLImageElement} Image for the given canvas.
    */
   getImage(canvas) {
     let img;

@@ -40,7 +40,7 @@ This is a classic Memory Game that can be simply included in any html page like 
 
 - **Demo :** [http://www.emresakarya.com/mini-memory][sample-preview]
 
-- **Play with it on :** [Tryout at codepen.io][codepen]
+- **Playground :** [at codepen.io][codepen]
 
 - **Documentation :** [https://softberry.github.io/memory-game/][docs]
 

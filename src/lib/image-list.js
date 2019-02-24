@@ -1,9 +1,11 @@
 /**
- * @module MemoryImageList
+ * Controls images in a list.
+ * @extends Array.
+ * @class
  */
 export class MemoryImageList extends Array {
   /**
-   * @return {{HMLImageElement}}
+   * @return {{HMLImageElement}} Randomly selected image.
    */
   random() {
     const length = this.length;

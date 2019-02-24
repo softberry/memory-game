@@ -1,11 +1,10 @@
 /**
- * Cross-Browser available fullscreen support
- * @module FullScreen
+ * @classdesc Cross-Browser available fullscreen support.
+ * @class
  */
-class FullScreen {
+export class FullScreen {
   /**
-   * create cross-fulscreen-utility
-   * @constructor
+   * @summary Create cross-fulscreen-utility.
    */
   constructor() {
     const doc = window.document;
@@ -24,7 +23,7 @@ class FullScreen {
       doc.msExitFullscreen;
   }
   /**
-   * enters to fulscreen mode
+   * @summary Enters to fulscreen mode.
    */
   enter() {
     if (
@@ -37,7 +36,7 @@ class FullScreen {
     }
   }
   /**
-   * exits from fulscreen mode
+   * @summary Exits from fulscreen mode.
    */
   exit() {
     if (
@@ -51,5 +50,3 @@ class FullScreen {
   }
 }
 
-const fullScreen = new FullScreen();
-export { fullScreen };

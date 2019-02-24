@@ -1,9 +1,10 @@
 import { default as template } from '../templates/settings.html';
 import { Scores } from './scores';
-import { fullScreen } from './fullscreen';
+import { FullScreen } from './fullscreen';
 
 /**
- * @module Settings
+ * Controller for all user defined settings such as, dimentions, fullscreen etc.
+ * @class
  */
 export class Settings {
   /**
@@ -14,9 +15,10 @@ export class Settings {
     this.owner = owner;
     this.html = template;
     this.scores = new Scores();
+    this.fullScreen = new FullScreen();
   }
   /**
-   * retrieves Panel content from shadow DOM
+   * Retrieves Panel content from shadow DOM.
    * @param {shadowRoot} shadow
    */
   updateChildren(shadow) {
@@ -76,10 +78,10 @@ export class Settings {
       self.owner.setAttribute('matrix', `${col}x${row}`);
 
       if (vCheckFullScreen) {
-        fullScreen.enter();
+        self.fullScreen.enter();
         self.owner.setAttribute('view', 'fullscreen');
       } else {
-        fullScreen.exit();
+        self.fullScreen.exit();
       }
       self.hide();
     });
@@ -112,8 +114,8 @@ export class Settings {
     });
   }
   /**
-   * Resets Panel content
-   * @param {*} options
+   * Resets Panel content.
+   * @param {*} options Given initial options.
    */
   reset(options) {
     [
@@ -146,21 +148,21 @@ export class Settings {
   }
 
   /**
-   * Makes Apply button usable
+   * @summary Makes Apply button usable.
    */
   enableApplyButton() {
     this.applySettings.removeAttribute('disabled');
   }
 
   /**
-   * Shows Settings pabel (Sidepanel)
+   * @summary Shows Settings pabel (Sidepanel).
    */
   show() {
     this.panel.classList.add('show');
   }
 
   /**
-   * Hides Settings pabel (Sidepanel)
+   * @summary Hides Settings pabel (Sidepanel).
    */
   hide() {
     this.panel.classList.remove('show');

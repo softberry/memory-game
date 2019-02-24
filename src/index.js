@@ -3,7 +3,7 @@ import { Game } from './lib/game';
 import { default as style } from './style.css';
 import { Counter } from './lib/counter';
 
-import { default as toolbar } from './templates/toolbar.html';
+import { default as tmplToolbar } from './templates/toolbar.html';
 
 import { PrivateIndex } from './index.private';
 import { Settings } from './lib/settings';
@@ -24,8 +24,7 @@ const observedAttributes = ['matrix', 'lang', 'view', 'settings'];
  */
 class MiniMemory extends HTMLElement {
   /**
-   * @summary extendes HTMLElement to prepare Custom element MiniMemory.
-   * @constructor
+   *  Contruct game
    */
   constructor() {
     super();
@@ -61,7 +60,7 @@ class MiniMemory extends HTMLElement {
     this.cardBack = document.createElement('img');
   }
   /**
-   * @summary Resets all parameters to enable a clean restart/render
+   * @summary Resets all parameters to enable a clean restart/render.
    */
   reset() {
     this.rendered = false;
@@ -73,7 +72,7 @@ class MiniMemory extends HTMLElement {
   }
 
   /**
-   * @summary callback on custom element included in DOM
+   * @summary Callback on custom element included in DOM.
    */
   connectedCallback() {
     if (!this.rendered) {
@@ -82,30 +81,30 @@ class MiniMemory extends HTMLElement {
   }
 
   /**
-   * @summary necessary attributes to be watched.
+   * @summary Necessary attributes to be watched.
    */
   static get observedAttributes() {
     return observedAttributes;
   }
 
   /**
-   * @summary callback function on removing of custom element
+   * @summary Callback function on removing of custom element from DOM.
    */
   disconnectedCallback() {}
   /**
-   * @summary callback function on adding of custom element to another dom.
+   * @summary Callback function on adding of custom element to another DOM.
    */
   adoptedCallback() {}
   /**
    * callback function on attribute change of custom element.
-   * @param {string} name
-   * @param {string} oldVal
-   * @param {string} newVal
+   * @param {string} name Name of the attribute.
+   * @param {string} oldVal Latest value before change.
+   * @param {string} newVal The current value to be set.
    */
   attributeChangedCallback(name, oldVal, newVal) {
     const self = this;
     /**
-     * resets all parameters and renders game again
+     * Resets all parameters and renders game again.
      */
     function __fullReset() {
       self.reset();
@@ -132,8 +131,8 @@ class MiniMemory extends HTMLElement {
     }
   }
   /**
-   * @summary check if element has manadatory fields defined or not
-   * @return {boolean} returns true if minimum requirements
+   * @summary check if element has manadatory fields defined or not.
+   * @return {boolean} Returns true if minimum requirements
    * are correctly defined.
    */
   checkDefaultAttributes() {
@@ -158,7 +157,7 @@ class MiniMemory extends HTMLElement {
   }
 
   /**
-   * @summary prepare cards layout using given matrix attribute
+   * @summary Prepare cards layout using given matrix attribute.
    */
   prepareMatrix() {
     const matrix = this.getAttribute('matrix').split('x');
@@ -204,15 +203,15 @@ class MiniMemory extends HTMLElement {
       }
     }
     /**
-     * @summary Image succesfully  loaded  handler
-     * @param {Event} e
+     * @summary Image succesfully  loaded  handler.
+     * @param {Event} e Image onload event.
      */
     function imageFound(e) {
       self.game.addImage(e.target);
     }
     /**
      * @summary Image could not loaded error handler
-     * @param {Event} e
+     * @param {Event} e Image onload.
      */
     function imageNotFound(e) {
       e.target.src = self.private.picsum(width, height);
@@ -258,8 +257,8 @@ class MiniMemory extends HTMLElement {
   }
 
   /**
-   * Gets current attributes according to observedAttributes
-   * @return {object} attr;
+   * Gets current attributes according to observedAttributes.
+   * @return {object} attr Obeserved values object.
    */
   myAttributes() {
     const attr = {};
@@ -271,7 +270,7 @@ class MiniMemory extends HTMLElement {
     return attr;
   }
   /**
-   * @summary Renders custom element with initial attributes
+   * @summary Renders custom element with initial attributes.
    */
   render() {
     const self = this;
@@ -292,7 +291,7 @@ class MiniMemory extends HTMLElement {
     }
 
     self.shadowRoot.innerHTML = `<style>${style}</style>
-    ${toolbar}
+    ${tmplToolbar}
     ${self.settings.html}
 
 

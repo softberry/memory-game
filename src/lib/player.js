@@ -1,11 +1,11 @@
 /**
- * Keep track of current player and scroes etc. of the player
- * @module CurrentPlayer
+ * @classdesc Keep track of current player and scroes etc. of the player.
+ * @class
  */
 export class CurrentPlayer {
   /**
-   *Initalize a Player as current
-   * @param {string} playerName Name of the player
+   * Initalize a Player as current.
+   * @param {string} playerName Name of the player.
    */
   constructor(playerName) {
     this.name = playerName;
@@ -14,8 +14,8 @@ export class CurrentPlayer {
   }
   /**
    *
-   * @param {string} level passed lavel matrix
-   * @param {string} lastScore time lepased for it
+   * @param {string} level Passed lavel matrix.
+   * @param {string} lastScore Time elapsed for it.
    */
   addScore(level, lastScore) {
     this.lastGame = `${lastScore.strDiff}`;
@@ -27,8 +27,10 @@ export class CurrentPlayer {
     });
   }
   /**
-   *
-   * @return {string} Formatted table for the scores of currentPlayer
+   * Prepares table.
+   * @deprecated Score table needs to be new consepted,
+   * which can be used for external settings panel.
+   * @return {string} Formatted table for the scores of currentPlayer.
    */
   table() {
     let tbl = '<table>';

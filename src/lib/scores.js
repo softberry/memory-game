@@ -1,12 +1,12 @@
 import { CurrentPlayer } from './player';
 
 /**
- * Scores management
- *@module Scores
+ * @classdesc Scores management
+ *@class
  */
 export class Scores {
   /**
-   * @constructor
+   * Construct current player.
    */
   constructor() {
     this.players = {};
@@ -14,8 +14,8 @@ export class Scores {
     this.currentPlayer = new CurrentPlayer('Player 1');
   }
   /**
-   * Adds new user into list (if not yet exists)
-   * @param {string} playerName
+   * Adds new user into list (if not yet exists).
+   * @param {string} playerName Name of the player.
    */
   addPlayer(playerName) {
     const self = this;
