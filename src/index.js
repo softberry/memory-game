@@ -23,7 +23,9 @@ const observedAttributes = ['matrix', 'lang', 'view', 'settings'];
  * @class MiniMemory
  */
 class MiniMemory extends HTMLElement {
-
+  /**
+   *  Contruct game
+   */
   constructor() {
     super();
     this.i18n = new Localization();

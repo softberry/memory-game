@@ -1,5 +1,6 @@
 /**
- * @classdesc Calculates elapsed time for each level and updates given DOMElement.
+ * @classdesc Calculates elapsed time for each level
+ * and updates given DOMElement.
  * Time converted to 00:00:00 format.
  * @class
  */

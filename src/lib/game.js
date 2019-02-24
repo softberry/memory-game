@@ -10,7 +10,8 @@ export class Game {
   /**
    * @summary Contruct
    * @param {Array} canvas List of canvas elements to be drawn image on.
-   * @param {HTMLImageElement} cardBack Image element to be drown as card back face.
+   * @param {HTMLImageElement} cardBack Image element to be drown
+   * as card back face.
    */
   constructor(canvas, cardBack) {
     // Event Listener Object. This is not actually used as DOM object.
@@ -122,7 +123,7 @@ export class Game {
   }
   /**
    * Closes card by drawing cardback image on given canvas.
-   * @param {HTMLCanvasElement} Canvas element to be closed.
+   * @param {HTMLCanvasElement} canvas Canvas element to be closed.
    */
   closeCard(canvas) {
     const self = this;
@@ -131,8 +132,8 @@ export class Game {
   }
   /**
    * Draws any image on given canvas.
-   * @param {HTMLCanvasElement} Canvas target element to be drawn on to.
-   * @param {HTMLImageElement} Image Image drawn on.
+   * @param {HTMLCanvasElement} canvas target element to be drawn on to.
+   * @param {HTMLImageElement} image Image drawn on.
    */
   drawImageOnCanvas(canvas, image) {
     const ctx = canvas.getContext('2d');

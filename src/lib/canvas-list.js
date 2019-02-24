@@ -1,5 +1,6 @@
 /**
- * Extends Array with additional methods to esily keep track of all canvas in layout.
+ * Extends Array with additional methods to esily keep
+ * track of all canvas in layout.
  * @class
  * @extends Array
  */
@@ -21,7 +22,7 @@ export class MemoryCanvaslist extends Array {
 
   /**
    * Chooses randomly pair Canvas.
-   * @param {{}} srcCanvas.
+   * @param {{}} srcCanvas Canvas element that needs to be paired.
    * @return {{}} Paired elements.
    */
   randomPair(srcCanvas) {

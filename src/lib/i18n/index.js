@@ -4,8 +4,10 @@ import { default as de } from './lang/de-DE';
 
 import { default as template } from './template.html';
 /**
- * @classdesc Internalization controller. If not efined tries to get localization value from browser.
- * Or expects it's defined in 2 small letters language code like `en` for `English`
+ * @classdesc Internalization controller. If not efined
+ * tries to get localization value from browser.
+ * Or expects it's defined in 2 small letters
+ * language code like `en` for `English`
  */
 export class Localization {
   /**

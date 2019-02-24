@@ -14,8 +14,8 @@ export class CurrentPlayer {
   }
   /**
    *
-   * @param {string} Level passed lavel matrix.
-   * @param {string} LastScore time lepased for it.
+   * @param {string} level Passed lavel matrix.
+   * @param {string} lastScore Time elapsed for it.
    */
   addScore(level, lastScore) {
     this.lastGame = `${lastScore.strDiff}`;
