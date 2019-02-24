@@ -3,16 +3,17 @@ import { MemoryCanvaslist } from './canvas-list';
 import { MemoryPairsList } from './pairs-list';
 
 /**
- * @module Game
+ * @classdesc Controls main actions directly related to the game itself.
+ * @class
  */
 export class Game {
   /**
-   *
-   * @param {HTMLCanvasElement} canvas
-   * @param {HTMLImageElement} cardBack
+   * @summary Contruct
+   * @param {Array} canvas List of canvas elements to be drawn image on.
+   * @param {HTMLImageElement} cardBack Image element to be drown as card back face.
    */
   constructor(canvas, cardBack) {
-    // Event Listener Object. This is not actually used as DOM object
+    // Event Listener Object. This is not actually used as DOM object.
     this.events = document.createElement('div');
 
     this.cardBack = cardBack;
@@ -32,8 +33,8 @@ export class Game {
   }
 
   /**
-   * Includes given image to the game
-   * @param {HTMLImageElement} img image to be added
+   * @summary Includes given image to the game.
+   * @param {HTMLImageElement} img image to be added.
    */
   addImage(img) {
     this.images.push(img);
@@ -42,7 +43,7 @@ export class Game {
     }
   }
   /**
-   * Prepares the Game
+   * Prepares the Game.
    */
   prepare() {
     const self = this;
@@ -105,8 +106,8 @@ export class Game {
   }
 
   /**
-   * Opens  card by drawing cardback image on given canvas
-   * @param {HTMLCanvasElement} canvas
+   * @summary Opens  card by drawing it's image on given canvas.
+   * @param {HTMLCanvasElement} canvas Elment to be opened.
    */
   openCard(canvas) {
     const self = this;
@@ -120,8 +121,8 @@ export class Game {
     self.drawImageOnCanvas(canvas, img);
   }
   /**
-   * Closes card by drawing cardback image on given canvas
-   * @param {HTMLCanvasElement} canvas
+   * Closes card by drawing cardback image on given canvas.
+   * @param {HTMLCanvasElement} Canvas element to be closed.
    */
   closeCard(canvas) {
     const self = this;
@@ -130,8 +131,8 @@ export class Game {
   }
   /**
    * Draws any image on given canvas.
-   * @param {HTMLCanvasElement} canvas
-   * @param {HTMLImageElement} image
+   * @param {HTMLCanvasElement} Canvas target element to be drawn on to.
+   * @param {HTMLImageElement} Image Image drawn on.
    */
   drawImageOnCanvas(canvas, image) {
     const ctx = canvas.getContext('2d');
@@ -148,9 +149,9 @@ export class Game {
     ctx.drawImage(image, 0, 0, props.iw, props.ih, 0, 0, props.cw, props.ch);
   }
   /**
-   * Calculates dimensions of next level
-   * @param {{}} options all attriburtes
-   * @return {string} matrix of the next level
+   * Calculates dimensions of next level.
+   * @param {{}} options All attriburtes.
+   * @return {string} Matrix of the next level.
    */
   nextLevel(options) {
     self = this;

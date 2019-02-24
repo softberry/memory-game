@@ -4,13 +4,13 @@ import { default as de } from './lang/de-DE';
 
 import { default as template } from './template.html';
 /**
- * @description Localization
+ * @classdesc Internalization controller. If not efined tries to get localization value from browser.
+ * Or expects it's defined in 2 small letters language code like `en` for `English`
  */
 export class Localization {
   /**
    *
-   * @param {string} lang language code
-   * @constructor
+   * @param {string} lang Language code.
    */
   constructor(lang = 'en') {
     if (typeof lang !== 'string') {
@@ -48,16 +48,16 @@ export class Localization {
 
   /**
    *
-   * @param {string} key key name of identifier
-   * @return {string} Message in selected langauge
+   * @param {string} key Key name of identifier.
+   * @return {string} Message in selected langauge.
    */
   message(key) {
     return this.dict[key].message;
   }
   /**
-   * returns html markup from sample templates
-   * @param {string} key name of identifier
-   * @return {string} HTML-markup as sample
+   * Gets html markup from sample templates.
+   * @param {string} key name of identifier.
+   * @return {string} HTML-markup as sample.
    */
   sample(key) {
     const tmpl = this.tmpl.querySelector(`#${key}`);
@@ -68,7 +68,7 @@ export class Localization {
   }
 
   /**
-   * Update all language related fileds using attribute data-i18n
+   * Update all language related fileds using attribute data-i18n.
    * @param {{}} shadowRoot
    */
   update(shadowRoot) {

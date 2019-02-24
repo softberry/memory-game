@@ -1,6 +1,6 @@
 /**
  * @description Holds list of Images those returns 404
- * to avoid try to load again
+ * to avoid try to load again.
  */
 const excludedImages = [];
 /**
@@ -16,9 +16,9 @@ export class PrivateIndex {
     this.owner = owner;
   }
   /**
-   * Creates picsum image patterm
-   * @param { integer} w
-   * @param {integer} h
+   * Creates picsum image patterm.
+   * @param { integer} w width of requested image.
+   * @param {integer} h height of requested image.
    * @return {string} URL
    */
   picsum(w, h) {
@@ -28,7 +28,7 @@ export class PrivateIndex {
   /**
    * if total number of images are not even, then one canvas is
    * not required. In this case place this in the middle of the layout
-   * @param {array} matrix
+   * @param {array} matrix col,row counts of the game.
    * @return {integer} index of the mid-element otherwise -1
    */
   getOddMidIndex(matrix) {
@@ -37,8 +37,8 @@ export class PrivateIndex {
   }
   /**
    * Returned number should not be in the excludedImages array
-   * Save namber in to excludedImages to avoid it to be choosen again
-   * @return {integer} random Integer between 0 - 1000
+   * Save namber in to excludedImages to avoid it to be choosen again.
+   * @return {integer} random Integer between 0 - 1000.
    */
   getFreeId() {
     let rnd = Math.floor(Math.random() * 1000);
@@ -50,7 +50,7 @@ export class PrivateIndex {
   }
 
   /**
-   * Resets all parameters to enable a clean restart/render
+   * Resets all parameters to enable a clean restart/render.
    */
   reset() {
     this.rendered = false;
@@ -61,7 +61,7 @@ export class PrivateIndex {
     };
   }
   /**
-   * Creates a Tile object
+   * Creates a Tile object.
    * @param {integer} index
    * @return {{}} Tile object
    */
@@ -79,7 +79,7 @@ export class PrivateIndex {
     };
   }
   /**
-   * checks if columns and rows are in defined range
+   * checks if columns and rows are in defined range.
    * @param {array} dim
    * @return {boolean} true on exceed
    */
@@ -91,7 +91,7 @@ export class PrivateIndex {
     return hasError;
   }
   /**
-   * Creates and img element and assigns events
+   * Creates and img element and assigns events.
    * @param {function} load
    * @param {function} error
    * @return {HTMLImageElement}

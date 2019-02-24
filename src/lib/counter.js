@@ -1,13 +1,12 @@
 /**
- * Calculates elapsed time for each level and updates given DOMElement.
+ * @classdesc Calculates elapsed time for each level and updates given DOMElement.
  * Time converted to 00:00:00 format.
- * @module Counter
+ * @class
  */
 export class Counter {
   /**
-   * Mandatory parameter, which will be used to write result.
+   * @summary Mandatory parameter, which will be used to write result.
    * @param {HTMLDivElemnt} el counter element in toolbar
-   * @constructor
    */
   constructor(el) {
     const now = Date.now();
@@ -21,7 +20,7 @@ export class Counter {
     };
   }
   /**
-   * @description starts or resets counter
+   * @summary Starts or resets counter.
    */
   start() {
     const self = this;
@@ -34,7 +33,7 @@ export class Counter {
     }, 100);
   }
   /**
-   * calculate difference between start/stop and convert it to ISO
+   * @summary Calculate difference between start/stop and convert it to ISO.
    */
   diff() {
     const now = Date.now();
@@ -44,7 +43,7 @@ export class Counter {
     this.board.innerHTML = this.strDiff;
   }
   /**
-   * stops the counter
+   * summary Stops the counter.
    */
   stop() {
     window.clearInterval(this.intervalHandle);

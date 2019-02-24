@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>index.private.js - Documentation</title>
+    <title>FullScreen - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -33,124 +33,304 @@
 
 <div id="main">
     
-    <h1 class="page-title">index.private.js</h1>
+    <h1 class="page-title">FullScreen</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @description Holds list of Images those returns 404
- * to avoid try to load again.
- */
-const excludedImages = [];
-/**
- * @classdesc Helper functions served to owner {@link MiniMemory}
- * @class
- */
-export class PrivateIndex {
-  /**
-   *
-   * @param {{}} owner  An instance of {@link MiniMemory}
-   */
-  constructor(owner) {
-    this.owner = owner;
-  }
-  /**
-   * Creates picsum image patterm.
-   * @param { integer} w width of requested image.
-   * @param {integer} h height of requested image.
-   * @return {string} URL
-   */
-  picsum(w, h) {
-    return `https://picsum.photos/${w}/${h}?image=${this.getFreeId()}`;
-  }
+        <h2>
+        FullScreen
+        </h2>
+        
+            <div class="class-description"><p>Cross-Browser available fullscreen support.</p></div>
+        
+    
+</header>
 
-  /**
-   * if total number of images are not even, then one canvas is
-   * not required. In this case place this in the middle of the layout
-   * @param {array} matrix col,row counts of the game.
-   * @return {integer} index of the mid-element otherwise -1
-   */
-  getOddMidIndex(matrix) {
-    const [col, row] = matrix;
-    return (col * row) % 2 === 1 ? (col * row - 1) / 2 : -1;
-  }
-  /**
-   * Returned number should not be in the excludedImages array
-   * Save namber in to excludedImages to avoid it to be choosen again.
-   * @return {integer} random Integer between 0 - 1000.
-   */
-  getFreeId() {
-    let rnd = Math.floor(Math.random() * 1000);
-    while (excludedImages.filter((ex) => ex === rnd).length > 0) {
-      rnd = Math.floor(Math.random() * 1000);
-    }
-    excludedImages.push(rnd);
-    return rnd;
-  }
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-  /**
-   * Resets all parameters to enable a clean restart/render.
-   */
-  reset() {
-    this.rendered = false;
-    this.images = [];
-    this.tiles = [];
-    this.layers = {
-      loading: {},
-    };
-  }
-  /**
-   * Creates a Tile object.
-   * @param {integer} index
-   * @return {{}} Tile object
-   */
-  createTile(index) {
-    const tile = document.createElement('div');
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    ctx.save();
-    tile.classList.add('tile');
-    canvas.setAttribute('index', index);
-    tile.appendChild(canvas);
-    return {
-      tile,
-      canvas,
-    };
-  }
-  /**
-   * checks if columns and rows are in defined range.
-   * @param {array} dim
-   * @return {boolean} true on exceed
-   */
-  limitsExceeded(dim) {
-    let hasError = false;
-    dim.forEach((e) => {
-      e &lt; 2 || e > 10 ? (hasError = true) : false;
-    });
-    return hasError;
-  }
-  /**
-   * Creates and img element and assigns events.
-   * @param {function} load
-   * @param {function} error
-   * @return {HTMLImageElement}
-   */
-  getNewImage(load, error) {
-    const img = document.createElement('img');
-    img.addEventListener('load', load);
-    img.addEventListener('error', error, false);
-    return img;
-  }
-}
-</code></pre>
-        </article>
-    </section>
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="FullScreen"><span class="type-signature"></span>new FullScreen<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_fullscreen.js.html">lib/fullscreen.js</a>, <a href="lib_fullscreen.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="enter"><span class="type-signature"></span>enter<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>Enters to fulscreen mode.</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_fullscreen.js.html">lib/fullscreen.js</a>, <a href="lib_fullscreen.js.html#line28">line 28</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="exit"><span class="type-signature"></span>exit<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary"><p>Exits from fulscreen mode.</p></p>
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_fullscreen.js.html">lib/fullscreen.js</a>, <a href="lib_fullscreen.js.html#line41">line 41</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
