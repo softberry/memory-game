@@ -7,7 +7,7 @@ import { default as tmplToolbar } from './templates/toolbar.html';
 
 import { PrivateIndex } from './index.private';
 import { Settings } from './lib/settings';
-import { fullScreen } from './lib/fullscreen';
+import { FullScreen } from './lib/fullscreen';
 
 const observedAttributes = ['matrix', 'lang', 'view', 'settings'];
 /**
@@ -29,6 +29,7 @@ class MiniMemory extends HTMLElement {
   constructor() {
     super();
     this.i18n = new Localization();
+    this.fullScreen = new FullScreen();
     this.rendered = false;
     this.images = [];
     this.tiles = [];
@@ -120,8 +121,9 @@ class MiniMemory extends HTMLElement {
       }
       case 'view': {
         if (newVal === 'fullscreen') {
+          this.fullScreen.enter();
         } else {
-          fullScreen.exit();
+          this.fullScreen.exit();
         }
         break;
       }
