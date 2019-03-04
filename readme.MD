@@ -27,7 +27,7 @@
     </p>
     <div class="container">
       <mini-memory matrix="2x2"></mini-memory>
-    <div class="container">
+    </div>
     <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
 </template>
 </custom-element-demo>
