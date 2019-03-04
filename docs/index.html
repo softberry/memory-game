@@ -58,23 +58,11 @@
 ```
 <custom-element-demo>
 <template>
-<style>
-  html,
-  body {
-    width:100%;
-    height:100%;
-    font-family: Helvetica, sans-serif;
-  }
-  .container {
-     width:100%;
-    height:100%;
-  }
-</style>
-    <p>
-      ** Please note images used in demo pages are supplied from https://picsum.photos/ which is a free
-      image placeholder service and therefore it takes long to load images.**
-    </p>
-    <div class="container">
+  <p>
+     <strong>Please note images used in demo pages are supplied from https://picsum.photos/ which is a free
+    image placeholder service and therefore it takes long to load images.</strong>
+  </p>
+    <div style="width:100%;height:100%">
       <mini-memory matrix="2x2"></mini-memory>
     </div>
     <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
@@ -82,18 +70,17 @@
 </custom-element-demo>
 ```
 -->
-<pre class="prettyprint source lang-html"><code>This is a classic Memory Game that can be simply included in any html page like this:
+<pre class="prettyprint source lang-html"><code>This is a classic Memory Game that can be simply included in any html page like
+this:
 
-  &lt;html>
-    &lt;head>
-          &lt;script src=&quot;//unpkg.com/mini-memory@latest/public/mini-memory.min.js&quot;>&lt;/script>
-    &lt;/head>
-    &lt;body>
-      &lt;div class=&quot;container&quot;>
-            &lt;mini-memory matrix=&quot;2x2&quot;>&lt;/mini-memory>
-      &lt;/div>
-    &lt;/body>
-  &lt;/html></code></pre><h2>Quick Intro</h2><ul>
+&lt;html>
+  &lt;head>
+    &lt;script src=&quot;//unpkg.com/mini-memory@latest/public/mini-memory.min.js&quot;>&lt;/script>
+  &lt;/head>
+  &lt;body>
+    &lt;div class=&quot;container&quot;>&lt;mini-memory matrix=&quot;2x2&quot;>&lt;/mini-memory>&lt;/div>
+  &lt;/body>
+&lt;/html></code></pre><h2>Quick Intro</h2><ul>
 <li><p><strong>Demo :</strong> <a href="http://www.emresakarya.com/mini-memory">http://www.emresakarya.com/mini-memory</a></p>
 </li>
 <li><p><strong>Playground :</strong> <a href="https://codepen.io/softberry/pen/dwBrNB">at codepen.io</a></p>
@@ -102,7 +89,7 @@
 </li>
 </ul>
 <p><strong>Please note only Native Support of Custome Elements covered.</strong></p>
-<p><strong>It has not been tested for IE 11 / Edge  and therefor are not supported</strong></p>
+<p><strong>It has not been tested for IE 11 / Edge and therefor are not supported</strong></p>
 <h2>Attributes</h2><p><strong><code>matrix</code></strong> columns and rows count in format of 2x2. Accepted values minimum 2x2 and maximum 10x10</p>
 <pre class="prettyprint source"><code>  &lt;mini-memory matrix=&quot;2x2&quot;>&lt;/mini-memory></code></pre><p><strong><code>lang</code></strong> Language selection. Current available languages are English, German and Turkish</p>
 <pre class="prettyprint source"><code>  &lt;mini-memory matrix=&quot;2x2&quot; lang=&quot;de&quot;>&lt;/mini-memory></code></pre><p><strong><code>view</code></strong> set options for views. Currently have only one option which is <code>fullscreen</code></p>
