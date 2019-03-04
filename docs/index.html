@@ -58,14 +58,26 @@
 ```
 <custom-element-demo>
 <template>
-  <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
-  <p>
-  **Please note images used in demo pages are supplied from https://picsum.photos/ which is a free
-    image placeholder service and therefore it takes long to load images.**
+<style>
+  html,
+  body {
+    width:100%;
+    height:100%;
+    font-family: Helvetica, sans-serif;
+  }
+  .container {
+     width:100%;
+    height:100%;
+  }
+</style>
+    <p>
+      ** Please note images used in demo pages are supplied from https://picsum.photos/ which is a free
+      image placeholder service and therefore it takes long to load images.**
     </p>
     <div class="container">
       <mini-memory matrix="2x2"></mini-memory>
     <div class="container">
+    <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
 </template>
 </custom-element-demo>
 ```
