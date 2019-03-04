@@ -36,16 +36,16 @@
 ```html
 This is a classic Memory Game that can be simply included in any html page like this:
 
-    <html>
-      <head>
-        	  <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
-      </head>
-      <body>
-        <div class="container">
-              <mini-memory matrix="2x2"></mini-memory>
-        </div>
-      </body>
-    </html>
+  <html>
+    <head>
+          <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
+    </head>
+    <body>
+      <div class="container">
+            <mini-memory matrix="2x2"></mini-memory>
+      </div>
+    </body>
+  </html>
 ```
 
 
