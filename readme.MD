@@ -21,7 +21,7 @@
     height:100%;
   }
 </style>
-
+    <p>
       ** Please note images used in demo pages are supplied from https://picsum.photos/ which is a free
       image placeholder service and therefore it takes long to load images.**
     </p>
