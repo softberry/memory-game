@@ -41,9 +41,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn doc && yarn lint --fix && yarn build"
+      "pre-commit": "yarn doc && yarn lint --fix && yarn build && git add ."
     }
   },
   "repository": "https://github.com/softberry/memory-game.git",
   "dependencies": {}
 }
+
