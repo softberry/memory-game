@@ -50,7 +50,6 @@
   ],
   "splash_pages": null,
   "imageServer": {
-    "host": "localhost",
     "list": "//localhost/memory/list/:from/:to/:cardId",
     "image": "//localhost/memory/crop/:width/:height?image=:path"
   }

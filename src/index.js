@@ -235,7 +235,6 @@ class MiniMemory extends HTMLElement {
     self.imageServer
       .getManifest()
       .then((manifest) => {
-        console.log('manifest', manifest);
         self.manifest = manifest;
         self.imageServer.getCardImages({ width, height, imageCount });
       })
