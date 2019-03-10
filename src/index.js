@@ -1,13 +1,15 @@
 import { Localization } from './lib/i18n';
 import { Game } from './lib/game';
+import { Fallback } from './lib/fallback';
 import { default as style } from './style.css';
-import { Counter } from './lib/counter';
 
 import { default as tmplToolbar } from './templates/toolbar.html';
 
 import { PrivateIndex } from './index.private';
 import { Settings } from './lib/settings';
 import { FullScreen } from './lib/fullscreen';
+
+import { ImageServer } from './lib/image-server';
 
 const observedAttributes = ['matrix', 'lang', 'view', 'settings'];
 /**
@@ -30,6 +32,9 @@ class MiniMemory extends HTMLElement {
     super();
     this.i18n = new Localization();
     this.fullScreen = new FullScreen();
+    this.imageServer = new ImageServer(this);
+    this.manifest;
+
     this.rendered = false;
     this.images = [];
     this.tiles = [];
@@ -127,8 +132,12 @@ class MiniMemory extends HTMLElement {
         }
         break;
       }
-      default: {
+      case 'matrix': {
         __fullReset();
+        break;
+      }
+      default: {
+        // __fullReset();
       }
     }
   }
@@ -204,58 +213,35 @@ class MiniMemory extends HTMLElement {
         }
       }
     }
-    /**
-     * @summary Image succesfully  loaded  handler.
-     * @param {Event} e Image onload event.
-     */
-    function imageFound(e) {
-      self.game.addImage(e.target);
-    }
-    /**
-     * @summary Image could not loaded error handler
-     * @param {Event} e Image onload.
-     */
-    function imageNotFound(e) {
-      e.target.src = self.private.picsum(width, height);
-    }
+    self.game = new Game(this.tiles.map((t) => t.canvas), this.cardBack);
 
-    this.cardBack.addEventListener('load', () => {
-      for (let i = 0; i <= imageCount; i++) {
-        const img = self.private.getNewImage(
-          (e) => imageFound(e),
-          (e) => imageNotFound(e)
-        );
-
-        img.src = self.private.picsum(width, height);
-        self.images.push(img);
-      }
-
-      self.game = new Game(this.tiles.map((t) => t.canvas), this.cardBack);
-
-      self.game.events.addEventListener('ready', (e) => {
-        self.shadowRoot.querySelector('#loading').classList.add('done');
-        self.game.counter = new Counter(
-          self.shadowRoot.querySelector('#counter')
-        );
-      });
-
-      self.game.events.addEventListener('win', (e) => {
-        const attr = self.myAttributes();
-        const nextLevelMatrix = self.game.nextLevel(attr);
-        self.settings.scores.currentPlayer.addScore(
-          attr.matrix,
-          self.game.counter
-        );
-
-        self.setAttribute('matrix', nextLevelMatrix);
-      });
+    self.game.events.addEventListener('ready', (e) => {
+      self.shadowRoot.querySelector('#loading').classList.add('done');
+      self.game.counter.reset(self.shadowRoot.querySelector('#counter'));
     });
 
-    self.cardBack.addEventListener('error', (e) => {
-      e.target.src = self.private.picsum(width, height);
+    self.game.events.addEventListener('win', (e) => {
+      const attr = self.myAttributes();
+      const nextLevelMatrix = self.game.nextLevel(attr);
+      self.settings.scores.currentPlayer.addScore(
+        attr.matrix,
+        self.game.counter
+      );
+      // TODO: Do not jump to auto next level.
+      // Add next button so that player have a chance to make break
+      self.setAttribute('matrix', nextLevelMatrix);
     });
 
-    this.cardBack.src = self.private.picsum(width, height);
+    self.imageServer
+      .getManifest()
+      .then((manifest) => {
+        console.log('manifest', manifest);
+        self.manifest = manifest;
+        self.imageServer.getCardImages({ width, height, imageCount });
+      })
+      .catch((e) => {
+        new Fallback(self, { width, height, imageCount });
+      });
   }
 
   /**
@@ -295,12 +281,12 @@ class MiniMemory extends HTMLElement {
     self.shadowRoot.innerHTML = `<style>${style}</style>
     ${tmplToolbar}
     ${self.settings.html}
-
-
-    <div id="loading">
-    <div class="lastScore">${self.settings.scores.currentPlayer.lastGame}</div>
-    <div>${self.i18n.message('LOADING')}</div>
-    </div>`;
+      <div id="loading">
+        <div class="lastScore">${
+  self.settings.scores.currentPlayer.lastGame
+}</div>
+        <div class="goto next level">${self.i18n.message('LOADING')}</div>
+      </div>`;
 
     self.prepareMatrix();
     self.i18n.update(self.shadowRoot);

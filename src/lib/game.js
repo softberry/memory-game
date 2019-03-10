@@ -1,6 +1,7 @@
 import { MemoryImageList } from './image-list';
 import { MemoryCanvaslist } from './canvas-list';
 import { MemoryPairsList } from './pairs-list';
+import { Counter } from './counter';
 
 /**
  * @classdesc Controls main actions directly related to the game itself.
@@ -25,6 +26,7 @@ export class Game {
 
     this.canvas.addCanvas(canvas);
     this.state = [];
+    this.counter = new Counter();
     this.prepared = false;
 
     this.cards = {
@@ -39,6 +41,7 @@ export class Game {
    */
   addImage(img) {
     this.images.push(img);
+
     if (this.images.length === this.canvas.length / 2) {
       this.prepare();
     }

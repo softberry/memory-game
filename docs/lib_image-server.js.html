@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>lib/scores.js - Documentation</title>
+    <title>lib/image-server.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -33,7 +33,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">lib/scores.js</h1>
+    <h1 class="page-title">lib/image-server.js</h1>
     
 
     
@@ -43,37 +43,84 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { CurrentPlayer } from './player';
-
-/**
- * @classdesc Scores management
- *@class
+            <pre class="prettyprint source linenums"><code>/**
+ * Loads images from server. Settings are read from manifest.json
+ * @class
  */
-export class Scores {
+export class ImageServer {
   /**
-   * Construct current player.
+   *
+   * @param {{}} owner  An instance of {@link MiniMemory}
    */
-  constructor() {
-    this.players = {};
-
-    this.currentPlayer = new CurrentPlayer('Player 1');
+  constructor(owner) {
+    this.owner = owner;
+    this.manifest = {};
+    this.images = {};
+    this.index = { from: 0, to: 0, card: 0 };
   }
   /**
-   * Adds new user into list (if not yet exists).
-   * @param {string} playerName Name of the player.
+   * Load manifest.json
+   * @return {{}} manifest Json Object
    */
-  addPlayer(playerName) {
+  getManifest() {
     const self = this;
-    Object.keys(self.players).forEach((key) => {
-      const player = self.player[key];
-      if (player.name === playerName) {
-        return;
-      }
+    return fetch('./manifest.json')
+      .then((response) => {
+        return response.json();
+      })
+      .then((manifest) => {
+        self.manifest = manifest;
+        return manifest;
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
+  /**
+   * get Images from server. Server path/url retrieved from manifest.json
+   * @param {{}} options width, height and number of images to
+   * be requested from server
+   */
+  getCardImages(options) {
+    const self = this;
+    self.index.to = options.imageCount;
+    const host = self.manifest.imageServer.list
+      .replace(':from', self.index.from)
+      .replace(':to', self.index.to)
+      .replace(':cardId', self.index.card);
+    self.index.from = options.imageCount;
+    self.index.card = self.index.card + 1;
+    fetch(host)
+      .then((response) => response.json())
+      .then((res) => {
+        self.done(res, options);
+      });
+  }
+  /**
+   * Create Images (HTMLImageElement) and load images from server
+   * @param {{}} res {images:[], card:[]}
+   * @param {{}} options width, height and number of images to be
+   * requested from server
+   */
+  done(res, options) {
+    const self = this;
+
+    self.owner.cardBack.addEventListener('load', (e) => {
+      res.images.forEach((image) => {
+        const img = document.createElement('img');
+        img.src = self.manifest.imageServer.image
+          .replace(':width', options.width)
+          .replace(':height', options.height)
+          .replace(':path', image);
+
+        self.owner.game.addImage(img);
+      });
     });
 
-    const player = new CurrentPlayer(playerName);
-    self.players.push(player);
-    self.currentPlayer = player;
+    self.owner.cardBack.src = self.manifest.imageServer.image
+      .replace(':width', options.width)
+      .replace(':height', options.height)
+      .replace(':path', res.cards[0]);
   }
 }
 </code></pre>
