@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>lib/scores.js - Documentation</title>
+    <title>lib/fallback.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -33,7 +33,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">lib/scores.js</h1>
+    <h1 class="page-title">lib/fallback.js</h1>
     
 
     
@@ -43,37 +43,63 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { CurrentPlayer } from './player';
-
-/**
- * @classdesc Scores management
- *@class
+            <pre class="prettyprint source linenums"><code>/**
+ * Loads images from server incase of
+ * manifest.json or image server can not be loaded.
+ * @class
  */
-export class Scores {
+export class Fallback {
   /**
-   * Construct current player.
+   *
+   * @param {{}} owner  An instance of {@link MiniMemory}
+   * @param {{}} options width, height and number of images to be
    */
-  constructor() {
-    this.players = {};
-
-    this.currentPlayer = new CurrentPlayer('Player 1');
+  constructor(owner, options) {
+    this.owner = owner;
+    this.width = options.width;
+    this.height = options.height;
+    this.imageCount = options.imageCount;
+    this.init();
   }
   /**
-   * Adds new user into list (if not yet exists).
-   * @param {string} playerName Name of the player.
+   * initialize loading images from picsum.com
    */
-  addPlayer(playerName) {
+  init() {
     const self = this;
-    Object.keys(self.players).forEach((key) => {
-      const player = self.player[key];
-      if (player.name === playerName) {
-        return;
+    /**
+     * @summary Image succesfully  loaded  handler.
+     * @param {Event} e Image onload event.
+     */
+    function imageFound(e) {
+      self.owner.game.addImage(e.target);
+    }
+    /**
+     * @summary Image could not loaded error handler
+     * @param {Event} e Image onload.
+     */
+    function imageNotFound(e) {
+      e.target.src = self.owner.private.picsum(self.width, self.height);
+    }
+    self.owner.cardBack.addEventListener('load', () => {
+      for (let i = 0; i &lt;= self.imageCount; i++) {
+        const img = self.owner.private.getNewImage(
+          (e) => imageFound(e),
+          (e) => imageNotFound(e)
+        );
+
+        img.src = self.owner.private.picsum(self.width, self.height);
+        self.owner.images.push(img);
       }
     });
 
-    const player = new CurrentPlayer(playerName);
-    self.players.push(player);
-    self.currentPlayer = player;
+    self.owner.cardBack.addEventListener('error', (e) => {
+      e.target.src = self.owner.private.picsum(self.width, self.height);
+    });
+
+    self.owner.cardBack.src = self.owner.private.picsum(
+      self.width,
+      self.height
+    );
   }
 }
 </code></pre>

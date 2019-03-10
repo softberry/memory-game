@@ -42,9 +42,15 @@ this:
 
 - **Documentation :** [https://softberry.github.io/memory-game/][docs]
 
+- **Image Server :**  To use your own images you need a custom image server which can be
+defined in ``manifest.json``. This is sample [Custom image server]  developed with nodejs/express.
+If not found images loaded from [https://picsum.photos][picsum].
+
 **Please note only Native Support of Custome Elements covered.**
 
 **It has not been tested for IE 11 / Edge and therefor are not supported**
+
+
 
 ## Attributes
 
@@ -75,4 +81,6 @@ See open issues at GitHub [open Issue][issues]
 [sample-preview]: http://www.emresakarya.com/mini-memory
 [docs]: https://softberry.github.io/memory-game/
 [codepen]: https://codepen.io/softberry/pen/dwBrNB
-[issues]: https://github.com/softberry/memory-game/issues
+[issues]:https://github.com/softberry/memory-game/issues
+[image-server]:https://github.com/softberry/image-server
+[picsum]:https://picsum.photos

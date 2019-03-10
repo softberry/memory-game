@@ -6,6 +6,8 @@ module.exports = {
     host: '0.0.0.0',
     contentBase: resolve('./src'),
     port: 8080,
+    contentBase: resolve('static'),
+    publicPath: '/'
   },
   entry: ['./src/index.js'],
   output: {

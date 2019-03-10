@@ -6,19 +6,30 @@
  */
 export class Counter {
   /**
-   * @summary Mandatory parameter, which will be used to write result.
-   * @param {HTMLDivElemnt} el counter element in toolbar
+   * construct Counter
    */
-  constructor(el) {
-    const now = Date.now();
-    this.board = el;
+  constructor() {
     this.intervalHandle = 0;
     this.strDiff = '';
+    const now = Date.now();
     this.timer = {
       start: now,
       end: now,
       diff: 0,
     };
+  }
+  /**
+   * @summary Mandatory parameter, which will be used to write result.
+   * @param {HTMLDivElemnt} el counter element in toolbar
+   */
+  reset(el) {
+    const now = Date.now();
+    this.timer = {
+      start: now,
+      end: now,
+      diff: 0,
+    };
+    this.board = el;
   }
   /**
    * @summary Starts or resets counter.
