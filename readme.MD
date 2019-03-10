@@ -4,41 +4,35 @@
 
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/mini-memory)
 
-
 <!--
 ```
 <custom-element-demo>
 <template>
-  <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
   <p>
-  **Please note images used in demo pages are supplied from https://picsum.photos/ which is a free
-    image placeholder service and therefore it takes long to load images.**
-    </p>
-    <div class="container">
+     <strong>Please note images used in demo pages are supplied from https://picsum.photos/ which is a free
+    image placeholder service and therefore it takes long to load images.</strong>
+  </p>
+    <div style="width:100%;height:100%">
       <mini-memory matrix="2x2"></mini-memory>
-    <div class="container">
+    </div>
+    <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
 </template>
 </custom-element-demo>
 ```
 -->
 ```html
-This is a classic Memory Game that can be simply included in any html page like this:
+This is a classic Memory Game that can be simply included in any html page like
+this:
 
-    <html>
-      <head>
-        	  <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
-      </head>
-      <body>
-        <div class="container">
-              <mini-memory matrix="2x2"></mini-memory>
-        </div>
-      </body>
-    </html>
+<html>
+  <head>
+    <script src="//unpkg.com/mini-memory@latest/public/mini-memory.min.js"></script>
+  </head>
+  <body>
+    <div class="container"><mini-memory matrix="2x2"></mini-memory></div>
+  </body>
+</html>
 ```
-
-
-
-
 
 ## Quick Intro
 
@@ -54,7 +48,7 @@ If not found images loaded from [https://picsum.photos][picsum].
 
 **Please note only Native Support of Custome Elements covered.**
 
-**It has not been tested for IE 11 / Edge  and therefor are not supported**
+**It has not been tested for IE 11 / Edge and therefor are not supported**
 
 
 
@@ -76,16 +70,13 @@ If not found images loaded from [https://picsum.photos][picsum].
 
       <mini-memory matrix="2x2" settings="no"></mini-memory>
 
-
 ## Documentation
 
 Contributors are welcome. See the [Documentation][docs]. Fork this repo, pick yourself an [open Issue][issues], and go ahead...
 
-
 ### Open Issues:
 
 See open issues at GitHub [open Issue][issues]
-
 
 [sample-preview]: http://www.emresakarya.com/mini-memory
 [docs]: https://softberry.github.io/memory-game/
