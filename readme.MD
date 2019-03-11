@@ -43,7 +43,7 @@ this:
 - **Documentation :** [https://softberry.github.io/memory-game/][docs]
 
 - **Image Server :**  To use your own images you need a custom image server which can be
-defined in ``manifest.json``. This is sample [Custom image server]  developed with nodejs/express.
+defined in ``manifest.json``. This is sample [Custom image server][image-server]  developed with nodejs/express.
 If not found images loaded from [https://picsum.photos][picsum].
 
 **Please note only Native Support of Custome Elements covered.**
