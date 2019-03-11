@@ -8,9 +8,12 @@
 ```
 <custom-element-demo>
 <template>
-  <p>
-     <strong>Please note images used in demo pages are supplied from https://picsum.photos/ which is a free
-    image placeholder service and therefore it takes long to load images.</strong>
+  <p style="text-align:justify; font-family:Helvetica,sans-serif; fontsize:.75em;">
+     Please note images used in demo pages are supplied from https://picsum.photos/ which is a free
+    image placeholder service and therefore it takes long to load images.
+    <br>
+    <strong>A fully functional Memory Game</strong> with fast custom image server can be tested at <a href="https://www.emresakarya.com/mini-memory/">https://www.emresakarya.com/mini-memory/</a>
+
   </p>
     <div style="width:100%;height:100%">
       <mini-memory matrix="2x2"></mini-memory>
@@ -20,6 +23,7 @@
 </custom-element-demo>
 ```
 -->
+
 ```html
 This is a classic Memory Game that can be simply included in any html page like
 this:
@@ -42,15 +46,14 @@ this:
 
 - **Documentation :** [https://softberry.github.io/memory-game/][docs]
 
-- **Image Server :**  To use your own images you need a custom image server which can be
-defined in ``manifest.json``. This is sample [Custom image server][image-server]  developed with nodejs/express.
-If not found images loaded from [https://picsum.photos][picsum].
+- **Image Server :** To use your own images you need a custom image server which can be
+  defined in `manifest.json`. A sample [Custom image server][image-server] developed with nodejs/express,
+  can be used for this purpose.
+  If [Custom image server][image-server] can not be found, game fallbacks to images loaded from [https://picsum.photos][picsum]. As this is a free image place holder servie, it takes usually long to get images.
 
 **Please note only Native Support of Custome Elements covered.**
 
 **It has not been tested for IE 11 / Edge and therefor are not supported**
-
-
 
 ## Attributes
 
@@ -81,6 +84,6 @@ See open issues at GitHub [open Issue][issues]
 [sample-preview]: http://www.emresakarya.com/mini-memory
 [docs]: https://softberry.github.io/memory-game/
 [codepen]: https://codepen.io/softberry/pen/dwBrNB
-[issues]:https://github.com/softberry/memory-game/issues
-[image-server]:https://github.com/softberry/image-server
-[picsum]:https://picsum.photos
+[issues]: https://github.com/softberry/memory-game/issues
+[image-server]: https://github.com/softberry/image-server
+[picsum]: https://picsum.photos
