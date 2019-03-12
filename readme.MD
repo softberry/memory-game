@@ -46,14 +46,13 @@ this:
 
 - **Documentation :** [https://softberry.github.io/memory-game/][docs]
 
-- **Image Server :** To use your own images you need a custom image server which can be
-  defined in `manifest.json`. A sample [Custom image server][image-server] developed with nodejs/express,
-  can be used for this purpose.
-  If [Custom image server][image-server] can not be found, game fallbacks to images loaded from [https://picsum.photos][picsum]. As this is a free image place holder servie, it takes usually long to get images.
+- **Use your own images :** Images in this game are obtained from [picsum.photos][picsum] which is a free place holder service. If you would like to use your own images, you will need a decicated image server for this purpose. There is an another  project [Custom image server][image-server] developed with nodejs/express, can be used for this purpose.
+
+  If you do not define your image server in [manifest.json](static/manifest.json) or your image server does not responses, game falls back to [https://picsum.photos][picsum], which is a free image place holder service and may take long time to get images.
 
 **Please note only Native Support of Custome Elements covered.**
 
-**It has not been tested for IE 11 / Edge and therefor are not supported**
+**It has not been tested for IE 11 / Edge and therefore are not supported**
 
 ## Attributes
 

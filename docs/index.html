@@ -90,14 +90,12 @@ this:
 </li>
 <li><p><strong>Documentation :</strong> <a href="https://softberry.github.io/memory-game/">https://softberry.github.io/memory-game/</a></p>
 </li>
-<li><p><strong>Image Server :</strong> To use your own images you need a custom image server which can be
-defined in <code>manifest.json</code>. A sample <a href="https://github.com/softberry/image-server">Custom image server</a> developed with nodejs/express,
-can be used for this purpose.
-If <a href="https://github.com/softberry/image-server">Custom image server</a> can not be found, game fallbacks to images loaded from <a href="https://picsum.photos">https://picsum.photos</a>. As this is a free image place holder servie, it takes usually long to get images.</p>
+<li><p><strong>Use your own images :</strong> Images in this game are obtained from <a href="https://picsum.photos">picsum.photos</a> which is a free place holder service. If you would like to use your own images, you will need a decicated image server for this purpose. There is an another  project <a href="https://github.com/softberry/image-server">Custom image server</a> developed with nodejs/express, can be used for this purpose.</p>
+<p>If you do not define your image server in <a href="static/manifest.json">manifest.json</a> or your image server does not responses, game falls back to <a href="https://picsum.photos">https://picsum.photos</a>, which is a free image place holder service and may take long time to get images.</p>
 </li>
 </ul>
 <p><strong>Please note only Native Support of Custome Elements covered.</strong></p>
-<p><strong>It has not been tested for IE 11 / Edge and therefor are not supported</strong></p>
+<p><strong>It has not been tested for IE 11 / Edge and therefore are not supported</strong></p>
 <h2>Attributes</h2><p><strong><code>matrix</code></strong> columns and rows count in format of 2x2. Accepted values minimum 2x2 and maximum 10x10</p>
 <pre class="prettyprint source"><code>  &lt;mini-memory matrix=&quot;2x2&quot;>&lt;/mini-memory></code></pre><p><strong><code>lang</code></strong> Language selection. Current available languages are English, German and Turkish</p>
 <pre class="prettyprint source"><code>  &lt;mini-memory matrix=&quot;2x2&quot; lang=&quot;de&quot;>&lt;/mini-memory></code></pre><p><strong><code>view</code></strong> set options for views. Currently have only one option which is <code>fullscreen</code></p>
