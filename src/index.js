@@ -3,6 +3,8 @@ import { Game } from './lib/game';
 import { Fallback } from './lib/fallback';
 import { default as style } from './style.css';
 
+import { default as debounce } from './lib/debounce';
+
 import { default as tmplToolbar } from './templates/toolbar.html';
 
 import { PrivateIndex } from './index.private';
@@ -30,6 +32,7 @@ class MiniMemory extends HTMLElement {
    */
   constructor() {
     super();
+    const self = this;
     this.i18n = new Localization();
     this.fullScreen = new FullScreen();
     this.imageServer = new ImageServer(this);
@@ -38,6 +41,14 @@ class MiniMemory extends HTMLElement {
     this.rendered = false;
     this.images = [];
     this.tiles = [];
+
+    window.addEventListener(
+      'resize',
+      debounce(() => {
+        self.reset();
+        self.render();
+      }, 500)
+    );
 
     /**
      * @summary HTMLDivElement information bar on top of the screen.
