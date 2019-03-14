@@ -45,7 +45,5 @@
     }
   },
   "repository": "https://github.com/softberry/memory-game.git",
-  "dependencies": {
-    "lodash": "^4.17.11"
-  }
+  "dependencies": {}
 }

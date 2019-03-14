@@ -1,4 +1,12 @@
-const debounce = (fn, time) => {
+/**
+ * @description Delays given function for a given given time
+ * @param {Function} fn function to be called on timeout
+ * @param {number} time time in ms to delay the function to be called
+ * @return {function}
+
+ }}
+ **/
+export function debounce(fn, time) {
   let timeout;
 
   const CheckBounce = function() {
@@ -9,6 +17,4 @@ const debounce = (fn, time) => {
     timeout = setTimeout(functionCall, time);
   };
   return CheckBounce;
-};
-
-export default debounce;
+}
