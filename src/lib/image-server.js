@@ -36,6 +36,7 @@ export class ImageServer {
    * get Images from server. Server path/url retrieved from manifest.json
    * @param {{}} options width, height and number of images to
    * be requested from server
+   * @return {{}} Fetch promise, Image server response
    */
   getCardImages(options) {
     const self = this;
@@ -46,7 +47,7 @@ export class ImageServer {
       .replace(':cardId', self.index.card);
     self.index.from = options.imageCount;
     self.index.card = self.index.card + 1;
-    fetch(host)
+    return fetch(host)
       .then((response) => response.json())
       .then((res) => {
         self.done(res, options);
