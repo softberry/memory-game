@@ -9,14 +9,4 @@ module.exports = {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.html?$': 'html-loader-jest',
   },
-  reporters: [
-    'default',
-    [
-      './node_modules/jest-html-reporter',
-      {
-        pageTitle: 'Test Report',
-        outputPath: './static/report.html',
-      },
-    ],
-  ],
 };

@@ -28,7 +28,7 @@ const observedAttributes = ['matrix', 'lang', 'view', 'settings'];
  */
 export class MiniMemory extends HTMLElement {
   /**
-   *  Contruct game
+   * constructor function of the MiniMemory
    */
   constructor() {
     super();
@@ -247,7 +247,11 @@ export class MiniMemory extends HTMLElement {
       .getManifest()
       .then((manifest) => {
         self.manifest = manifest;
-        self.imageServer.getCardImages({ width, height, imageCount });
+        self.imageServer
+          .getCardImages({ width, height, imageCount })
+          .catch((e) => {
+            new Fallback(self, { width, height, imageCount });
+          });
       })
       .catch((e) => {
         new Fallback(self, { width, height, imageCount });
