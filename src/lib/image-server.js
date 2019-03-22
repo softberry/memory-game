@@ -28,7 +28,6 @@ export class ImageServer {
         return manifest;
       })
       .catch((err) => {
-        debugger;
         throw new Error(err);
       });
   }
