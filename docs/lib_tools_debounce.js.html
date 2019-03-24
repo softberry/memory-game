@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>lib/fullscreen.js - Documentation</title>
+    <title>lib/tools/debounce.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -33,7 +33,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">lib/fullscreen.js</h1>
+    <h1 class="page-title">lib/tools/debounce.js</h1>
     
 
     
@@ -44,57 +44,26 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @classdesc Cross-Browser available fullscreen support.
- * @class
- */
-export class FullScreen {
-  /**
-   * @summary Create cross-fulscreen-utility.
-   */
-  constructor() {
-    const doc = window.document;
-    const docEl = doc.documentElement;
-    this.doc = doc;
-    this.docEl = docEl;
-    this.requestFullScreen =
-      docEl.requestFullscreen ||
-      docEl.mozRequestFullScreen ||
-      docEl.webkitRequestFullScreen ||
-      docEl.msRequestFullscreen;
-    this.cancelFullScreen =
-      doc.exitFullscreen ||
-      doc.mozCancelFullScreen ||
-      doc.webkitExitFullscreen ||
-      doc.msExitFullscreen;
-  }
-  /**
-   * @summary Enters to fulscreen mode.
-   */
-  enter() {
-    if (
-      !this.doc.fullscreenElement &amp;&amp;
-      !this.doc.mozFullScreenElement &amp;&amp;
-      !this.doc.webkitFullscreenElement &amp;&amp;
-      !this.doc.msFullscreenElement
-    ) {
-      this.requestFullScreen.call(this.docEl);
-    }
-  }
-  /**
-   * @summary Exits from fulscreen mode.
-   */
-  exit() {
-    if (
-      this.doc.fullscreenElement ||
-      this.doc.mozFullScreenElement ||
-      this.doc.webkitFullscreenElement ||
-      this.doc.msFullscreenElement
-    ) {
-      this.cancelFullScreen.call(this.doc);
-    }
-  }
-}
+ * @description Delays given function for a given given time
+ * @param {Function} fn function to be called on timeout
+ * @param {number} time time in ms to delay the function to be called
+ * @module
+ * @return {function}
 
+ }}
+ **/
+export function debounce(fn, time) {
+  let timeout;
+
+  const CheckBounce = function() {
+    const self = this;
+    const functionCall = (...arg) => fn.apply(self, arg);
+
+    clearTimeout(timeout);
+    timeout = setTimeout(functionCall, time);
+  };
+  return CheckBounce;
+}
 </code></pre>
         </article>
     </section>

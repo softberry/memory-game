@@ -1,10 +1,10 @@
-import { default as template } from '../templates/settings.html';
-import { Scores } from './scores';
-import { FullScreen } from './fullscreen';
+import { default as template } from '../../templates/settings.html';
+import { Scores } from '../scores';
+import { FullScreen } from '../fullscreen';
 
 /**
- * Controller for all user defined settings such as, dimentions, fullscreen etc.
- * @class
+ * @description Controller for all user defined settings such as, dimentions,
+ * fullscreen etc.
  */
 export class Settings {
   /**

@@ -9,5 +9,6 @@ module.exports = {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.html?$': 'html-loader-jest',
   },
-  coverageDirectory: 'static/coverage',
+  setupFiles: ['jest-canvas-mock'],
+  coverageDirectory: 'coverage',
 };

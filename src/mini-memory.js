@@ -3,15 +3,18 @@ import { Game } from './lib/game';
 import { Fallback } from './lib/fallback';
 import { default as style } from './style.css';
 
-import { debounce } from './lib/debounce';
+import { debounce } from './lib/tools/debounce';
 
 import { default as tmplToolbar } from './templates/toolbar.html';
 
-import { PrivateIndex } from './index.private';
-import { Settings } from './lib/settings';
+import { Settings } from './lib/layers/settings';
 import { FullScreen } from './lib/fullscreen';
-
 import { ImageServer } from './lib/image-server';
+
+// Tools
+import { Limits } from './lib/tools/limit';
+import { newTile } from './lib/tools/tile';
+import { oddMiddle } from './lib/tools/middle';
 
 const observedAttributes = ['matrix', 'lang', 'view', 'settings'];
 /**
@@ -24,11 +27,10 @@ const observedAttributes = ['matrix', 'lang', 'view', 'settings'];
  * document.createElement('mini-memory');
  * // or like this:
  * <mini-memory></mini-memory>
- * @class MiniMemory
  */
 export class MiniMemory extends HTMLElement {
   /**
-   * constructor function of the MiniMemory
+   * of the game. Will be used as ``{CustomElements.define}`` constructor.
    */
   constructor() {
     super();
@@ -54,11 +56,7 @@ export class MiniMemory extends HTMLElement {
      * @summary HTMLDivElement information bar on top of the screen.
      */
     this.toolbar = document.createElement('div');
-    /**
-     * @summary Helper functions, which has functions to be used privatly
-     * from main constructor {@link PrivateIndex}.
-     */
-    this.private = new PrivateIndex(this);
+
     /**
      * @summary Controls and keep track of game settings {@link Settings}.
      */
@@ -159,7 +157,8 @@ export class MiniMemory extends HTMLElement {
    */
   checkDefaultAttributes() {
     const attr = this.getAttribute('matrix');
-    if (attr === null || attr.indexOf('x') < 0) {
+    const limits = new Limits(2, 10, attr);
+    if (!limits.defined()) {
       this.shadowRoot.innerHTML += `
       ${this.i18n.message('MATRIX_DIMENSIONS_ERROR')}
       ${this.i18n.sample('MATRIX_DIMENSIONS_ERROR')}
@@ -167,7 +166,7 @@ export class MiniMemory extends HTMLElement {
       return false;
     }
 
-    if (this.private.limitsExceeded(attr.split('x'))) {
+    if (limits.exceeded(attr.split('x'))) {
       this.shadowRoot.innerHTML += `
       ${this.i18n.message('MATRIX_DIMENSIONS_ERROR')}
       ${this.i18n.sample('MATRIX_DIMENSIONS_ERROR')}
@@ -186,7 +185,7 @@ export class MiniMemory extends HTMLElement {
     matrix[0] = parseInt(matrix[0]);
     matrix[1] = parseInt(matrix[1]);
 
-    const oddMid = this.private.getOddMidIndex(matrix);
+    const oddMid = oddMiddle(matrix);
     const cssRow = `width:${100 / matrix[0]}%;`;
     const cssCol = `height:${100 / matrix[1]}%;`;
     const squares = matrix[0] * matrix[1];
@@ -216,7 +215,7 @@ export class MiniMemory extends HTMLElement {
     for (outer = 0; outer < matrix[0]; outer++) {
       for (inner = 0; inner < matrix[1]; inner++) {
         index = inner + matrix[1] * outer;
-        const tile = self.private.createTile(index);
+        const tile = newTile(index);
         tilesContainer.appendChild(tile.tile);
         if (index !== oddMid) {
           tile.canvas.classList.add('wait');
