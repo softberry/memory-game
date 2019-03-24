@@ -20,7 +20,7 @@ describe('Test Counter', () => {
 
   test('Difference must be correct', () => {
     counter.start();
-    counter.reset({ innerHtml: '' });
+    counter.reset(window.document.createElement('div'));
     return new Promise((resolve) => {
       setTimeout(() => {
         counter.stop();
