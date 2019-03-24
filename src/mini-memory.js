@@ -8,6 +8,7 @@ import { debounce } from './lib/tools/debounce';
 import { default as tmplToolbar } from './templates/toolbar.html';
 
 import { Settings } from './lib/layers/settings';
+import { NextLevel } from './lib/layers/nextlevel';
 import { FullScreen } from './lib/fullscreen';
 import { ImageServer } from './lib/image-server';
 
@@ -83,6 +84,7 @@ export class MiniMemory extends HTMLElement {
     this.tiles = [];
     this.layers = {
       loading: {},
+      nextLevel: new NextLevel(this),
     };
   }
 
@@ -294,6 +296,7 @@ export class MiniMemory extends HTMLElement {
     self.shadowRoot.innerHTML = `<style>${style}</style>
     ${tmplToolbar}
     ${self.settings.html}
+    ${self.layers.nextLevel.html}
       <div id="loading">
         <div class="lastScore">${
   self.settings.scores.currentPlayer.lastGame
@@ -317,5 +320,8 @@ export class MiniMemory extends HTMLElement {
       self.settings.reset(self.myAttributes());
       self.settings.show();
     });
+
+    self.layers.nextLevel.init();
+    self.layers.nextLevel.show();
   }
 }

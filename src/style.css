@@ -1,3 +1,6 @@
+html {
+
+}
 :host *,
 mini-memory * {
   box-sizing: border-box;
@@ -10,6 +13,8 @@ mini-memory * {
   --mini-memory-z-loading: 10;
   --mini-memory-z-tile: 20;
   --mini-memory-z-menu: 30;
+  --mini-memory-z-nextlevel: 0;
+  --mini-memory-z-active: 1000;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 12px;
   position: relative;
