@@ -62,7 +62,7 @@ import { Limits } from './lib/tools/limit';
 import { newTile } from './lib/tools/tile';
 import { oddMiddle } from './lib/tools/middle';
 
-const observedAttributes = ['matrix', 'lang', 'view', 'settings'];
+const observedAttributes = ['matrix', 'lang', 'view', 'settings', 'challenge'];
 /**
  * @classdesc Main container of the game. Will be used as
  * {`CustomElements.define`} constructor.
@@ -284,9 +284,13 @@ export class MiniMemory extends HTMLElement {
         attr.matrix,
         self.game.counter
       );
-      // TODO: Do not jump to auto next level.
-      // Add next button so that player have a chance to make break
-      self.setAttribute('matrix', nextLevelMatrix);
+
+      if (attr.challenge === 'off') {
+        self.reset();
+        self.render();
+      } else {
+        self.setAttribute('matrix', nextLevelMatrix);
+      }
     });
 
     self.imageServer
