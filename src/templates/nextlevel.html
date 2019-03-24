@@ -1,0 +1,49 @@
+<style>
+  :host #nextlevel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: none;
+    transition: all 300ms;
+    opacity: 0;
+  }
+
+  :host #nextlevel.active {
+    z-index: var(--mini-memory-z-active);
+    display: block;
+    opacity: 1;
+  }
+  :host #nextlevel #summary {
+    text-align: center;
+    font-size: 3vw;
+  }
+  :host #nextlevel .content {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  :host #nextlevel .content p {
+    line-height: 10px;
+  }
+
+  :host button#continue {
+    display: block;
+    font-size: 5vw;
+    width: unset;
+    margin: 0 auto;
+    padding: 2% 5%;
+    border-radius: 2vw;
+  }
+</style>
+<div id="nextlevel" class="active">
+  <div class="content">
+    <div id="summary"></div>
+    <button id="continue">PLAY</button>
+  </div>
+</div>
