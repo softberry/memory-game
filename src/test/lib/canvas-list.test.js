@@ -2,7 +2,7 @@ import { MemoryCanvaslist } from '../../lib/canvas-list';
 
 const canvasListArray = require('canvas-list');
 
-describe('Tesr Canvas List', () => {
+describe('Test Canvas List', () => {
   let memoryCanvaslist;
   beforeEach(() => {
     memoryCanvaslist = new MemoryCanvaslist();

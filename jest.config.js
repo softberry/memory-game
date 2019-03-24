@@ -9,4 +9,5 @@ module.exports = {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.html?$': 'html-loader-jest',
   },
+  setupFiles: ['jest-canvas-mock'],
 };
