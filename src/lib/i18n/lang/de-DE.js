@@ -33,6 +33,12 @@ const dict = {
   RESTART: {
     message: 'Neustart',
   },
+  PLAY: {
+    message: 'Spielen',
+  },
+  CONTINUE: {
+    message: 'Weiter',
+  },
 };
 
 export default dict;

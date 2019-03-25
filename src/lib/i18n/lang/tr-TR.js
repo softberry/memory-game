@@ -33,6 +33,12 @@ const dict = {
   RESTART: {
     message: 'Yeni Oyun',
   },
+  PLAY: {
+    message: 'Play',
+  },
+  CONTINUE: {
+    message: 'Devam',
+  },
 };
 
 export default dict;

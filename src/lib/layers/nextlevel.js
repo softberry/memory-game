@@ -26,11 +26,22 @@ export class NextLevel {
   show() {
     const layer = this.owner.shadowRoot.querySelector('#nextlevel');
     const summary = this.owner.shadowRoot.querySelector('#summary');
+    const btnContinue = this.owner.shadowRoot.querySelector('#continue');
+
+    if (
+      Object.keys(this.owner.settings.scores.currentPlayer.scores).length === 0
+    ) {
+      btnContinue.setAttribute('data-i18n', 'PLAY');
+    } else {
+      btnContinue.setAttribute('data-i18n', 'CONTINUE');
+    }
+
     summary.innerHTML = levelSummary(
       this.owner.settings.scores.currentPlayer.scores
     );
     layer.classList.add('active');
     layer.style.opacity = '1';
+    this.owner.i18n.update(this.owner.shadowRoot);
   }
   /**
    * Hides nextlevel layer

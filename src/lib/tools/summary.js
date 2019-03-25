@@ -8,10 +8,11 @@ export function levelSummary(scores) {
   const length = Object.keys(scores).length;
 
   Object.keys(scores).forEach((key, i) => {
-    strSummary += `<p style="font-size: ${10 - (length - i) * 2}vh;
-    opacity:${(1 / (length - i)).toFixed(2)}">${key.slice(1)} ${
-  scores[key][0].strDiff
-}</p>`;
+    strSummary += `<p style="font-size: ${8 - (length - i) * 2}vh;
+    opacity:${(1 / (length - i)).toFixed(2)}">
+    <span>${key.slice(1)}</span>
+    <span>${scores[key][0].strDiff}</span>
+    </p>`;
   });
   return strSummary;
 }
