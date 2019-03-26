@@ -68,9 +68,18 @@ this:
 
       <mini-memory matrix="2x2" view="fullscreen"></mini-memory>
 
-**`settings`** hides settings panel if this value set to "no". Default is visible.
+**`settings`** hides settings panel if this value set to ``no``. Default is visible.
 
       <mini-memory matrix="2x2" settings="no"></mini-memory>
+
+**`challenge`** Turns challenge mode  ``on`` or ``off``. Default is ``on``.
+
+      <mini-memory matrix="2x2" challenge="off"></mini-memory>
+
+Game starts with initially given matrix dimensions and it's increased one by one at each completed level.
+If this value set to ``off`` game repeats always same level.
+
+      <mini-memory matrix="2x2" challenge="off"></mini-memory>
 
 ## Documentation
 
