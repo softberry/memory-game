@@ -28,7 +28,6 @@
     font-size: 0.75em;
     text-align: center;
     position: relative;
-
   }
   :host button:active {
     box-shadow: 0 0 4px 0 white;
@@ -120,11 +119,11 @@
     color: white;
   }
 
-  :host #isFullScreen {
+  :host .switch {
     display: none;
   }
 
-  :host #isFullScreen + .vCheck {
+  :host .switch + .vCheck {
     display: inline-block;
     width: 60px;
     height: 20px;
@@ -136,11 +135,11 @@
     transition: background-color 300ms;
     cursor: pointer;
   }
-  :host #isFullScreen:checked + .vCheck {
+  :host .switch:checked + .vCheck {
     background-color: rgba(0, 250, 0, 0.5);
     box-shadow: 0 0 4px 2px green;
   }
-  :host #isFullScreen + .vCheck::before {
+  :host .switch + .vCheck::before {
     content: 'OFF';
     position: absolute;
     opacity: 0.5;
@@ -148,13 +147,13 @@
     top: 2px;
   }
 
-  :host #isFullScreen:checked + .vCheck::before {
+  :host .switch:checked + .vCheck::before {
     content: 'ON';
     left: unset;
     right: 6px;
     opacity: 1;
   }
-  :host #isFullScreen + .vCheck:after {
+  :host .switch + .vCheck:after {
     content: '';
     display: inline-block;
     position: relative;
@@ -167,7 +166,7 @@
     transform: translateX(-100%);
     transition: all 300ms;
   }
-  :host #isFullScreen:checked + .vCheck:after {
+  :host .switch:checked + .vCheck:after {
     left: 0;
     transform: translateX(0%);
   }
@@ -204,8 +203,13 @@
       </div>
     </div>
     <div class="flex">
+      <label for="isChallenge" data-i18n="CHALLENGE"></label>
+      <input class="switch" type="checkbox" id="isChallenge" />
+      <div class="vCheck"></div>
+    </div>
+    <div class="flex">
       <label for="isFullScreen" data-i18n="FULL_SCREEN"></label>
-      <input type="checkbox" id="isFullScreen" />
+      <input class="switch" type="checkbox" id="isFullScreen" />
       <div class="vCheck"></div>
     </div>
     <div>
