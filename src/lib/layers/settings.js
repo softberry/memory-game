@@ -38,9 +38,11 @@ export class Settings {
       matrixcol: shadow.querySelector('#matrixcol'),
       matrixrow: shadow.querySelector('#matrixrow'),
       isFullScreen: shadow.querySelector('#isFullScreen'),
+      isChallenge: shadow.querySelector('#isChallenge'),
     };
 
     self.vCheckFullScreen = shadow.querySelector('#isFullScreen + .vCheck');
+    self.vCheckChallenge = shadow.querySelector('#isChallenge + .vCheck');
 
     self.applySettings = shadow.querySelector('#applySettings');
     self.restartGame = shadow.querySelector('#restartGame');
@@ -59,6 +61,12 @@ export class Settings {
       self.enableApplyButton.call(self);
     });
 
+    self.vCheckChallenge.addEventListener('click', (e) => {
+      const chk = self.params.isChallenge;
+      chk.checked = !chk.checked;
+      self.enableApplyButton.call(self);
+    });
+
     self.applySettings.addEventListener('click', (e) => {
       if (self.params.playerName.value.replace(/\s/g, '').length === 0) {
         self.params.playerName.classList.add('error');
@@ -71,6 +79,8 @@ export class Settings {
 
       const vCheckFullScreen = self.params.isFullScreen.checked;
       self.scores.currentPlayer.name = self.params.playerName.value;
+      const vCheckChallenge = self.params.isChallenge.checked;
+      self.scores.currentPlayer.name = self.params.playerName.value;
 
       self.owner.layers.toolbar.player.innerText =
         self.scores.currentPlayer.name;
@@ -82,6 +92,11 @@ export class Settings {
         self.owner.setAttribute('view', 'fullscreen');
       } else {
         self.fullScreen.exit();
+      }
+      if (vCheckChallenge) {
+        self.owner.removeAttribute('challenge');
+      } else {
+        self.owner.setAttribute('challenge', 'off');
       }
       self.hide();
     });
@@ -136,6 +151,14 @@ export class Settings {
     } else {
       this.params.isFullScreen.checked = false;
       this.params.isFullScreen.removeAttribute('checked');
+    }
+
+    if (options.challenge !== 'off') {
+      this.params.isChallenge.checked = true;
+      this.params.isChallenge.setAttribute('checked', 'checked');
+    } else {
+      this.params.isChallenge.checked = false;
+      this.params.isChallenge.removeAttribute('checked');
     }
 
     this.applySettings.setAttribute('disabled', 'disabled');

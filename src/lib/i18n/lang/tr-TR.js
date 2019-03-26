@@ -39,6 +39,9 @@ const dict = {
   CONTINUE: {
     message: 'Devam',
   },
+  CHALLENGE: {
+    message: 'Challenge',
+  },
 };
 
 export default dict;
