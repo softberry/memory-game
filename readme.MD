@@ -3,7 +3,12 @@
 **WebComponent**
 
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/mini-memory)
-
+![npm](https://img.shields.io/npm/v/mini-memory.svg?style=popout)
+![Minified File Size](https://img.shields.io/github/size/softberry/memory-game/public/mini-memory.min.js.svg?label=minified&style=popout)
+![npm](https://img.shields.io/npm/dt/mini-memory.svg?style=popout)
+![GitHub issues](https://img.shields.io/github/issues/softberry/memory-game.svg?style=popout)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/softberry/memory-game.svg?style=popout)
+![GitHub last commit](https://img.shields.io/github/last-commit/softberry/memory-game.svg?style=popout)
 <!--
 ```
 <custom-element-demo>
