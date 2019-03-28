@@ -16,6 +16,7 @@ import { ImageServer } from './lib/image-server';
 import { Limits } from './lib/tools/limit';
 import { newTile } from './lib/tools/tile';
 import { oddMiddle } from './lib/tools/middle';
+import { default as getManifestJson } from './lib/tools/manifest';
 
 const observedAttributes = ['matrix', 'lang', 'view', 'settings', 'challenge'];
 /**
@@ -248,11 +249,11 @@ export class MiniMemory extends HTMLElement {
       }
     });
 
-    self.imageServer
-      .getManifest()
+    getManifestJson()
       .then((manifest) => {
         self.manifest = manifest;
-        self.imageServer
+
+        return self.imageServer
           .getCardImages({ width, height, imageCount })
           .catch((e) => {
             new Fallback(self, { width, height, imageCount });

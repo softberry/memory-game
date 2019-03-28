@@ -1,4 +1,6 @@
 import { default as tmplNextLevel } from '../../templates/NextLevel.html';
+import { SocialButtons } from './social';
+
 import { levelSummary } from '../tools/summary';
 /**
  * NextLevel Layer, creates content of transition layer between levels
@@ -26,6 +28,7 @@ export class NextLevel {
   show() {
     const layer = this.owner.shadowRoot.querySelector('#nextlevel');
     const summary = this.owner.shadowRoot.querySelector('#summary');
+    const footer = this.owner.shadowRoot.querySelector('#nextlevel .footer');
     const btnContinue = this.owner.shadowRoot.querySelector('#continue');
 
     if (
@@ -42,6 +45,10 @@ export class NextLevel {
     layer.classList.add('active');
     layer.style.opacity = '1';
     this.owner.i18n.update(this.owner.shadowRoot);
+
+    new SocialButtons().html().then((html) => {
+      footer.innerHTML = html;
+    });
   }
   /**
    * Hides nextlevel layer

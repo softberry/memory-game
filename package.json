@@ -23,6 +23,7 @@
     "autoprefixer": "^9.4.4",
     "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.0-beta",
+    "concurrently": "^4.1.0",
     "css-loader": "^2.1.0",
     "docdash": "^1.0.2",
     "eslint": "^5.11.0",
@@ -47,7 +48,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn test && yarn doc && yarn lint --fix && yarn build && git add ."
+      "pre-commit": "concurrently \"yarn test\" \"yarn doc\" \"yarn lint --fix\" \"yarn build\" \"git add .\" \"exit 0\""
     }
   },
   "repository": "https://github.com/softberry/memory-game.git",

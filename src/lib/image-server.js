@@ -1,3 +1,5 @@
+import { reject } from 'rsvp';
+
 /**
  * Loads images from server. Settings are read from manifest.json
  * @class
@@ -13,43 +15,35 @@ export class ImageServer {
     this.images = {};
     this.index = { from: 0, to: 0, card: 0 };
   }
-  /**
-   * Load manifest.json
-   * @return {{}} manifest Json Object
-   */
-  getManifest() {
-    const self = this;
-    return fetch('./manifest.json')
-      .then((response) => {
-        return response.json();
-      })
-      .then((manifest) => {
-        self.manifest = manifest;
-        return manifest;
-      })
-      .catch((err) => {
-        throw new Error(err);
-      });
-  }
+
   /**
    * get Images from server. Server path/url retrieved from manifest.json
    * @param {{}} options width, height and number of images to
    * be requested from server
-   * @return {{}} Fetch promise, Image server response
    */
   getCardImages(options) {
     const self = this;
     self.index.to = options.imageCount;
-    const host = self.manifest.imageServer.list
+    const host = self.owner.manifest.imageServer.list
       .replace(':from', self.index.from)
       .replace(':to', self.index.to)
       .replace(':cardId', self.index.card);
     self.index.from = options.imageCount;
     self.index.card = self.index.card + 1;
-    return fetch(host)
+    fetch(host)
+      .then((response) => {
+        if (!response.ok) {
+          debugger;
+          throw new Error(response.statusText);
+        }
+        return response;
+      })
       .then((response) => response.json())
       .then((res) => {
         self.done(res, options);
+      })
+      .catch((e) => {
+        reject(e);
       });
   }
   /**
@@ -64,7 +58,7 @@ export class ImageServer {
     self.owner.cardBack.addEventListener('load', (e) => {
       res.images.forEach((image) => {
         const img = document.createElement('img');
-        img.src = self.manifest.imageServer.image
+        img.src = self.owner.manifest.imageServer.image
           .replace(':width', options.width)
           .replace(':height', options.height)
           .replace(':path', image);
@@ -73,7 +67,7 @@ export class ImageServer {
       });
     });
 
-    self.owner.cardBack.src = self.manifest.imageServer.image
+    self.owner.cardBack.src = self.owner.manifest.imageServer.image
       .replace(':width', options.width)
       .replace(':height', options.height)
       .replace(':path', res.cards[0]);

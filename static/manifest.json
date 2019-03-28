@@ -52,5 +52,9 @@
   "imageServer": {
     "list": "//localhost/memory/list/:from/:to/:cardId",
     "image": "//localhost/memory/crop/:width/:height?image=:path"
+  },
+  "socialMedia": {
+    "url": "https://www.emresakarya.com/mini-memory/",
+    "media": ["facebook", "twitter", "linkedin", "xing"]
   }
 }
