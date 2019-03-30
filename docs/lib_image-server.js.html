@@ -65,6 +65,7 @@ export class ImageServer {
    * get Images from server. Server path/url retrieved from manifest.json
    * @param {{}} options width, height and number of images to
    * be requested from server
+   * @return {{fetch}} Returns Fetch Object that resolvest image-url response
    */
   getCardImages(options) {
     const self = this;

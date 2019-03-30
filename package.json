@@ -8,13 +8,13 @@
   "private": false,
   "scripts": {
     "dev": "webpack-dev-server --mode development",
-    "build": "rimraf ./public && webpack -c \"webpack.config.js\" --mode production && exit 0",
+    "build": "rimraf ./public && webpack -c \"webpack.config.js\" --mode production ",
     "lint": "eslint ./src",
     "serve": "browser-sync start --server \"./public\"",
     "serve-docs": "yarn doc && browser-sync start --server \"./docs\"",
     "serve-coverage": "yarn test && browser-sync start --server \"./coverage/lcov-report\" -w",
-    "doc": "rimraf ./docs && jsdoc -c \"./jsdoc.config.json\" && exit 0",
-    "test": "jest --coverage && exit 0"
+    "doc": "rimraf ./docs && jsdoc -c \"./jsdoc.config.json\" ",
+    "test": "jest --coverage "
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -48,7 +48,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "concurrently \"yarn test\" \"yarn doc\" \"yarn lint --fix\" \"yarn build\" \"git add .\" \"exit 0\""
+      "pre-commit": "concurrently \"yarn test\" \"yarn doc\" \"yarn lint --fix\" \"yarn build\" \"git add .\""
     }
   },
   "repository": "https://github.com/softberry/memory-game.git",
