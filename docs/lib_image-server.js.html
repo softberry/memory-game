@@ -75,15 +75,13 @@ export class ImageServer {
       .replace(':cardId', self.index.card);
     self.index.from = options.imageCount;
     self.index.card = self.index.card + 1;
-    fetch(host)
+    return fetch(host)
       .then((response) => {
         if (!response.ok) {
-          debugger;
           throw new Error(response.statusText);
         }
-        return response;
+        return response.json();
       })
-      .then((response) => response.json())
       .then((res) => {
         self.done(res, options);
       })

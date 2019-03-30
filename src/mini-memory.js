@@ -252,7 +252,6 @@ export class MiniMemory extends HTMLElement {
     getManifestJson()
       .then((manifest) => {
         self.manifest = manifest;
-
         return self.imageServer
           .getCardImages({ width, height, imageCount })
           .catch((e) => {
