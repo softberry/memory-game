@@ -52,5 +52,6 @@
     }
   },
   "repository": "https://github.com/softberry/memory-game.git",
+  "homepage": "https://softberry.github.io/memory-game/",
   "dependencies": {}
 }
