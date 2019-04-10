@@ -1,5 +1,6 @@
 import { default as tmplNextLevel } from '../../templates/NextLevel.html';
 import { SocialButtons } from './social';
+import { AMP } from './amp';
 
 import { levelSummary } from '../tools/summary';
 /**
@@ -13,6 +14,7 @@ export class NextLevel {
   constructor(owner) {
     this.owner = owner;
     this.html = tmplNextLevel;
+    this.ampMarkup = '';
   }
   /**
    * Initialize class after html insert.
@@ -46,8 +48,9 @@ export class NextLevel {
     layer.style.opacity = '1';
     this.owner.i18n.update(this.owner.shadowRoot);
 
+    footer.innerHTML = this.getAmpMarkup();
     new SocialButtons().html().then((html) => {
-      footer.innerHTML = html;
+      footer.innerHTML += html;
     });
   }
   /**
@@ -59,5 +62,18 @@ export class NextLevel {
     setTimeout(() => {
       layer.classList.remove('active');
     }, 300);
+  }
+  /**
+   * get AMP markup from AMP library.
+   * @return {String} returns the required markup if available,
+   * empty otherwise
+   *
+   */
+  getAmpMarkup() {
+    if (!this.owner.manifest || !this.owner.manifest.amp) {
+      return '';
+    }
+    const amp = new AMP(this.owner.manifest.amp);
+    return amp.markup();
   }
 }
