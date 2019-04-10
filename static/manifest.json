@@ -56,5 +56,9 @@
   "socialMedia": {
     "url": "https://www.emresakarya.com/mini-memory/",
     "media": ["facebook", "twitter", "linkedin", "xing"]
+  },
+  "amp":{
+    "customElement":"amp-auto-ads",
+    "publisherId":"ca-pub-9165355462785271"
   }
 }
