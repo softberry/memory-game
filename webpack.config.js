@@ -15,6 +15,7 @@ module.exports = {
     path: resolve(__dirname, './public'),
     publicPath: '/',
   },
+  devtool:'source-map',
   module: {
     rules: [
       {
