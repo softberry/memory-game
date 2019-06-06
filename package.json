@@ -51,6 +51,7 @@
       "pre-commit": "concurrently \"yarn test\" \"yarn lint --fix\" \"yarn doc\" \"yarn build\" \"git add .\""
     }
   },
+  "browserslist": ["> 1%", "last 2 versions"],
   "repository": "https://github.com/softberry/memory-game.git",
   "homepage": "https://softberry.github.io/memory-game/",
   "dependencies": {}
