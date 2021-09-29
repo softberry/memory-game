@@ -16,7 +16,6 @@ describe('Test functionalIamge ', () => {
 
   const min = 3;
 
-
   const max = 5;
   for (let i = min; i <= max; i++) {
     for (let n = min; n <= max; n++) {

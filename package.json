@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "webpack serve --mode development",
     "build": "rimraf ./public && webpack -c \"webpack.config.js\" --mode production ",
-    "lint": "eslint ./src",
+    "prettify": "prettier --write \"**/*.(js|json|yaml|html|css)\"",
+    "lint": "eslint ./src --fix",
     "serve": "serve \"./public\"",
     "serve-docs": "yarn doc && serve  \"./docs\"",
     "serve-coverage": "yarn test && serve \"./coverage/lcov-report\"",
@@ -29,17 +30,18 @@
     "docdash": "^1.0.2",
     "eslint": "^5.11.0",
     "eslint-config-google": "^0.11.0",
+    "eslint-config-prettier": "^8.3.0",
     "file-loader": "^6.2.0",
     "html-loader": "^0.5.5",
     "html-loader-jest": "^0.2.1",
     "html-webpack-plugin": "^5.3.2",
-    "husky": "^7.0.2",
     "jest": "^27.2.4",
     "jest-canvas-mock": "^2.0.0-beta.1",
     "jsdoc": "^3.5.5",
     "nodemon": "^2.0.13",
     "postcss-loader": "^6.1.1",
-    "prettier": "1.15.3",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.4.1",
     "raw-loader": "^4.0.2",
     "rimraf": "^2.6.3",
     "to-string-loader": "^1.1.6",
@@ -48,11 +50,13 @@
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.3.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "concurrently \"yarn test\" \"yarn lint --fix\" \"yarn doc\" \"yarn build\" \"git add .\""
-    }
-  },
+  "pre-commit": [
+    "test",
+    "prettify",
+    "lint",
+    "doc",
+    "build"
+  ],
   "browserslist": [
     "> 1%",
     "last 2 versions"

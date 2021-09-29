@@ -3,7 +3,7 @@
  * @module
  * @return {{}} fetch promise that loads manifest.json
  */
-export default function() {
+export default function () {
   return fetch('./manifest.json')
     .then((response) => {
       if (response.ok) {

@@ -179,10 +179,9 @@ export class Settings {
    * @param {*} options Given initial options.
    */
   reset(options) {
-    [
-      this.params.matrixcol.value,
-      this.params.matrixrow.value,
-    ] = options.matrix.split('x').filter((m) => m !== 'x');
+    [this.params.matrixcol.value, this.params.matrixrow.value] = options.matrix
+      .split('x')
+      .filter((m) => m !== 'x');
     const curPlayerName = this.scores.currentPlayer.name;
 
     if (options.settings === 'no') {

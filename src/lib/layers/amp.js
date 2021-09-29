@@ -13,9 +13,9 @@ export class AMP {
     this.publisherId = options.publisherId;
   }
   /**
- * @return {String} HtmlMarkup of ad-block if amp info available
- * in manifest.json, empty otherwise.
- */
+   * @return {String} HtmlMarkup of ad-block if amp info available
+   * in manifest.json, empty otherwise.
+   */
   markup() {
     if (!(this.customElement && this.publisherId)) {
       return '';

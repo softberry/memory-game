@@ -225,7 +225,10 @@ export class MiniMemory extends HTMLElement {
         }
       }
     }
-    self.game = new Game(this.tiles.map((t) => t.canvas), this.cardBack);
+    self.game = new Game(
+      this.tiles.map((t) => t.canvas),
+      this.cardBack
+    );
 
     self.game.events.addEventListener('ready', (e) => {
       self.shadowRoot.querySelector('#loading').classList.add('done');
@@ -291,13 +294,13 @@ export class MiniMemory extends HTMLElement {
       self.attachShadow({ mode: 'open' });
     }
 
-    self.shadowRoot.innerHTML = `<!-- 1--> <style>${style}</style>`;
+    self.shadowRoot.innerHTML = `<style>${style}</style>`;
     if (!self.checkDefaultAttributes()) {
       self.i18n.update(self.shadowRoot);
       return;
     }
 
-    self.shadowRoot.innerHTML = `<!-- 2--> 
+    self.shadowRoot.innerHTML = `
     <style>${style}</style>
       ${tmplToolbar}
       ${self.settings.html}

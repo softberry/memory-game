@@ -10,7 +10,7 @@
 export function debounce(fn, time) {
   let timeout;
 
-  const CheckBounce = function() {
+  const CheckBounce = function () {
     const self = this;
     const functionCall = (...arg) => fn.apply(self, arg);
 
