@@ -4,10 +4,8 @@ const HtmlPlugin = require('html-webpack-plugin');
 module.exports = {
   devServer: {
     host: '0.0.0.0',
-    contentBase: resolve('./src'),
     port: 8080,
-    contentBase: resolve('static'),
-    publicPath: '/'
+    static: resolve(__dirname, 'static'),
   },
   entry: ['./src/index.js'],
   output: {
@@ -15,7 +13,7 @@ module.exports = {
     path: resolve(__dirname, './public'),
     publicPath: '/',
   },
-  devtool:'source-map',
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -25,7 +23,16 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['to-string-loader', 'css-loader', 'postcss-loader'],
+        use: [
+          'to-string-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              esModule: false,
+            },
+          },
+          'postcss-loader',
+        ],
         exclude: /node_modules/,
       },
       {

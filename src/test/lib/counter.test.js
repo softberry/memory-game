@@ -1,5 +1,8 @@
-import { Counter } from '../../lib/counter';
+/**
+ * @jest-environment jsdom
+ */
 
+import { Counter } from '../../lib/counter';
 
 describe('Test Counter', () => {
   const counter = new Counter();

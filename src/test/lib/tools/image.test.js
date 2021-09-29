@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { newImage } from '../../../lib/tools/image';
 
 describe('Test newImage ', () => {

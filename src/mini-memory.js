@@ -41,7 +41,6 @@ export class MiniMemory extends HTMLElement {
     this.fullScreen = new FullScreen();
     this.imageServer = new ImageServer(this);
     this.manifest;
-
     this.rendered = false;
     this.images = [];
     this.tiles = [];
@@ -195,7 +194,7 @@ export class MiniMemory extends HTMLElement {
     const imageCount = squares % 2 === 0 ? squares / 2 : (squares - 1) / 2;
 
     const self = this;
-
+    console.log(JSON.stringify(style));
     self.shadowRoot.innerHTML += `
     <style>:host .tile {${cssRow + cssCol}}</style>`;
     let outer = 0;
@@ -205,9 +204,9 @@ export class MiniMemory extends HTMLElement {
     const parentContainer =
       self.getAttribute('view') === 'fullscreen'
         ? {
-          w: document.documentElement.offsetWidth,
-          h: document.documentElement.offsetHeight,
-        }
+            w: document.documentElement.offsetWidth,
+            h: document.documentElement.offsetHeight,
+          }
         : { w: self.parentNode.offsetWidth, h: self.parentNode.offsetHeight };
 
     const width = parseInt(parentContainer.w / matrix[0]);
@@ -292,22 +291,24 @@ export class MiniMemory extends HTMLElement {
       self.attachShadow({ mode: 'open' });
     }
 
-    self.shadowRoot.innerHTML = `<style>${style}</style>`;
+    self.shadowRoot.innerHTML = `<!-- 1--> <style>${style}</style>`;
     if (!self.checkDefaultAttributes()) {
       self.i18n.update(self.shadowRoot);
       return;
     }
 
-    self.shadowRoot.innerHTML = `<style>${style}</style>
-    ${tmplToolbar}
-    ${self.settings.html}
-    ${self.layers.nextLevel.html}
-      <div id="loading">
-        <div class="lastScore">${
-  self.settings.scores.currentPlayer.lastGame
-}</div>
-        <div class="goto next level">${self.i18n.message('LOADING')}</div>
-      </div>`;
+    self.shadowRoot.innerHTML = `<!-- 2--> 
+    <style>${style}</style>
+      ${tmplToolbar}
+      ${self.settings.html}
+      ${self.layers.nextLevel.html}
+          <div id="loading">
+              <div class="lastScore">${
+                self.settings.scores.currentPlayer.lastGame
+              }
+              </div>
+            <div class="goto next level">${self.i18n.message('LOADING')}</div>
+          </div>`;
 
     self.prepareMatrix();
     self.i18n.update(self.shadowRoot);

@@ -21,7 +21,6 @@ export class Game {
     this.cardBack = cardBack;
     this.canvas = new MemoryCanvaslist();
     this.images = new MemoryImageList();
-
     this.pairs = new MemoryPairsList();
 
     this.canvas.addCanvas(canvas);

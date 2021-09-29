@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { newTile } from '../../../lib/tools/tile';
 
 describe('Test Middle of Odd Numbers', () => {

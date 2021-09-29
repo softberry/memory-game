@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { MiniMemory } from '../../mini-memory';
 
 describe('Default props', () => {
